@@ -1,0 +1,53 @@
+.footer{
+    background-color: #F7F7F6!important;
+    color: black;
+}
+
+.page-footer {
+    padding-top: 20px;
+    font-size: 14px;
+    color: #545454!important;
+    background-color: #F7F7F6!important;
+}
+
+.newsletter {
+    color: #EE4695;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.news{
+    background-color: white!important;
+    border: none;
+    border-bottom: 1px solid #ffffff!important;
+    border-top: 1px solid #ffffff!important;
+    border-left: 1px solid #ffffff!important;
+    border-right: 1px solid #ffffff!important;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 16px;
+    margin: 0 0 8px 0;
+	height: 35px!important;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: border .3s, -webkit-box-shadow .3s;
+    transition: border .3s, -webkit-box-shadow .3s;
+    transition: box-shadow .3s, border .3s;
+    transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
+}
+
+.btn-enviar {
+    background-color: #8592A7!important;
+    color: white!important;
+    border-radius: 0px!important;
+    padding-right: 35%!important;
+    padding-left: 35%!important;
+    height: 35px;
+    width: 90px;
+}
