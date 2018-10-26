@@ -10,13 +10,13 @@
     <div class="row" style="margin-top: 4%;">
         <div class="row">
             <div class="col-md-12">
-                <div class="card #e0e0e0 grey lighten-2" style="border-radius: 6px">
-                    <div class="card-action" style="">
+                <div class="panel panel-default" style="border-radius: 6px">
+                    <div class="panel-heading" style="">
                         <span class="presupuesto">
                             Presupuesto
                         </span>
                     </div>
-                    <div class="card-content">
+                    <div class="panel-body">
                         <span class="card-title">
                         </span>
                         <div class="row">
@@ -63,13 +63,13 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card #e0e0e0 grey lighten-2" style="border-radius: 6px;margin-bottom: 10%;;">
-                    <div class="card-action" style="">
+                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 10%;;">
+                    <div class="panel-heading" style="">
                         <span class="presupuesto">
                             Cliente
                         </span>
                     </div>
-                    <div class="card-content">
+                    <div class="panel-body">
                         <span class="card-title">
                         </span>
                         <div class="row">
@@ -304,13 +304,13 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card #e0e0e0 grey lighten-2" style="border-radius: 6px;margin-bottom: 10%;">
-                    <div class="card-action" style="">
+                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 10%;">
+                    <div class="panel-heading" style="">
                         <span class="presupuesto">
                             Item
                         </span>
                     </div>
-                    <div class="card-content">
+                    <div class="panel-body">
                         <span class="card-title">
                         </span>
                         <div class="container" style="width: 100%;">
@@ -374,13 +374,15 @@
                                             <label>
                                                 Ancho
                                             </label>
+                                            {!! Form::text('ancho[]', null, ['class' => 'form-control producto-quantity', 'placeholder' => 'ancho']) !!}
                                             <input type="text" id="txt_campo_1" onchange="sumar(this.value);" />
                                         </div>
                                         <div class="col-md-1">
                                             <label>
                                                 Monto
                                             </label>
-                                           <span>El resultado es: </span> <span id="spTotal"></span>
+                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
+                                        <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
                                         </div>
                                         <div class="col-md-2">
                                             <label>
@@ -425,6 +427,7 @@
         </div>
     </div>
     {!!Form::close()!!}
+    <!--
     <span>Valor #1</span>
 <input type="text" id="txt_campo_1" onchange="sumar(this.value);" />
 <br/ >
@@ -436,6 +439,7 @@
 <br/ >
 <span>El resultado es: </span> <span id="spTotal"></span>
 </div>
+-->
 @endsection 
 @section('js')
 <script type="text/javascript">
@@ -641,9 +645,9 @@ function monto (valor) {
                 return val.id == id ? val.observacion : null;
             });
 
-            $(".alto").val(alto)
+          //  $(".alto").val(alto)
 
-            $(this).closest('.multiple-form-group').find('.calculo-monto').val(alto[0]);
+         //   $(this).closest('.multiple-form-group').find('.calculo-monto').val(alto[0]);
             $(this).closest('.multiple-form-group').find('.producto-price').val(cost[0]);
             $(this).closest('.multiple-form-group').find('.producto-observacion').val(observacion[0]);
             $(this).closest('.multiple-form-group').find('.producto-stock').val(quantity[0]);

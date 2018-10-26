@@ -70,9 +70,12 @@ a:hover{
 }
 .container-flex{
 	display: flex;
-	justify-content: space-between;
-	width: 100%;
+    justify-content: space-between;
+    width: 67%;
+    float: center;
+    margin: auto;
 }
+
 .item-flex{
 	display: flex; justify-content: center; align-items: center;
 }
@@ -83,7 +86,7 @@ ul.navb{
 	text-decoration: none;
 	margin-bottom: 0px;
 	padding: 0px;
-	padding-top: 13px;
+	padding-top: 34px;
 	padding-bottom: 30px;
 }
 /*ul>div>li.item-flex>a*/.itm-menu{
