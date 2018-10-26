@@ -20,13 +20,27 @@
 
 		<div class="row">
 			<div class="col s12">
+				<span class="" name="action" >
+                	El valor del dolar configurado es <b>{!! $dolar->valor !!}</b> pesos por dolar
+            	</span>				
+			</div>
+			<div class="col s12">
+				<a href="{{route('dolares.edit', $dolar->id)}}">
+					<button class="boton btn-small left">
+                		Cambiar valor dolar
+            		</button>			
+				</a>	
+			</div>
+			<br><br><br>
+			<div class="col s12">
 				<table class="highlight bordered">
 					<thead>
 						<td>Codigo</td>
 						<td>Nombre</td>
-						<td>Modeda</td>
-						<td>Precio M2</td>
+						<td>Precio en pesos</td>
 						<td>Precio con descuento</td>
+						<td>Precio en USD</td>
+						<td>Precio con descuento USD</td>
 						<td class="text-right">Acciones</td>
 					</thead>
 					<tbody>
@@ -34,9 +48,24 @@
 						<tr>
 							<td>{{ $material->codigo }}</td>
 							<td>{{ $material->nombre }}</td>
-							<td>{{ $material->moneda }}</td>
-							<td>{{ $material->precio }}</td>
-							<td>{{ $material->precio_descuento }}</td>
+							<td>${{ $material->precio }}
+							</td>
+							<td>${{ $material->cost }}
+							</td>
+							<td>
+								@if($material->precio_dolar==null)
+									N/A
+								@else
+								$USD {{ $material->precio_dolar }}
+								@endif
+							</td>
+							<td>
+								@if($material->cost_dolar==null)
+									N/A
+								@else
+								$USD {{ $material->cost_dolar }}
+								@endif
+							</td>
 							<td class="text-right">
 								<a href="{{ route('materiales.edit', $material->id) }}"><i class="material-icons">create</i></a>
 								{!!Form::open(['class'=>'en-linea', 'route'=>['materiales.destroy', $material->id], 'method' => 'DELETE'])!!}

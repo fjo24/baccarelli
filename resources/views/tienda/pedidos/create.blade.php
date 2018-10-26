@@ -194,43 +194,42 @@
                             <div class="col-md-12">
                                 <div class="col-md-6" style="">
                                     <div class="col-md-2 input-cliente">
-
                                     </div>
                                     <div class="input-cliente col-md-8">
                                         @foreach($horarios as $horario)
                                         <div class="input-cliente col-md-6">
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="horario_id[]" class="filled-in" value="{!!$horario->id!!}"/>
-                                                    <span>{!!$horario->horario!!}</span>
+                                                    <input class="filled-in" name="horario_id[]" type="checkbox" value="{!!$horario->id!!}"/>
+                                                    <span>
+                                                        {!!$horario->horario!!}
+                                                    </span>
                                                 </label>
                                             </p>
                                         </div>
                                         @endforeach
-
                                     </div>
                                     <div class="col-md-2 input-cliente">
-
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="">
                                     <div class="col-md-2 input-cliente">
-
                                     </div>
                                     <div class="input-cliente col-md-8">
                                         @foreach($dias as $dia)
                                         <div class="input-cliente col-md-6" style="    height: 30px;">
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="dia_id[]" class="filled-in" value="{!!$dia->id!!}"/>
-                                                    <span>{!!$dia->dia!!}</span>
+                                                    <input class="filled-in" name="dia_id[]" type="checkbox" value="{!!$dia->id!!}"/>
+                                                    <span>
+                                                        {!!$dia->dia!!}
+                                                    </span>
                                                 </label>
                                             </p>
                                         </div>
                                         @endforeach
                                     </div>
-                                        <div class="col-md-2 input-cliente">
-
+                                    <div class="col-md-2 input-cliente">
                                     </div>
                                 </div>
                             </div>
@@ -255,10 +254,12 @@
                                     </div>
                                     <div class="input-restriccion col-md-10">
                                         <p>
-                                          <label>
-                                            <input type="checkbox" name="restriccion_id[]" class="filled-in" value="{{$restriccion->id}}"/>
-                                            <span style="width: 430px;">{!!Form::text('especificacion[]','',['class'=>'form_login', 'placeholder' => $restriccion->nombre])!!}</span>
-                                          </label>
+                                            <label>
+                                                <input class="filled-in" name="restriccion_id[]" type="checkbox" value="{{$restriccion->id}}"/>
+                                                <span style="width: 430px;">
+                                                    {!!Form::text('especificacion[]','',['class'=>'form_login', 'placeholder' => $restriccion->nombre])!!}
+                                                </span>
+                                            </label>
                                         </p>
                                     </div>
                                     @endforeach
@@ -269,13 +270,17 @@
                                     </div>
                                     <div class="input-requerida col-md-10">
                                         <p>
-                                          <label>
-                                            <input type="checkbox" name="requerida_id[]" class="filled-in" value="{{$requerida->id}}"/>
-                                            <span style="width: 430px;">{!!$requerida->nombre!!}</span>
-                                          </label>
+                                            <label>
+                                                <input class="filled-in" name="requerida_id[]" type="checkbox" value="{{$requerida->id}}"/>
+                                                <span style="width: 430px;">
+                                                    {!!$requerida->nombre!!}
+                                                </span>
+                                            </label>
                                         </p>
                                         <p>
-                                            <span style="width: 430px;">{!!Form::text('drequerida[]','',['class'=>'form_login', 'placeholder' => $requerida->descripcion])!!}</span>
+                                            <span style="width: 430px;">
+                                                {!!Form::text('drequerida[]','',['class'=>'form_login', 'placeholder' => $requerida->descripcion])!!}
+                                            </span>
                                         </p>
                                     </div>
                                     @endforeach
@@ -292,13 +297,12 @@
                                     </textarea>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-      <div class="row">
+        <div class="row">
             <div class="col-md-12">
                 <div class="card #e0e0e0 grey lighten-2" style="border-radius: 6px;margin-bottom: 10%;">
                     <div class="card-action" style="">
@@ -309,53 +313,84 @@
                     <div class="card-content">
                         <span class="card-title">
                         </span>
-<div class="container" style="width: 90%;">
-<div class="col-md-12">
-                        <div class="box-header">
-                            <h3 class="box-title">Seleccione producto o servicio</h3>
-                            <div class="pull-right">
-                            </div>
-                        </div>
-                        <div class="contacts">
-                            <div class="form-group multiple-form-group input-group">
-                                <div class="col-md-2">
-                                    <label>Pieza</label>
-                                    <div class="input-group-btn input-group-select">
-                                        <div class="form-group">
-                                            {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control select-product', 'placeholder' => 'Indique producto', 'required']) !!}
-                                        </div>
-                                        <input type="hidden" class="input-group-select-val" name="contacts['type'][]" value="phone">
+                        <div class="container" style="width: 100%;">
+                            <div class="col-md-12">
+                                <div class="box-header">
+                                    <h3 class="box-title">
+                                        Seleccione producto o servicio
+                                    </h3>
+                                    <div class="pull-right">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <label>Material</label>
-                                    <div class="input-group-btn input-group-select">
-                                        <div class="form-group">
-                                            {!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product', 'placeholder' => 'Indique producto', 'required']) !!}
+                                <div class="contacts">
+                                    <div class="form-group multiple-form-group input-group">
+                                        <div class="col-md-2">
+                                            <label>
+                                                Pieza
+                                            </label>
+                                            <div class="input-group-btn input-group-select">
+                                                <div class="form-group">
+                                                    {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control', 'placeholder' => 'Indique pieza', 'required']) !!}
+                                                </div>
+                                                <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
+                                                </input>
+                                            </div>
                                         </div>
-                                        <input type="hidden" class="input-group-select-val" name="contacts['type'][]" value="phone">
+                                        <div class="col-md-2">
+                                            <label>
+                                                Material
+                                            </label>
+                                            <div class="input-group-btn input-group-selec">
+                                                <div class="form-group">
+                                                    {!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product', 'placeholder' => 'Indique material', 'required']) !!}
+                                                </div>
+                                                <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>
+                                                Observaciones
+                                            </label>
+                                            <div class="input-group-btn input-group-select">
+                                                <div class="form-group">
+                                                    {!! Form::select('observaciones_id[]', $observaciones, null, ['class' => 'form-control producto-observacion', 'placeholder' => '', 'required']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label>
+                                                Precio
+                                            </label>
+                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label>
+                                                Largo
+                                            </label>
+                                            {!! Form::text('largo[]', null, ['class' => 'form-control producto-quantity', 'placeholder' => 'largo']) !!}
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label>
+                                                Ancho
+                                            </label>
+                                            {!! Form::text('ancho[]', null, ['class' => 'form-control producto-quantity', 'placeholder' => 'ancho']) !!}
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>
+                                                -
+                                            </label>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-success btn-add" type="button">
+                                                    +
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Precio</label>
-                                    {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Cantidad</label>
-                                    {!! Form::text('quantity[]', null, ['class' => 'form-control producto-quantity', 'placeholder' => 'cantidad']) !!}
-                                </div>
-                                <div class="col-md-2">
-                                    <label> - </label>
-                                    <span class="input-group-btn">
-                                <button type="button" class="btn btn-success btn-add">+</button>
-                                    </span>
                                 </div>
                             </div>
                         </div>
-                </div>
-</div>
-
-           <!--             <div>
+                        <!--             <div>
                             <a class="right" href="" style="cursor: pointer;margin-top: 15%;">
                                 <button class="boton_agregar">
                                        + Añadir
@@ -365,32 +400,30 @@
                     </div>
                 </div>
             </div>
-        <div>
-            <a class="left" href="" style="cursor: pointer;">
-                <button class="boton_guardar">
-                    <span>
-                        Guardar Presupuesto
-                    </span>
-                </button>
-            </a>
-            <a class="right" href="" style="cursor: pointer;">
-                <button class="boton_confirmar" type="submit">
-                    <span>
-                        Confirmar Pedido
-                    </span>
-                </button>
-            </a>
-        </div>
+            <div>
+                <a class="left" href="" style="cursor: pointer;">
+                    <button class="boton_guardar">
+                        <span>
+                            Guardar Presupuesto
+                        </span>
+                    </button>
+                </a>
+                <a class="right" href="" style="cursor: pointer;">
+                    <button class="boton_confirmar" type="submit">
+                        <span>
+                            Confirmar Pedido
+                        </span>
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
-
     {!!Form::close()!!}
 </div>
 @endsection 
 @section('js')
 <script type="text/javascript">
-
-       //SERVICES (Lista dinamica)  formgroup2
+    //SERVICES (Lista dinamica)  formgroup2
         (function ($) {
             $(function () {
                 var addFormGroup2 = function (event) {
@@ -555,7 +588,12 @@
                 return val.id == id ? val.cost : null;
             });
 
+            var observacion = $.map(myArray, function (val) {
+                return val.id == id ? val.observacion : null;
+            });
+
             $(this).closest('.multiple-form-group').find('.producto-price').val(cost[0]);
+            $(this).closest('.multiple-form-group').find('.producto-observacion').val(observacion[0]);
             $(this).closest('.multiple-form-group').find('.producto-stock').val(quantity[0]);
             //$(this).closest('.multiple-form-group').find('.producto-cost').val(cost[0]);
 

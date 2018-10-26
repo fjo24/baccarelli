@@ -51,7 +51,7 @@
 				<div class="row">
 					<div class="input-field col l6 s12 m6">
                         <i class="material-icons prefix">https</i>
-                        {!!Form::password('password',['class'=>'', 'required'])!!}
+                        {!!Form::password('password',['class'=>''])!!}
                         {!!Form::label('Contraseña')!!}
                     </div>
 				</div>

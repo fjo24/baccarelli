@@ -188,6 +188,23 @@
                             <i class="material-icons">
                                 account_circle
                             </i>
+                            Cotización dolar
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="{{route('dolares.create')}}">
+                                        Editar Cotización
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-admin">
+                            <i class="material-icons">
+                                account_circle
+                            </i>
                             Materiales
                         </a>
                         <div class="collapsible-body">

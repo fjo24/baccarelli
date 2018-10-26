@@ -1,6 +1,6 @@
 @extends('adm.layouts.frame')
 
-@section('titulo', 'Lista usuarios')
+@section('titulo', 'Lista usuarios Baccarelli')
 
 @section('contenido')
 	    @if(count($errors) > 0)
@@ -28,24 +28,24 @@
 						<td class="text-right">Acciones</td>
 					</thead>
 					<tbody>
-					@foreach($distribuidores as $distribuidor)
+					@foreach($users as $distribuidor)
 						<tr>
 							<td>{!!$distribuidor->name!!} {!!$distribuidor->apellido!!}</td>
 							<td>{!!$distribuidor->username!!}</td>
 							<td>
-								@if($distribuidor->rango=='t_jefelinea')
-									Jefe de Linea
-								@elseif($distribuidor->rango=='t_jefetienda')
-									Jefe de Tienda
-								@elseif($distribuidor->rango=='t_admin')
-									Admin de Tienda
-								@elseif($distribuidor->rango=='t_vendedor')	
-									Vendedor
+								@if($distribuidor->rango=='b_medidor')
+									Medidor
+								@elseif($distribuidor->rango=='b_logistica')
+									Logistica
+								@elseif($distribuidor->rango=='b_administrativo')
+									Administrativo
+								@elseif($distribuidor->rango=='b_fabrica')	
+									Fabrica
 								@endif
 							</td>
 							<td class="text-right">
-								<a href="{{ route('distribuidorestienda.edit', $distribuidor->id)}}"><i class="material-icons">create</i></a>
-								{!!Form::open(['class'=>'en-linea', 'route'=>['distribuidorestienda.destroy', $distribuidor->id], 'method' => 'DELETE'])!!}
+								<a href="{{ route('users.edit', $distribuidor->id)}}"><i class="material-icons">create</i></a>
+								{!!Form::open(['class'=>'en-linea', 'route'=>['users.destroy', $distribuidor->id], 'method' => 'DELETE'])!!}
 									<button onclick='return confirm_delete(this);' type="submit" class="submit-button">
 										<i class="material-icons red-text">cancel</i>
 									</button>
@@ -56,7 +56,7 @@
 					</tbody>
 				</table>
 				<br>
-        <a href="{{ route('distribuidorestienda.create') }}">
+        <a href="{{ route('users.create') }}">
             <div class="col l12 s12 no-padding" href="">
                 <button class="boton btn-large right" name="action" type="submit">
                     Nuevo

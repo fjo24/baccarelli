@@ -16,7 +16,7 @@ class AdminController extends Controller
     public function home()
     {
     	$activo = 'home';
-        return redirect()->route('pedidos.create', compact('sliders', 'servicios', 'banner', 'contenido', 'activo', 'bloque1', 'bloque2', 'bloque3', 'bloque4'));
+        return redirect()->route('pedidosadmin.create', compact('sliders', 'servicios', 'banner', 'contenido', 'activo', 'bloque1', 'bloque2', 'bloque3', 'bloque4'));
     }
 
 }

@@ -47,8 +47,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('pedidosadmin', 'Admin\PedidosController');
 
 });
-/*------------PEDIDOS----------------*/
-Route::resource('pedidos', 'PedidosController');
+
 
 /*----------------LOGIN TIENDA----------------*/
 Route::get('/tienda', 'Tienda\TiendaController@login')->name('tienda.login');
@@ -98,6 +97,9 @@ Route::prefix('adm')->middleware('auth')->group(function () {
 
     /*------------TIENDA----------------*/
     Route::resource('tiendas', 'Adm\TiendasController');
+
+    /*------------DOLARES----------------*/
+    Route::resource('dolares', 'Adm\DolaresController');
 
     //DASHBOARD
     Route::get('/dashboard', 'Adm\AdminController@admin');

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Material;
 use App\Unidad;
 use App\Observacion;
+use App\Dolar;
 use App\Rubro;
 use App\Stock;
 use Illuminate\Http\Request;
@@ -19,8 +20,9 @@ class MaterialesController extends Controller
 {
     public function index()
     {
-        $materiales = Material::orderBy('nombre', 'ASC')->get();
-        return view('adm.materiales.index', compact('materiales'));
+        $dolar = Dolar::all()->first();
+        $materiales = Material::orderBy('codigo', 'ASC')->get();
+        return view('adm.materiales.index', compact('materiales', 'dolar'));
     }
 
     public function create()
@@ -112,7 +114,8 @@ class MaterialesController extends Controller
 
         // iteracción
         $cambio = 'fr_' . time();
-        $reader->each(function($row) use ($cambio){
+        $dolar = Dolar::all()->first();
+        $reader->each(function($row) use ($cambio, $dolar){
           //  $cate_ref = Material::Find($row->id);
             $cate_ref = Material::Where('codigo', $row->codigo)->first();
             if(!isset($cate_ref)){
@@ -124,16 +127,17 @@ class MaterialesController extends Controller
                 $categoria->nombre = $row->nombre;
                 $categoria->moneda = $row->moneda;
                 if ($row->moneda=='U$S') {
-                    $cate_ref->precio_dolar = $row->precio;
-                    $cate_ref->cost_dolar = $row->precio_dto;
-                    $cate_ref->precio = $row->precio*37;
-                    $cate_ref->cost = $row->precio_dto*37;
+                    $categoria->precio_dolar = $row->precio;
+                    $categoria->cost_dolar = $row->precio_dto;
+                    $categoria->precio = $row->precio;
+                    $categoria->cost = $row->precio_dto;
                 }else{
-                    $cate_ref->precio_dolar = null;
-                    $cate_ref->cost_dolar = null;
-                    $cate_ref->precio = $row->precio;
-                    $cate_ref->cost = $row->precio_dto;
+                    $categoria->precio_dolar = null;
+                    $categoria->cost_dolar = null;
+                    $categoria->precio = $row->precio;
+                    $categoria->cost = $row->precio_dto;
                 }
+
                 $categoria->numero_cambio = $cambio;
                 //dd($categoria->numero_cambio);
                 $categoria->save();
@@ -148,13 +152,13 @@ if ($row->moneda=='$'||$row->moneda=='U$S') {
                 if ($row->moneda=='U$S') {
                     $cate_ref->precio_dolar = $row->precio;
                     $cate_ref->cost_dolar = $row->precio_dto;
-                    $cate_ref->precio = $row->precio*37;
-                    $cate_ref->cost = $row->precio_dto*37;
+                    $cate_ref->precio = number_format($row->precio, 0, ',','.');
+                    $cate_ref->cost = number_format($row->precio_dto, 0, ',','.');
                 }else{
                     $cate_ref->precio_dolar = null;
                     $cate_ref->cost_dolar = null;
-                    $cate_ref->precio = $row->precio;
-                    $cate_ref->cost = $row->precio_dto;
+                    $cate_ref->precio = number_format($row->precio, 0, ',','.');
+                    $cate_ref->cost = number_format($row->precio_dto, 0, ',','.');
                 }
                 $cate_ref->numero_cambio = $cambio;
                 $cate_ref->update();
@@ -166,7 +170,13 @@ if ($row->moneda=='$'||$row->moneda=='U$S') {
             if ($material->numero_cambio!=$cambio) {
                 $material->delete();
             }
+            if ($material->precio_dolar!=null) {
+                $material->precio = number_format($material->precio_dolar*$dolar->valor, 0, ',','');
+                $material->cost = number_format($material->cost_dolar*$dolar->valor, 0, ',','');
+                $material->update();
+            }
         }
+
     });
         
         return redirect()->route('materiales.index');

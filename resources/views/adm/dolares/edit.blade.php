@@ -1,6 +1,6 @@
 @extends('adm.layouts.frame')
 
-@section('titulo', 'Editar Superficie')
+@section('titulo', 'Editar Valor Dolar')
 
 @section('contenido')
 
@@ -21,16 +21,12 @@
 
 		<div class="row">
 			<div class="col s12">
-			{!!Form::model($superficie, ['route'=>['superficies.update',$superficie->id], 'method'=>'PUT', 'files' => true])!!}
+			{!!Form::model($dolar, ['route'=>['dolares.update',$dolar->id], 'method'=>'PUT', 'files' => true])!!}
 				{{ csrf_field() }}
 				<div class="row">
 					<div class="input-field col l6 s12">
-			            {!!Form::label('Descripcion:')!!}
-			            {!!Form::text('descripcion', null , ['class'=>'', ''])!!}
-			        </div>
-			        <div class="input-field col l6 m6 s12">
-			            {!!Form::label('Costo:')!!}
-			            {!!Form::text('costo', null , ['class'=>'', ''])!!}
+			            {!!Form::label('Cotización del dolar:')!!}
+			            {!!Form::text('valor', null , ['class'=>'', ''])!!}
 			        </div>
 				</div>
 				<button class="boton btn-large right" name="action" type="submit">

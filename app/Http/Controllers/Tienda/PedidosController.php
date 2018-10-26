@@ -8,6 +8,7 @@ use App\Entrega_horario;
 use App\Entrega_dia;
 use App\Restriccion;
 use App\Superficie;
+use App\Observacion;
 use App\User;
 use App\Material;
 use App\Drequerida;
@@ -42,13 +43,14 @@ class PedidosController extends Controller
         $dias = Entrega_dia::OrderBy('id', 'ASC')->get();
         $restricciones = Restriccion::OrderBy('id', 'ASC')->get();
         $requeridas = Drequerida::OrderBy('id', 'ASC')->get();
+        $observaciones = Observacion::OrderBy('id', 'ASC')->pluck('descripcion', 'id')->all();
         $superficies = Superficie::OrderBy('id', 'ASC')->pluck('descripcion', 'id')->all();
         $materiales = Material::OrderBy('id', 'ASC')->pluck('nombre', 'id')->all();
         $aux = Material::orderBy('nombre', 'ASC')->get();
         $prod = $aux->toJson();
         $config = 1;
         $products = Superficie::orderBy('id', 'DESC')->get();
-        return view('tienda.pedidos.create', compact('activo','requeridas', 'restricciones', 'fecha', 'lista', 'num_pre', 'horarios', 'dias', 'user', 'superficies', 'products', 'prod', 'config', 'materiales'));
+        return view('tienda.pedidos.create', compact('activo','requeridas', 'restricciones', 'fecha', 'lista', 'num_pre', 'horarios', 'dias', 'user', 'superficies', 'products', 'prod', 'config', 'materiales', 'observaciones'));
   
     }
 

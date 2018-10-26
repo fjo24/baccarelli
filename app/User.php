@@ -22,9 +22,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Producto');
     }
 
-    public function tiendas()
+    public function tienda()
     {
-        return $this->hasMany('App\Tienda');
+        return $this->belongsTo('App\Tienda');
     }
 
 }

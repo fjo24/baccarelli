@@ -22,6 +22,7 @@
 			<div class="col s12">
 				<table class="highlight bordered">
 					<thead>
+						<td>Tienda</td>
 						<td>Nombre</td>
 						<td>Usuario</td>
 						<td>Nivel</td>
@@ -30,6 +31,7 @@
 					<tbody>
 					@foreach($distribuidores as $distribuidor)
 						<tr>
+							<td>{!!$distribuidor->tienda->nombre!!}</td>
 							<td>{!!$distribuidor->name!!} {!!$distribuidor->apellido!!}</td>
 							<td>{!!$distribuidor->username!!}</td>
 							<td>

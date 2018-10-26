@@ -6,7 +6,7 @@
 @endsection
 @section('contenido')
 <div class="container" style="width: 89%;">
-    {!!Form::open(['route'=>'pedidos.store', 'method'=>'POST', 'files' => true])!!}
+    {!!Form::open(['route'=>'pedidosadmin.store', 'method'=>'POST', 'files' => true])!!}
     <div class="row" style="margin-top: 4%;">
         <div class="row">
             <div class="col s12 m12">
