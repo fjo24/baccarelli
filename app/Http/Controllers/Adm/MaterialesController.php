@@ -129,13 +129,13 @@ class MaterialesController extends Controller
                 if ($row->moneda=='U$S') {
                     $categoria->precio_dolar = $row->precio;
                     $categoria->cost_dolar = $row->precio_dto;
-                    $categoria->precio = $row->precio;
-                    $categoria->cost = $row->precio_dto;
+                    $categoria->precio = number_format($row->precio*$dolar->valor, 2, ',','');
+                    $categoria->cost = number_format($row->precio_dto*$dolar->valor, 2, ',','');
                 }else{
                     $categoria->precio_dolar = null;
                     $categoria->cost_dolar = null;
-                    $categoria->precio = $row->precio;
-                    $categoria->cost = $row->precio_dto;
+                    $categoria->precio = number_format($row->precio*$dolar->valor, 2, ',','');
+                    $categoria->cost = number_format($row->precio_dto*$dolar->valor, 2, ',','');
                 }
 
                 $categoria->numero_cambio = $cambio;
@@ -152,13 +152,13 @@ if ($row->moneda=='$'||$row->moneda=='U$S') {
                 if ($row->moneda=='U$S') {
                     $cate_ref->precio_dolar = $row->precio;
                     $cate_ref->cost_dolar = $row->precio_dto;
-                    $cate_ref->precio = number_format($row->precio, 0, ',','.');
-                    $cate_ref->cost = number_format($row->precio_dto, 0, ',','.');
+                    $cate_ref->precio = number_format($row->precio, 2, ',','.');
+                    $cate_ref->cost = number_format($row->precio_dto, 2, ',','.');
                 }else{
                     $cate_ref->precio_dolar = null;
                     $cate_ref->cost_dolar = null;
-                    $cate_ref->precio = number_format($row->precio, 0, ',','.');
-                    $cate_ref->cost = number_format($row->precio_dto, 0, ',','.');
+                    $cate_ref->precio = number_format($row->precio, 2, ',','.');
+                    $cate_ref->cost = number_format($row->precio_dto, 2, ',','.');
                 }
                 $cate_ref->numero_cambio = $cambio;
                 $cate_ref->update();
@@ -171,8 +171,8 @@ if ($row->moneda=='$'||$row->moneda=='U$S') {
                 $material->delete();
             }
             if ($material->precio_dolar!=null) {
-                $material->precio = number_format($material->precio_dolar*$dolar->valor, 0, ',','');
-                $material->cost = number_format($material->cost_dolar*$dolar->valor, 0, ',','');
+                $material->precio = number_format($material->precio_dolar*$dolar->valor, 2, ',','');
+                $material->cost = number_format($material->cost_dolar*$dolar->valor, 2, ',','');
                 $material->update();
             }
         }

@@ -43,6 +43,7 @@ class TiendasController extends Controller
         $usuario->email    = $tienda->email;
         $usuario->nivel    = 'distribuidor';
         $usuario->rango    = 't_admin';
+        $usuario->tienda_id= $tienda->id;
         $usuario->password = bcrypt($tienda->cuit);
         $usuario->save();
         $tiendas = Tienda::orderBy('id', 'ASC')->get();

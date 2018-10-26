@@ -33,18 +33,23 @@
 							<td>{!!$user->name!!} {!!$user->apellido!!}</td>
 							<td>{!!$user->username!!}</td>
 							<td>
-								@if($user->rango=='b_medidor')
-									Medidor
-								@elseif($user->rango=='b_supervisor')
-									Supervisor	
-								@elseif($user->rango=='b_logistica')	
-									Logistica
-								@elseif($user->rango=='b_fabrica')	
-									Fabrica
-								@elseif($user->rango=='b_administrativo')	
-									Administrativo
+								@if($user->rango=='t_jefelinea')
+									Jefe de linea
+								@elseif($user->rango=='t_jefetienda')
+									Jefe de tienda
+								@elseif($user->rango=='t_vendedor')	
+									Vendedor
+								@elseif($user->rango=='t_admin')	
+									<span class="badge" style="background-color: #aa0000;color: white;font-weight: 600;">	
+									Admin
+									</span>
 								@endif
 							</td>
+							@if($user->rango=='t_admin')	
+							<td class="text-right">
+								<a href="{{ route('distribuidorestienda.edit',$user->id)}}"><i class="material-icons">create</i></a>
+							</td>
+							@else
 							<td class="text-right">
 								<a href="{{ route('distribuidorestienda.edit',$user->id)}}"><i class="material-icons">create</i></a>
 								{!!Form::open(['class'=>'en-linea', 'route'=>['distribuidorestienda.destroy', $user->id], 'method' => 'DELETE'])!!}
@@ -53,6 +58,7 @@
 									</button>
 								{!!Form::close()!!}
 							</td>
+								@endif
 						</tr>
 					@endforeach
 					</tbody>

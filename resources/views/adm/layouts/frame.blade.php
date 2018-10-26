@@ -100,6 +100,28 @@
                             <i class="material-icons">
                                 account_circle
                             </i>
+                            Tiendas
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="{{route('tiendas.create')}}">
+                                        Registrar Tienda
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('tiendas.index')}}">
+                                        Editar Tienda
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-admin">
+                            <i class="material-icons">
+                                account_circle
+                            </i>
                             Usuarios
                         </a>
                         <div class="collapsible-body">
@@ -122,18 +144,30 @@
                             <i class="material-icons">
                                 account_circle
                             </i>
-                            Tiendas
+                            Cotización dolar
                         </a>
                         <div class="collapsible-body">
                             <ul>
                                 <li>
-                                    <a href="{{route('tiendas.create')}}">
-                                        Registrar Tienda
+                                    <a href="{{route('dolares.create')}}">
+                                        Editar Cotización
                                     </a>
                                 </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-admin">
+                            <i class="material-icons">
+                                account_circle
+                            </i>
+                            Materiales
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
                                 <li>
-                                    <a href="{{route('tiendas.index')}}">
-                                        Editar Tienda
+                                    <a href="{{route('materiales.index')}}">
+                                        Lista Materiales
                                     </a>
                                 </li>
                             </ul>
@@ -178,50 +212,6 @@
                                 <li>
                                     <a href="{{route('unidades.index')}}">
                                         Editar Unidad
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="bold">
-                        <a class="collapsible-header waves-effect waves-admin">
-                            <i class="material-icons">
-                                account_circle
-                            </i>
-                            Cotización dolar
-                        </a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li>
-                                    <a href="{{route('dolares.create')}}">
-                                        Editar Cotización
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="bold">
-                        <a class="collapsible-header waves-effect waves-admin">
-                            <i class="material-icons">
-                                account_circle
-                            </i>
-                            Materiales
-                        </a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li>
-                                    <a href="{{route('materiales.create')}}">
-                                        Registrar Materiales
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('materiales.index')}}">
-                                        Editar Materiales
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('importExport')}}">
-                                        Excel Materiales
                                     </a>
                                 </li>
                             </ul>

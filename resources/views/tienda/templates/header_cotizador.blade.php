@@ -41,7 +41,7 @@
 
         <li class=" item-flex"><a href="accesorios.php?active=accesorios" class="itm-menu <?php if(isset($_GET['active']) && $_GET['active'] == 'accesorios'){ echo 'active-link';} ?>">PRESUPUESTOS</a></li>
 
-        <li class=" item-flex"><a href="index.php"><img alt="" class="responsive-img" src="{{asset($user->logo)}}" style="width: 120px;height: 40px;"/></a></li>
+        <li class=" item-flex"><a href="index.php"><img alt="" class="responsive-img" src="{{asset($user->tienda->logo)}}" style="width: 120px;height: 40px;"/></a></li>
 
         <li class=" item-flex"><a href="trabajos.php?active=trabajos" class="itm-menu <?php if(isset($_GET['active']) && $_GET['active'] == 'trabajos'){ echo 'active-link';} ?>">PEDIDOS</a></li>
       

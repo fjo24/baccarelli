@@ -36,6 +36,6 @@ class DolaresController extends Controller
         	}
         }
 
-        return view('adm.dashboard');
+        return redirect()->route('materiales.index');
     }
 }

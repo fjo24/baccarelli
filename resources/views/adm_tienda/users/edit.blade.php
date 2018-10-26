@@ -50,16 +50,19 @@
                         {!!Form::label('Contraseña')!!}
 					</div>
 				</div>
+				@if($distribuidor->rango=='t_admin')	
+							@else
 				<div class="row">
 					<div class="input-field col l6 s12 m6">
 						{!! Form::label('Tipo de usuario') !!}<br />
-						{!! Form::select('rango', ['b_supervisor' => 'Supervisor', 'b_medidor' => 'Medidor', 'b_logistica' => 'Logistica', 'b_fabrica' => 'Fabrica', 'b_administrativo' => 'Administrativo'], null, ['class' => 'form-control', 'placeholder' => 'Indique tipo de usuario']) !!}
+						{!! Form::select('rango', ['t_jefelinea' => 'Jefe de linea', 't_jefetienda' => 'Jefe de tienda', 't_vendedor' => 'Vendedor'], null, ['class' => 'form-control', 'placeholder' => 'Indique tipo de usuario']) !!}
                     </div>
                     <div class="file-field input-field col l6 s12">
 	                	{!! Form::label('Sucursales') !!}<br />
 	                	{!! Form::select('sucursal_id', $sucursales, null, ['class' => 'form-control', 'placeholder' => 'Sucursales']) !!}
 	            	</div>
 				</div>
+								@endif
 				<button class="boton btn-large right" name="action" type="submit">
                 Editar
             </button>

@@ -30,6 +30,11 @@
                 		Cambiar valor dolar
             		</button>			
 				</a>	
+				<a href="{{route('excelcat')}}">
+					<button class="boton btn-small right" name="action" type="submit">
+                		Cargar excel
+            		</button>
+				</a>
 			</div>
 			<br><br><br>
 			<div class="col s12">
@@ -80,13 +85,28 @@
 					@endforeach
 					</tbody>
 				</table>
-				<a href="{{route('excelcat')}}">
-					<button class="boton btn-large right" name="action" type="submit">
-                		Cargar excel
-            		</button>			
-				</a>	
 			</div>
 		</div>
+		<div class="row">
+				<div class="col s12">
+				<a href="{{route('dolares.edit', $dolar->id)}}">
+					<button class="boton btn-small left">
+                		Cambiar valor dolar
+            		</button>			
+				</a>	
+				<a href="{{route('excelcat')}}">
+					<button class="boton btn-small right" name="action" type="submit">
+                		Cargar excel
+            		</button>
+				</a>
+			</div>
+			<div class="col s12">
+				<span class="" name="action" >
+                	El valor del dolar configurado es <b>{!! $dolar->valor !!}</b> pesos por dolar
+            	</span>				
+			</div>
+		</div>
+			<br><br><br><br>
 <script type="text/javascript" src="{{ asset('js/eliminar.js') }}"></script>
 
 @endsection

@@ -31,7 +31,7 @@
                         {!!Form::text('precio', null , ['class'=>'', ''])!!}
             </div>
             <div class="file-field input-field col l6 s12">
-            {!! Form::label('Categoria') !!}<br />
+                {!! Form::label('Categoria') !!}<br />
                 {!! Form::select('categoria_id', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Categoria', 'required']) !!}
             </div>
             <div class="input-field col l6 s12">

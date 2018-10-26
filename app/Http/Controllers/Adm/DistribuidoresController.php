@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Adm;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Tienda;
 use App\Http\Controllers\Controller;
 
 class DistribuidoresController extends Controller
@@ -17,7 +18,8 @@ class DistribuidoresController extends Controller
 
     public function create()
     {
-        return view('adm.distribuidores.create');
+        $tiendas = Tienda::orderBy('nombre', 'ASC')->pluck('nombre', 'id')->all();
+        return view('adm.distribuidores.create', compact('tiendas'));
     }
 
     public function store(Request $request)
@@ -45,9 +47,9 @@ class DistribuidoresController extends Controller
 
     public function edit($id)
     {
+        $tiendas = Tienda::orderBy('nombre', 'ASC')->pluck('nombre', 'id')->all();
         $distribuidor = User::find($id);
-        return view('adm.distribuidores.edit')
-            ->with('distribuidor', $distribuidor);
+        return view('adm.distribuidores.edit', compact('tiendas', 'distribuidor'));
     }
 
     public function update(Request $request, $id)

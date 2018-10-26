@@ -12,7 +12,7 @@ class DistribuidoresTiendaController extends Controller
     public function index()
     {	
     	$idtienda = Auth()->user()->tienda_id;
-        $distribuidores = User::orderBy('id', 'ASC')->Where('tienda_id', $idtienda)->Where('nivel', 'usuario')->get();
+        $distribuidores = User::orderBy('id', 'ASC')->Where('tienda_id', $idtienda)->Where('nivel', 'distribuidor')->get();
         return view('adm_tienda.users.index')
             ->with('distribuidores', $distribuidores);
     }
@@ -35,7 +35,7 @@ class DistribuidoresTiendaController extends Controller
         $distribuidor->rango    = $request->rango;
         $distribuidor->sucursal_id    = $request->sucursal_id;
         $distribuidor->tienda_id    = Auth()->user()->tienda_id;
-        $distribuidor->nivel    = 'usuario';
+        $distribuidor->nivel    = 'distribuidor';
         $distribuidor->password = \Hash::make($request->password);
         $distribuidor->save();
 
@@ -64,10 +64,12 @@ class DistribuidoresTiendaController extends Controller
         $distribuidor->username = $request->username;
         $distribuidor->telefono = $request->telefono;
         $distribuidor->email    = $request->email;
-        $distribuidor->rango    = $request->rango;
+        if(isset($request->rango)){
+            $distribuidor->rango    = $request->rango;
+        }
         $distribuidor->sucursal_id    = $request->sucursal_id;
         $distribuidor->tienda_id    = Auth()->user()->tienda_id;
-        $distribuidor->nivel    = 'usuario';
+        $distribuidor->nivel    = 'distribuidor';
         if(isset($request->password)){
             if ($request->password != $distribuidor->password) {
                 $distribuidor->password = \Hash::make($request->password);
