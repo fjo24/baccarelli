@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(Auth()->user()->nivel=='administrador'){
+            return redirect()->route('pedidosadmin.create');
+        }
+        else{
+            return redirect()->route('tienda.presupuestos');
+        }
     }
 }

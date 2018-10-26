@@ -106,15 +106,15 @@ class MaterialesController extends Controller
 
     public function importCat(Request $request)
     {
-
+ini_set('max_execution_time', 0);
 
         \Excel::load($request->excel, function($reader) {
 
         $excel = $reader->get();
 
         // iteracción
-        $cambio = 'fr_' . time();
         $dolar = Dolar::all()->first();
+        $cambio = 'fr_' . time();
         $reader->each(function($row) use ($cambio, $dolar){
           //  $cate_ref = Material::Find($row->id);
             $cate_ref = Material::Where('codigo', $row->codigo)->first();
@@ -134,8 +134,8 @@ class MaterialesController extends Controller
                 }else{
                     $categoria->precio_dolar = null;
                     $categoria->cost_dolar = null;
-                    $categoria->precio = number_format($row->precio*$dolar->valor, 2, ',','');
-                    $categoria->cost = number_format($row->precio_dto*$dolar->valor, 2, ',','');
+                    $categoria->precio = number_format($row->precio, 2, ',','');
+                    $categoria->cost = number_format($row->precio_dto, 2, ',','');
                 }
 
                 $categoria->numero_cambio = $cambio;
@@ -152,8 +152,8 @@ if ($row->moneda=='$'||$row->moneda=='U$S') {
                 if ($row->moneda=='U$S') {
                     $cate_ref->precio_dolar = $row->precio;
                     $cate_ref->cost_dolar = $row->precio_dto;
-                    $cate_ref->precio = number_format($row->precio, 2, ',','.');
-                    $cate_ref->cost = number_format($row->precio_dto, 2, ',','.');
+                    $cate_ref->precio = number_format($row->precio*$dolar->valor, 2, ',','.');
+                    $cate_ref->cost = number_format($row->precio_dto*$dolar->valor, 2, ',','.');
                 }else{
                     $cate_ref->precio_dolar = null;
                     $cate_ref->cost_dolar = null;
@@ -165,18 +165,13 @@ if ($row->moneda=='$'||$row->moneda=='U$S') {
             }
             }
         });
+
         $materiales = Material::OrderBy('codigo', 'ASC')->get();
         foreach ($materiales as $material) {
             if ($material->numero_cambio!=$cambio) {
                 $material->delete();
             }
-            if ($material->precio_dolar!=null) {
-                $material->precio = number_format($material->precio_dolar*$dolar->valor, 2, ',','');
-                $material->cost = number_format($material->cost_dolar*$dolar->valor, 2, ',','');
-                $material->update();
-            }
         }
-
     });
         
         return redirect()->route('materiales.index');

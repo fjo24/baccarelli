@@ -32,7 +32,6 @@
        <p>Para hacer la carga de productos mediante un archivo Excel, deberá cumplir lo siguiente:
        </p>
        <p>1. El archivo debe ser de tipo <strong>Excel</strong> .</p>
-       <p>2. Este archivo debe estar estructurado por columnas, donde la primera fila, es la que identifica el orden, por lo que debe estar identificada como id, superior, nombre y orden, y debajo de ella los datos de todas las categorias a cargar.. siendo id: el numero de id de la categoria, superior: en caso de pertenecer a otra categoria (en caso de no serlo, se coloca cero (0)), nombre: el nombre de la categoria y orden: si necesita ubicarlo mas arriba en la lista (puede dejarse vacio) </p>
        </div>
         
        
