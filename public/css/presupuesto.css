@@ -120,7 +120,6 @@
     margin: 6px 0px;
 }
 
-
 .rojo{
 	color: red;
 }
@@ -177,20 +176,30 @@
     font-weight: 600;
 }
 
-        .file-input-wrapper {
-            height: 35px;
-            overflow: hidden;
-            position: absolute;
-            width: 123px;
-            background-color: #fff;
-            cursor: pointer;
-        }
+.file-input-wrapper {
+    height: 35px;
+    overflow: hidden;
+    position: absolute;
+    width: 123px;
+    background-color: #fff;
+    cursor: pointer;
+}
         
-        .file-input-wrapper > input[type="file"] {
-            font-size: 40px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
+.file-input-wrapper > input[type="file"] {
+    font-size: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.total_item{    
+    color:#666A6C;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.panel_total_item{
+    background-color: #8592A6!important;
+}
