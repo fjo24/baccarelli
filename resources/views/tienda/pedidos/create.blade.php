@@ -457,7 +457,7 @@
                                             </label>
                                             <div class="input-group-btn input-group-select">
                                                 <div class="form-group">
-                                                    {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
+                                                    {!! Form::select('borde_id[]', $bordes, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
                                                 </div>
                                                 <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
                                                 </input>
@@ -527,7 +527,7 @@
                                             </label>
                                             <div class="input-group-btn input-group-select">
                                                 <div class="form-group">
-                                                    {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
+                                                    {!! Form::select('aplicados_id[]', $aplicados, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
                                                 </div>
                                                 <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
                                                 </input>
@@ -877,13 +877,17 @@
                         </span>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-md-6">
-                                    <div class="col-md-2">
-                                        {!!Form::label('Cliente')!!}
-                                        {!!Form::label('*', '*', ['class' => 'rojo'])!!}
+                                <div class="col-md-12">
+                                    <div class="col-md-1">
                                     </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::text('apellido_cliente',null,['class'=>'form_login', 'placeholder' => 'Apellido'])!!}
+                                    <div class="input-cliente col-md-11">
+                                        <div class="tit_cotizador">
+                                            Condiciones de Cláusulas de Contratación
+                                        </div>
+                                        <div class="cont_cotizador">
+                                            Condiciones de Cláusulas de Contratación
+Presupuesto basado en medidas indicadas por el cliente, sujeto a ajustes en caso de existir diferencias al momento de medir en obra. La firma del presente presupuesto implica la comprensión y aceptación de los términos y condiciones para la venta de mesadas a pedido. Los materiales están sujetos a variaciones de tonalidades, estructura y veteado propios de su origen. Las muestras expuestas en el local son sólo indicativas. La modulación de las piezas será acorde a las dimensiones de los ascensores disponibles y de las circulaciones internas (pasillos, vanos y otros) de la obra. El personal no sube placas por escalera. La medición se ejecutará luego de que todos los elementos que competan al trabajo a realizar estén presentes, fijos, nivelados y/o aplomados y en su lugar definitivo (muebles, paredes, revoques, marcos y contramarcos, patas o estructuras, etc). Se cobrará cargo adicional de medición cuando, al momento de la visita de medición, las condiciones precedentemente descriptas no se cumplan.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="">

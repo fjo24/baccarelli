@@ -39,12 +39,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*----------------LOGIN ADMIN COTIZADOR----------------*/
 Route::get('/admin', 'Admin\AdminController@login')->name('admin.login');
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('admin')->middleware('auth')->group(function () {
 
-    Route::get('/home', ['uses' => 'Admin\AdminController@home', 'as' => 'admin.home']);
+    Route::get('/home', ['uses' => 'Admin\AdminController@home', 'as' => 'admin.home'])->middleware('admin');
 
     /*------------PEDIDOS----------------*/
-    Route::resource('pedidosadmin', 'Admin\PedidosController');
+    Route::resource('pedidosadmin', 'Admin\PedidosController')->middleware('admin');
 
 });
 
@@ -61,52 +61,58 @@ Route::prefix('tienda')->middleware('auth')->group(function () {
 });
 
 /*******************ADMIN************************/
-Route::prefix('adm')->middleware('auth')->group(function () {
+Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function () {
 
-    Route::get('/', 'Adm\AdminController@dashboard')->name('dashboard');
+    Route::get('/', 'Adm\AdminController@dashboard')->name('dashboard')->middleware('admin');
 
     /*------------USERS----------------*/
-    Route::resource('users', 'Adm\UsersController');
+    Route::resource('users', 'Adm\UsersController')->middleware('admin');
 
     /*------------DISTRIBUIDORES----------------*/
-    Route::resource('distribuidores', 'Adm\DistribuidoresController');
+    Route::resource('distribuidores', 'Adm\DistribuidoresController')->middleware('admin');
 
     /*------------ADICIONALES----------------*/
-    Route::resource('adicionales', 'Adm\AdicionalesController');
+    Route::resource('adicionales', 'Adm\AdicionalesController')->middleware('admin');
 
     /*------------OBSERVACIONES----------------*/
-    Route::resource('observaciones', 'Adm\ObservacionesController');
+    Route::resource('observaciones', 'Adm\ObservacionesController')->middleware('admin');
+
+    /*------------TERMINACION DE BORDES----------------*/
+    Route::resource('bordes', 'Adm\BordesController')->middleware('admin');
+
+    /*------------TRABAJOS APLICADOS----------------*/
+    Route::resource('aplicados', 'Adm\T_aplicadosController')->middleware('admin');
 
     /*------------SUPERFICIES----------------*/
-    Route::resource('superficies', 'Adm\SuperficiesController');
+    Route::resource('superficies', 'Adm\SuperficiesController')->middleware('admin');
 
     /*------------STOCKS----------------*/
-    Route::resource('stocks', 'Adm\StocksController');
+    Route::resource('stocks', 'Adm\StocksController')->middleware('admin');
 
     /*------------DESCUENTOS----------------*/
-    Route::resource('descuentos', 'Adm\DescuentosController');
+    Route::resource('descuentos', 'Adm\DescuentosController')->middleware('admin');
 
     /*------------RUBROS----------------*/
-    Route::resource('rubros', 'Adm\RubrosController');
+    Route::resource('rubros', 'Adm\RubrosController')->middleware('admin');
 
     /*------------UNIDADES----------------*/
-    Route::resource('unidades', 'Adm\UnidadesController');
+    Route::resource('unidades', 'Adm\UnidadesController')->middleware('admin');
 
     /*------------MATERIALES----------------*/
-    Route::resource('materiales', 'Adm\MaterialesController');
+    Route::resource('materiales', 'Adm\MaterialesController')->middleware('admin');
 
     /*------------TIENDA----------------*/
-    Route::resource('tiendas', 'Adm\TiendasController');
+    Route::resource('tiendas', 'Adm\TiendasController')->middleware('admin');
 
     /*------------DOLARES----------------*/
-    Route::resource('dolares', 'Adm\DolaresController');
+    Route::resource('dolares', 'Adm\DolaresController')->middleware('admin');
 
     //DASHBOARD
-    Route::get('/dashboard', 'Adm\AdminController@admin');
+    Route::get('/dashboard', 'Adm\AdminController@admin')->middleware('admin');
 
     /*-----CARGA DE EXCELS-----------*/
-    Route::get('excelcat', ['uses' => 'Adm\MaterialesController@excelcat', 'as' => 'excelcat']);
-    Route::post('/import-excel', 'Adm\MaterialesController@importCat')->name('importCat');
+    Route::get('excelcat', ['uses' => 'Adm\MaterialesController@excelcat', 'as' => 'excelcat'])->middleware('admin');
+    Route::post('/import-excel', 'Adm\MaterialesController@importCat')->name('importCat')->middleware('admin');
 
 });
 
@@ -125,8 +131,6 @@ Route::prefix('adm_tienda')->middleware('auth')->group(function () {
     Route::resource('sucursales', 'Adm_tienda\SucursalesController');
 
     //DASHBOARD
-    Route::get('/dashboard_tienda', 'Adm_tienda\AdminTiendaController@admin');
-
-    
+    Route::get('/dashboard_tienda', 'Adm_tienda\AdminTiendaController@admin');    
 
 });

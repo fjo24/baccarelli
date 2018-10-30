@@ -21,7 +21,9 @@ class CreateMaterialesTable extends Migration
             $table->string('orden')->nullable();
             $table->text('codigo')->nullable();
             $table->string('precio')->nullable();//precio lista
-            $table->string('precio_descuento')->nullable();//precio resultante del descuento
+            $table->string('cost')->nullable();//precio resultante del descuento
+            $table->string('precio_dolar')->nullable();//precio lista
+            $table->string('cost_dolar')->nullable();//precio resultante del descuento
             $table->boolean('leather')->nullable()->default('0');
             $table->boolean('rp')->nullable()->default('0');
             $table->boolean('diamantado')->nullable()->default('0');

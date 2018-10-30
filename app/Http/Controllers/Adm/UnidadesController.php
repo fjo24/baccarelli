@@ -25,6 +25,7 @@ class UnidadesController extends Controller
 
         $unidad              = new Unidad();
         $unidad->nombre      = $request->nombre;
+        $unidad->sigla      = $request->sigla;
         $unidad->save();
         return redirect()->route('unidades.index');
     }
@@ -44,6 +45,7 @@ class UnidadesController extends Controller
     {
         $unidad = Unidad::find($id);
         $unidad->nombre = $request->nombre;
+        $unidad->sigla      = $request->sigla;
         $unidad->save();
         return redirect()->route('unidades.index');
     }

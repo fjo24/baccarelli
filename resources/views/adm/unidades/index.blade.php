@@ -26,6 +26,9 @@
                 <td>
                     Nombre
                 </td>
+                <td>
+                    Sigla
+                </td>
                 <td class="text-right">
                     Acciones
                 </td>
@@ -35,6 +38,9 @@
                 <tr>
                     <td>
                         {!!$unidad->nombre!!}
+                    </td>
+                    <td>
+                        {!!$unidad->sigla!!}
                     </td>
                     <td class="text-right">
                         <a href="{{ route('unidades.edit',$unidad->id)}}">

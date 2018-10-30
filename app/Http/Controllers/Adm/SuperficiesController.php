@@ -24,7 +24,6 @@ class SuperficiesController extends Controller
     {
         $superficie           = new Superficie();
         $superficie->descripcion     = $request->descripcion;
-        $superficie->costo     = $request->costo;
         $superficie->save();
 
         $superficies = Superficie::orderBy('id', 'ASC')->get();
@@ -48,7 +47,6 @@ class SuperficiesController extends Controller
     {
         $superficie           = Superficie::find($id);
         $superficie->descripcion     = $request->descripcion;
-        $superficie->costo     = $request->costo;
         $superficie->save();
 
         $superficies = Superficie::orderBy('id', 'ASC')->get();

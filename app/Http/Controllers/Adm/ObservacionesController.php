@@ -24,7 +24,6 @@ class ObservacionesController extends Controller
     {
         $observacion              = new Observacion();
         $observacion->descripcion = $request->descripcion;
-        $observacion->costo       = $request->costo;
         $observacion->save();
 
         $observaciones = Observacion::orderBy('id', 'ASC')->get();
@@ -48,7 +47,6 @@ class ObservacionesController extends Controller
     {
         $observacion           = Observacion::find($id);
         $observacion->descripcion = $request->descripcion;
-        $observacion->costo       = $request->costo;
         $observacion->save();
 
         $observaciones = Observacion::orderBy('id', 'ASC')->get();

@@ -27,6 +27,10 @@
                 {!!Form::label('Nombre:')!!}
                         {!!Form::text('nombre', null , ['class'=>'', 'required'])!!}
             </div>
+            <div class="input-field col l6 s12">
+                {!!Form::label('Sigla:')!!}
+                        {!!Form::text('sigla', null , ['class'=>'', 'required'])!!}
+            </div>
         </div>
         <div class="col l12 s12 no-padding">
             <button class="boton btn-large right" name="action" type="submit">

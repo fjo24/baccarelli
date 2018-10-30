@@ -22,12 +22,14 @@
 				<table class="highlight bordered">
 					<thead>
 						<td>Descripción</td>
+						<td>Costo</td>
 						<td class="text-right">Acciones</td>
 					</thead>
 					<tbody>
 					@foreach($adicionales as $adicional)
 						<tr>
 							<td>{{ $adicional->descripcion }}</td>
+							<td>{{ $adicional->costo }}</td>
 							<td class="text-right">
 								<a href="{{ route('adicionales.edit', $adicional->id) }}"><i class="material-icons">create</i></a>
 								{!!Form::open(['class'=>'en-linea', 'route'=>['adicionales.destroy', $adicional->id], 'method' => 'DELETE'])!!}

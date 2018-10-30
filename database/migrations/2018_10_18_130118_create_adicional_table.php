@@ -16,6 +16,7 @@ class CreateAdicionalTable extends Migration
         Schema::create('adicionales', function (Blueprint $table) {
             $table->increments('id');
             $table->text('descripcion')->nullable();
+            $table->text('costo')->nullable();
             $table->timestamps();
         });
     }

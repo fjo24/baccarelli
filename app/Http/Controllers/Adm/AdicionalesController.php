@@ -24,6 +24,7 @@ class AdicionalesController extends Controller
     {
         $adicional           = new Adicional();
         $adicional->descripcion     = $request->descripcion;
+        $adicional->costo       = $request->costo;
         $adicional->save();
 
         $adicionales = Adicional::orderBy('id', 'ASC')->get();
@@ -47,6 +48,7 @@ class AdicionalesController extends Controller
     {
         $adicional           = Adicional::find($id);
         $adicional->descripcion     = $request->descripcion;
+        $adicional->costo       = $request->costo;
         $adicional->save();
 
         $adicionales = Adicional::orderBy('id', 'ASC')->get();

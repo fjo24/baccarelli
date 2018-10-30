@@ -1,6 +1,6 @@
 @extends('adm.layouts.frame')
 
-@section('titulo', 'Observaciones')
+@section('titulo', 'Trabajos Aplicados')
 
 @section('contenido')
 	    @if(count($errors) > 0)
@@ -17,21 +17,24 @@
 			{{ session('success') }}
 		</div>
 		@endif
-
 		<div class="row">
 			<div class="col s12">
 				<table class="highlight bordered">
 					<thead>
 						<td>Descripción</td>
+						<td>Precio</td>
+						<td>Unidad</td>
 						<td class="text-right">Acciones</td>
 					</thead>
 					<tbody>
-					@foreach($observaciones as $observacion)
+					@foreach($aplicados as $aplicado)
 						<tr>
-							<td>{{ $observacion->descripcion }}</td>
+							<td>{{ $aplicado->descripcion }}</td>
+							<td>{{ $aplicado->precio }}</td>
+							<td>{{ $aplicado->unidad->nombre }}</td>
 							<td class="text-right">
-								<a href="{{ route('observaciones.edit', $observacion->id) }}"><i class="material-icons">create</i></a>
-								{!!Form::open(['class'=>'en-linea', 'route'=>['observaciones.destroy', $observacion->id], 'method' => 'DELETE'])!!}
+								<a href="{{ route('aplicados.edit', $aplicado->id) }}"><i class="material-icons">create</i></a>
+								{!!Form::open(['class'=>'en-linea', 'route'=>['aplicados.destroy', $aplicado->id], 'method' => 'DELETE'])!!}
 		                        <button class="submit-button" onclick="return confirm_delete(this);" type="submit">
 		                            <i class="material-icons red-text">
 		                                cancel
@@ -46,5 +49,4 @@
 			</div>
 		</div>
 <script type="text/javascript" src="{{ asset('js/eliminar.js') }}"></script>
-
 @endsection

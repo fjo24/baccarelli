@@ -23,14 +23,12 @@
 				<table class="highlight bordered">
 					<thead>
 						<td>Descripción</td>
-						<td>Costo por m2</td>
 						<td class="text-right">Acciones</td>
 					</thead>
 					<tbody>
 					@foreach($superficies as $superficie)
 						<tr>
 							<td>{{ $superficie->descripcion }}</td>
-							<td>{{ $superficie->costo }}</td>
 							<td class="text-right">
 								<a href="{{ route('superficies.edit', $superficie->id) }}"><i class="material-icons">create</i></a>
 								{!!Form::open(['class'=>'en-linea', 'route'=>['superficies.destroy', $superficie->id], 'method' => 'DELETE'])!!}

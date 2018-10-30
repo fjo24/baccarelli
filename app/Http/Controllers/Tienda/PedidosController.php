@@ -12,6 +12,8 @@ use App\Observacion;
 use App\User;
 use App\Material;
 use App\Drequerida;
+use App\T_aplicado;
+use App\Borde;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -45,12 +47,15 @@ class PedidosController extends Controller
         $requeridas = Drequerida::OrderBy('id', 'ASC')->get();
         $observaciones = Observacion::OrderBy('id', 'ASC')->pluck('descripcion', 'id')->all();
         $superficies = Superficie::OrderBy('id', 'ASC')->pluck('descripcion', 'id')->all();
+        $aplicados = T_aplicado::OrderBy('id', 'ASC')->pluck('descripcion', 'id')->all();
+        $bordes = Borde::OrderBy('id', 'ASC')->pluck('descripcion', 'id')->all();
+        $superficies = Superficie::OrderBy('id', 'ASC')->pluck('descripcion', 'id')->all();
         $materiales = Material::OrderBy('id', 'ASC')->pluck('nombre', 'id')->all();
         $aux = Material::orderBy('nombre', 'ASC')->get();
         $prod = $aux->toJson();
         $config = 1;
         $products = Superficie::orderBy('id', 'DESC')->get();
-        return view('tienda.pedidos.create', compact('activo','requeridas', 'restricciones', 'fecha', 'lista', 'num_pre', 'horarios', 'dias', 'user', 'superficies', 'products', 'prod', 'config', 'materiales', 'observaciones'));
+        return view('tienda.pedidos.create', compact('activo','requeridas', 'restricciones', 'fecha', 'lista', 'num_pre', 'horarios', 'dias', 'user', 'superficies', 'products', 'prod', 'config', 'materiales', 'observaciones', 'bordes', 'aplicados'));
   
     }
 

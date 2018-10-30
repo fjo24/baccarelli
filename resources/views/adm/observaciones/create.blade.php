@@ -25,10 +25,6 @@
 			            {!!Form::label('Descripcion:')!!}
 			            {!!Form::text('descripcion', null , ['class'=>'', ''])!!}
 			        </div>
-			        <div class="input-field col l6 m6 s12">
-			            {!!Form::label('Costo:')!!}
-			            {!!Form::text('costo', null , ['class'=>'', ''])!!}
-			        </div>
 				</div>
 				<button class="boton btn-large right" name="action" type="submit">
                 	Crear

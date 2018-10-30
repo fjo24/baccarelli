@@ -244,6 +244,50 @@
                             <i class="material-icons">
                                 account_circle
                             </i>
+                            Terminaciones de Borde
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="{{route('bordes.create')}}">
+                                        Registrar Terminación
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('bordes.index')}}">
+                                        Editar Terminación
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-admin">
+                            <i class="material-icons">
+                                account_circle
+                            </i>
+                            Trabajos Aplicados
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="{{route('aplicados.create')}}">
+                                        Registrar Trabajo Aplicado                     
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('aplicados.index')}}">
+                                        Editar Trabajo Aplicado
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-admin">
+                            <i class="material-icons">
+                                account_circle
+                            </i>
                             Observaciones
                         </a>
                         <div class="collapsible-body">
