@@ -371,6 +371,23 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-admin">
+                            <i class="material-icons">
+                                account_circle
+                            </i>
+                            Texto en pedido
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="{{route('contenido_observaciones.create')}}">
+                                        Editar Contenido
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </ul>
         </header>

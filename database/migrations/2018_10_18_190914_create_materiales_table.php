@@ -27,7 +27,7 @@ class CreateMaterialesTable extends Migration
             $table->boolean('leather')->nullable()->default('0');
             $table->boolean('rp')->nullable()->default('0');
             $table->boolean('diamantado')->nullable()->default('0');
-            $table->enum('moneda', ['peso', 'dolar'])->nullable();
+            $table->string('moneda')->nullable();
             $table->integer('rubro_id')->unsigned()->nullable();
             $table->integer('observacion_id')->unsigned()->nullable();
             $table->integer('stock_id')->unsigned()->nullable();

@@ -42,10 +42,12 @@
 					<thead>
 						<td>Codigo</td>
 						<td>Nombre</td>
+						<td>Rubro</td>
 						<td>Precio en pesos</td>
 						<td>Precio con descuento</td>
 						<td>Precio en USD</td>
 						<td>Precio con descuento USD</td>
+						<td>Observación</td>
 						<td class="text-right">Acciones</td>
 					</thead>
 					<tbody>
@@ -53,6 +55,11 @@
 						<tr>
 							<td>{{ $material->codigo }}</td>
 							<td>{{ $material->nombre }}</td>
+							@if(isset($material->rubro->nombre))
+							<td>{{ $material->rubro->nombre }}</td>
+							@else
+							<td></td>
+							@endif
 							<td>${{ $material->precio }}
 							</td>
 							<td>${{ $material->cost }}
@@ -61,15 +68,17 @@
 								@if($material->precio_dolar==null)
 									N/A
 								@else
-								$USD {{ $material->precio_dolar }}
+									$USD {{ $material->precio_dolar }}
 								@endif
 							</td>
 							<td>
 								@if($material->cost_dolar==null)
 									N/A
 								@else
-								$USD {{ $material->cost_dolar }}
+									$USD {{ $material->cost_dolar }}
 								@endif
+							</td>
+							<td>{{ $material->observacion }}
 							</td>
 							<td class="text-right">
 								<a href="{{ route('materiales.edit', $material->id) }}"><i class="material-icons">create</i></a>

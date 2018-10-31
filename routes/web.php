@@ -95,6 +95,9 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*------------RUBROS----------------*/
     Route::resource('rubros', 'Adm\RubrosController')->middleware('admin');
 
+    /*------------CONTENIDO OBSERVACIONES----------------*/
+    Route::resource('contenido_observaciones', 'Adm\ContenidoobservacionesController')->middleware('admin');
+
     /*------------UNIDADES----------------*/
     Route::resource('unidades', 'Adm\UnidadesController')->middleware('admin');
 
