@@ -18,7 +18,9 @@ class PedidosController extends Controller
 {
     public function index()
     {
-        //
+        $user = User::find(Auth()->user()->id);
+        $pedidos = Pedido::orderBy('id', 'ASC')->get();
+        return view('admin.pedidos.index', compact('user', 'pedidos', 'superficies'));
     }
 
     /**

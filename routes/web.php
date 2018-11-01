@@ -23,6 +23,9 @@ Auth::routes();
 Route::post('logindistribuidor', 'Auth\LoginDistribuidorController@login')->name('logindistribuidor');
 Route::get('/home', 'HomeController@index')->name('home');
 
+//PAGINA DE ACCIONES DE LOS PROCESOS (ESTADOS)
+//estad
+
 //REGISTRO DE DISTRIBUIDORES
 Route::get('registro', ['uses' => 'DistribuidorController@index', 'as' => 'registro']);
 Route::post('/registro', ['uses' => 'DistribuidorController@store', 'as' => 'cliente.store']);
@@ -74,8 +77,8 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*------------ADICIONALES----------------*/
     Route::resource('adicionales', 'Adm\AdicionalesController')->middleware('admin');
 
-    /*------------OBSERVACIONES----------------*/
-    Route::resource('observaciones', 'Adm\ObservacionesController')->middleware('admin');
+    /*------------LOCALIDADES----------------*/
+    Route::resource('localidades', 'Adm\LocalidadesController')->middleware('admin');
 
     /*------------TERMINACION DE BORDES----------------*/
     Route::resource('bordes', 'Adm\BordesController')->middleware('admin');
@@ -110,8 +113,11 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*------------DOLARES----------------*/
     Route::resource('dolares', 'Adm\DolaresController')->middleware('admin');
 
+    /*------------FLETES----------------*/
+    Route::resource('fletes', 'Adm\FletesController')->middleware('admin');
+
     //DASHBOARD
-    Route::get('/dashboard', 'Adm\AdminController@admin')->middleware('admin');
+    Route::get('/dashboard', 'Adm\AdminController@admin')->name('inicio.adm')->middleware('admin');
 
     /*-----CARGA DE EXCELS-----------*/
     Route::get('excelcat', ['uses' => 'Adm\MaterialesController@excelcat', 'as' => 'excelcat'])->middleware('admin');

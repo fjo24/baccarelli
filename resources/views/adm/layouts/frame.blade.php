@@ -288,18 +288,35 @@
                             <i class="material-icons">
                                 account_circle
                             </i>
-                            Observaciones
+                            Localidades
                         </a>
                         <div class="collapsible-body">
                             <ul>
                                 <li>
-                                    <a href="{{route('observaciones.create')}}">
-                                        Registrar Observacion
+                                    <a href="{{route('localidades.create')}}">
+                                        Registrar Localidad
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{route('observaciones.index')}}">
-                                        Editar Observacion
+                                    <a href="{{route('localidades.index')}}">
+                                        Editar Localidad
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold">
+                        <a class="collapsible-header waves-effect waves-admin">
+                            <i class="material-icons">
+                                account_circle
+                            </i>
+                            Valor de flete
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="{{route('fletes.create')}}">
+                                        Editar Valor flete
                                     </a>
                                 </li>
                             </ul>

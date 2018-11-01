@@ -432,66 +432,67 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:0;">
-                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
-                    <div class="panel-heading" style="">
-                        <span class="presupuesto">
-                            Terminaciones de borde
-                        </span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;">
-                        <span class="card-title">
-                        </span>
-                        <div class="container" style="width: 100%;padding: 0;">
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                    </h3>
-                                    <div class="pull-right">
+                    <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
+                        <div class="panel-heading" style="">
+                            <span class="presupuesto">
+                                Terminaciones de borde
+                            </span>
+                        </div>
+                        <div class="panel-body" style="padding-right: 0;padding-left: 0;">
+                            <span class="card-title">
+                            </span>
+                            <div class="container" style="width: 100%;padding: 0;">
+                                <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                        </h3>
+                                        <div class="pull-right">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="contacts">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="">
-                                            <label>
-                                                Terminacion de borde
-                                            </label>
-                                            <div class="input-group-btn input-group-select">
-                                                <div class="form-group">
-                                                    {!! Form::select('borde_id[]', $bordes, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
+                                    <div class="contacts">
+                                        <div class="form-group multiple-form-group">
+                                            <div class="col-md-8" style="">
+                                                <label>
+                                                    Terminacion de borde
+                                                </label>
+                                                <div class="input-group-btn input-group-select">
+                                                    <div class="form-group">
+                                                        {!! Form::select('borde_id[]', $bordes, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
+                                                    </div>
+                                                    <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
+                                                    </input>
                                                 </div>
-                                                <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
-                                                </input>
                                             </div>
-                                        </div>
-                                        <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            <label>
-                                                Largo
-                                            </label>
-                                            {!! Form::text('largo[]', null, ['class' => 'form-control producto-quantity', 'placeholder' => 'ancho']) !!}
-                                            <!-- <input type="text" id="txt_campo_2" onchange="sumar(this.value);" />-->
-                                        </div>
-                                        <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            <label style="">
-                                                Precio Mat
-                                            </label>
-                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
-                                        </div>
-                                        <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            <label>
-                                                Monto
-                                            </label>
-                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                            <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                        </div>
-                                        <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            <label>
-                                                -
-                                            </label>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-success btn-add" type="button">
-                                                    Agregar
-                                                </button>
-                                            </span>
+                                            <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                                <label>
+                                                    Largo
+                                                </label>
+                                                {!! Form::text('largo[]', null, ['class' => 'form-control producto-quantity', 'placeholder' => 'ancho']) !!}
+                                                <!-- <input type="text" id="txt_campo_2" onchange="sumar(this.value);" />-->
+                                            </div>
+                                            <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                                <label style="">
+                                                    Precio Mat
+                                                </label>
+                                                {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
+                                            </div>
+                                            <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                                <label>
+                                                    Monto
+                                                </label>
+                                                {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
+                                                <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
+                                            </div>
+                                            <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                                <label>
+                                                    -
+                                                </label>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-success btn-add" type="button">
+                                                        Agregar
+                                                    </button>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -499,7 +500,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="col-md-12" style="padding:0;">
                 <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
@@ -576,483 +576,433 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="col-md-12" style="padding:0;">
-                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
-                    <div class="panel-heading" style="">
-                        <span class="presupuesto">
-                            Trabajos Especiales
-                        </span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;">
-                        <span class="card-title">
-                        </span>
-                        <div class="container" style="width: 100%;padding: 0;">
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                    </h3>
-                                    <div class="pull-right">
-                                    </div>
+        </div>
+        <div class="col-md-12" style="padding:0;">
+            <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
+                <div class="panel-heading" style="">
+                    <span class="presupuesto">
+                        Trabajos Especiales
+                    </span>
+                </div>
+                <div class="panel-body" style="padding-right: 0;padding-left: 0;">
+                    <span class="card-title">
+                    </span>
+                    <div class="container" style="width: 100%;padding: 0;">
+                        <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                            <div class="box-header">
+                                <h3 class="box-title">
+                                </h3>
+                                <div class="pull-right">
                                 </div>
-                                <div class="contacts">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-10" style="">
-                                            <label>
-                                                Trabajos
-                                            </label>
-                                            <div class="input-group-btn input-group-select">
-                                                <div class="form-group">
-                                                    {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
-                                                </div>
-                                                <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
-                                                </input>
+                            </div>
+                            <div class="contacts">
+                                <div class="form-group multiple-form-group">
+                                    <div class="col-md-10" style="">
+                                        <label>
+                                            Trabajos
+                                        </label>
+                                        <div class="input-group-btn input-group-select">
+                                            <div class="form-group">
+                                                {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
                                             </div>
+                                            <input class="input-group-select-val" name="contacts['type'][]" type="hidden" value="phone">
+                                            </input>
                                         </div>
-                                        <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            <label>
-                                                Monto $
-                                            </label>
-                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                            <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                        </div>
-                                        <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            <label>
-                                                -
-                                            </label>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-success btn-add" type="button">
-                                                    Agregar
-                                                </button>
-                                            </span>
-                                        </div>
+                                    </div>
+                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                        <label>
+                                            Monto $
+                                        </label>
+                                        {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
+                                        <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
+                                    </div>
+                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                        <label>
+                                            -
+                                        </label>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-add" type="button">
+                                                Agregar
+                                            </button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            <div class="col-md-6 col-md-offset-6" style="padding:0;">
-                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
-                    <div class="panel-heading panel_total_item" style="">
-                        <span class="presupuesto" style="color: white;">
-                            Presupuesto Item
-                        </span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
-                        <div class="container" style="width: 100%;padding: 0;">
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="">
-                                            <label class="total_item">
-                                                Superficie
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                $ 22.133
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="">
-                                            <label class="total_item">
-                                                Bordes
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                $ 15.440
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="">
-                                            <label class="total_item">
-                                                Adicionales
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                $ 19.436
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="col-md-12" style="">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="padding-right: 0;padding-left: 0;">
-                                            <label class="total_item">
-                                                <b>
-                                                    SUBTOTAL MATERIAL
-                                                </b>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                <b>
-                                                    $ 110.550
-                                                </b>
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" style="padding:0;">
-                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
-                    <div class="panel-heading" style="">
-                        <span class="presupuesto">
-                            Trabajos de Obras Globales
-                        </span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;">
-                        <span class="card-title">
-                        </span>
-                        <div class="container" style="width: 100%;padding: 0;">
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                    </h3>
-                                    <div class="pull-right">
-                                    </div>
-                                </div>
-                                <div class="contacts">
-                                    <div class="form-group multiple-form-group">
-                                            <div class="col-md-10">
-                                                <p>
-                                                    <label>
-                                                        Trabajos globales
-                                                    </label><br><br>
-                                                    <label>
-                                                        <input class="filled-in" name="globales_id[]" type="checkbox" value=""/>
-                                                        <span class="total_item" style="">
-                                                            Medicion a domicilio sin instalación
-                                                        </span>
-                                                    </label>
-                                                </p>
-                                            </div>
-                                        <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            <label>
-                                                Monto $
-                                            </label><br><br>
-                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                            <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="contacts">
-                                    <div class="form-group multiple-form-group">
-                                            <div class="col-md-10">
-                                                <p>
-                                                    <label>
-                                                        <input class="filled-in" name="globales_id[]" type="checkbox" value=""/>
-                                                        <span class="total_item" style="">
-                                                            Flete a domicilio
-                                                        </span>
-                                                    </label>
-                                                </p>
-                                            </div>
-                                        <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                            <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="contacts">
-                                    <div class="form-group multiple-form-group">
-                                            <div class="col-md-10">
-                                                <p>
-                                                    <label>
-                                                        <input class="filled-in" name="globales_id[]" type="checkbox" value=""/>
-                                                        <span class="total_item" style="">
-                                                            Medicion a domicilio sin instalación
-                                                        </span>
-                                                    </label>
-                                                </p>
-                                            </div>
-                                        <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                            <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-md-offset-6" style="padding:0;">
-                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
-                    <div class="panel-heading panel_total_item" style="background-color: #5CB85C!important;">
-                        <span class="presupuesto" style="color: white;">
-                            Presupuesto Item
-                        </span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
-                        <div class="container" style="width: 100%;padding: 0;">
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="">
-                                            <label class="total_item">
-                                                Superficie
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                $ 22.133
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="">
-                                            <label class="total_item">
-                                                Bordes
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                $ 15.440
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="">
-                                            <label class="total_item">
-                                                Adicionales
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                $ 19.436
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="col-md-12" style="">
-                                    <div class="form-group multiple-form-group">
-                                        <div class="col-md-8" style="padding-right: 0;padding-left: 0;">
-                                            <label class="total_item">
-                                                <b>
-                                                    SUBTOTAL MATERIAL
-                                                </b>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4" style="">
-                                            <span class="total_item">
-                                                <b>
-                                                    $ 110.550
-                                                </b>
-                                            </span>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-<div class="col-md-12">
-                <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
-                    <div class="panel-heading" style="">
-                        <span class="presupuesto">
-                            Observaciones
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <span class="card-title">
-                        </span>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="col-md-1">
-                                    </div>
-                                    <div class="input-cliente col-md-11">
-                                        <div class="tit_cotizador">
-                                            Condiciones de Cláusulas de Contratación
-                                        </div>
-                                        <div class="cont_cotizador">
-                                            Condiciones de Cláusulas de Contratación
-Presupuesto basado en medidas indicadas por el cliente, sujeto a ajustes en caso de existir diferencias al momento de medir en obra. La firma del presente presupuesto implica la comprensión y aceptación de los términos y condiciones para la venta de mesadas a pedido. Los materiales están sujetos a variaciones de tonalidades, estructura y veteado propios de su origen. Las muestras expuestas en el local son sólo indicativas. La modulación de las piezas será acorde a las dimensiones de los ascensores disponibles y de las circulaciones internas (pasillos, vanos y otros) de la obra. El personal no sube placas por escalera. La medición se ejecutará luego de que todos los elementos que competan al trabajo a realizar estén presentes, fijos, nivelados y/o aplomados y en su lugar definitivo (muebles, paredes, revoques, marcos y contramarcos, patas o estructuras, etc). Se cobrará cargo adicional de medición cuando, al momento de la visita de medición, las condiciones precedentemente descriptas no se cumplan.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                        {!!Form::label('Cliente')!!}
-                                        {!!Form::label('*', '*', ['class' => 'rojo'])!!}
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::text('nombre_cliente',null,['class'=>'form_login', 'placeholder' => 'Nombres'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                        {!!Form::label('Localidad')!!}
-                                        {!!Form::label('*', '*', ['class' => 'rojo'])!!}
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::text('localidad',null,['class'=>'form_login', 'placeholder' => 'Localidad de la obra'])!!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                        {!!Form::label('Dirección')!!}
-                                        {!!Form::label('*', '*', ['class' => 'rojo'])!!}
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::text('direccion',null,['class'=>'form_login', 'placeholder' => 'Dirección de la obra'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                        {!!Form::label('Telefonos')!!}
-                                        {!!Form::label('*', '*', ['class' => 'rojo'])!!}
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::number('telefono1',null,['class'=>'form_login', 'placeholder' => 'Teléfono del cliente 1'])!!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="">
-                                </div>
-                            <div class="col-md-12">
-                                <div class="col l1 m1 s1 input-cliente">
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::number('telefono2',null,['class'=>'form_login', 'placeholder' => 'Teléfono del cliente 2'])!!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::number('telefono3',null,['class'=>'form_login', 'placeholder' => 'Teléfono del cliente 3'])!!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                        {!!Form::label('Encargado')!!}
-                                        {!!Form::label('*', '*', ['class' => 'rojo'])!!}
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::text('encargado',null,['class'=>'form_login', 'placeholder' => 'Nombre y Apellido del encargado de la obra'])!!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="">
-                                    <div class="input-cliente col-md-2">
-                                        {!!Form::label('Encargado')!!}
-                                    </div>
-                                    <div class="input-cliente col-md-10">
-                                        {!!Form::text('telefono_encargado',null,['class'=>'form_login', 'placeholder' => 'Teléfono del encargado de la obra'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-6" style="">
-                                    @foreach($restricciones as $restriccion)
-                                    <div class="input-restriccion col-md-2">
-                                    </div>
-                                    <div class="input-restriccion col-md-10">
-                                        <p>
-                                            <label>
-                                                <input class="filled-in" name="restriccion_id[]" type="checkbox" value="{{$restriccion->id}}"/>
-                                                <span style="width: 430px;">
-                                                    {!!Form::text('especificacion[]','',['class'=>'form_login', 'placeholder' => $restriccion->nombre])!!}
-                                                </span>
-                                            </label>
-                                        </p>
-                                    </div>
-                                    @endforeach
-                                </div>
-                                <div class="col-md-6" style="">
-                                    @foreach($requeridas as $requerida)
-                                    <div class="input-requerida col-md-2">
-                                    </div>
-                                    <div class="input-requerida col-md-10">
-                                        <p>
-                                            <label>
-                                                <input class="filled-in" name="requerida_id[]" type="checkbox" value="{{$requerida->id}}"/>
-                                                <span style="width: 430px;">
-                                                    {!!$requerida->nombre!!}
-                                                </span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <span style="width: 430px;">
-                                                {!!Form::text('drequerida[]','',['class'=>'form_login', 'placeholder' => $requerida->descripcion])!!}
-                                            </span>
-                                        </p>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                                    <label class="" for="aclaracion">
-                                        Aclaraciones
-                                    </label>
-                                </div>
-                                <div class="input-cliente col-md-11">
-                                    <textarea class="form_login materialize-textarea" name="aclaracion" placeholder="mensaje.." style="height: 160px!important;">
-                                    </textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            </div>
-
-            </div>
-            <div>
-                <a class="left" href="" style="cursor: pointer;">
-                    <button class="boton_guardar">
-                        <span>
-                            Guardar Presupuesto
-                        </span>
-                    </button>
-                </a>
-                <a class="right" href="" style="cursor: pointer;">
-                    <button class="boton_confirmar" type="submit">
-                        <span>
-                            Confirmar Pedido
-                        </span>
-                    </button>
-                </a>
             </div>
         </div>
     </div>
-    {!!Form::close()!!}
-    <!--
+    <div class="col-md-6 col-md-offset-6" style="padding:0;">
+        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
+            <div class="panel-heading panel_total_item" style="">
+                <span class="presupuesto" style="color: white;">
+                    Presupuesto Item
+                </span>
+            </div>
+            <div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
+                <div class="container" style="width: 100%;padding: 0;">
+                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="">
+                                <label class="total_item">
+                                    Superficie
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    $ 22.133
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="">
+                                <label class="total_item">
+                                    Bordes
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    $ 15.440
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="">
+                                <label class="total_item">
+                                    Adicionales
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    $ 19.436
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="padding-right: 0;padding-left: 0;">
+                                <label class="total_item">
+                                    <b>
+                                        SUBTOTAL MATERIAL
+                                    </b>
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    <b>
+                                        $ 110.550
+                                    </b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="padding:0;">
+        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
+            <div class="panel-heading" style="">
+                <span class="presupuesto">
+                    Trabajos de Obras Globales
+                </span>
+            </div>
+            <div class="panel-body" style="padding-right: 0;padding-left: 0;">
+                <span class="card-title">
+                </span>
+                <div class="container" style="width: 100%;padding: 0;">
+                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="box-header">
+                            <h3 class="box-title">
+                            </h3>
+                            <div class="pull-right">
+                            </div>
+                        </div>
+                        <div class="contacts">
+                            <div class="form-group multiple-form-group">
+                                <div class="col-md-10">
+                                    <p>
+                                        <label>
+                                            Trabajos globales
+                                        </label>
+                                        <br>
+                                            <br>
+                                                <label>
+                                                    <input class="filled-in" name="globales_id[]" type="checkbox" value=""/>
+                                                    <span class="total_item" style="">
+                                                        Medicion a domicilio sin instalación
+                                                    </span>
+                                                </label>
+                                            </br>
+                                        </br>
+                                    </p>
+                                </div>
+                                <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                    <label>
+                                        Monto $
+                                    </label>
+                                    <br>
+                                        <br>
+                                            {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
+                                            <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
+                                        </br>
+                                    </br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contacts">
+                            <div class="form-group multiple-form-group">
+                                <div class="col-md-10">
+                                    <p>
+                                        <label>
+                                            <input class="filled-in" name="globales_id[]" type="checkbox" value=""/>
+                                            <span class="total_item" style="">
+                                                Instalación a domicilio
+                                            </span>
+                                        </label>
+                                    </p>
+                                </div>
+                                <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                    {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
+                                    <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contacts">
+                            <div class="form-group multiple-form-group">
+                                <div class="col-md-4">
+                                    <p>
+                                        <label>
+                                            <input class="filled-in" name="globales_id[]" type="checkbox" value="a_domicilio"/>
+                                            <span class="total_item" style="">
+                                                Flete a domicilio
+                                            </span>
+                                        </label>
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::select('localidad_id', $localidades, null, ['class' => 'form-control', 'placeholder' => 'Seleccione localidad', 'required']) !!}
+                                </div>
+                                <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+                                    {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
+                                    <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-6" style="padding:0;">
+        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
+            <div class="panel-heading panel_total_item" style="background-color: #5CB85C!important;">
+                <span class="presupuesto" style="color: white;">
+                    Presupuesto Item
+                </span>
+            </div>
+            <div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
+                <div class="container" style="width: 100%;padding: 0;">
+                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="">
+                                <label class="total_item">
+                                    Superficie
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    $ 22.133
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="">
+                                <label class="total_item">
+                                    Bordes
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    $ 15.440
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="">
+                                <label class="total_item">
+                                    Adicionales
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    $ 19.436
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="">
+                        <div class="form-group multiple-form-group">
+                            <div class="col-md-8" style="padding-right: 0;padding-left: 0;">
+                                <label class="total_item">
+                                    <b>
+                                        SUBTOTAL MATERIAL
+                                    </b>
+                                </label>
+                            </div>
+                            <div class="col-md-4" style="">
+                                <span class="total_item">
+                                    <b>
+                                        $ 110.550
+                                    </b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
+            <div class="panel-heading" style="">
+                <span class="presupuesto">
+                    Observaciones
+                </span>
+            </div>
+            <div class="panel-body">
+                <span class="card-title">
+                </span>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            <div class="tit_cotizador">
+                                {!!$contenido->titulo_condiciones!!}
+                            </div>
+                            <div class="cont_cotizador">
+                                {!!$contenido->contenido_condiciones!!}
+                            </div>
+                        </div>
+                        <div class="col-md-1" style="">
+                            <label class="" for="aclaracion" style="color: #868B92;">
+                                Descripción
+                            </label>
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            <textarea class="form_login materialize-textarea" name="aclaracion" placeholder="mensaje.." style="height: 105px!important;">
+                            </textarea>
+                        </div>
+                        <div class="col-md-1" style="">
+                            <label class="" for="aclaracion" style="color: #868B92;">
+                                Alcances del presupuesto
+                            </label>
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            <textarea class="form_login materialize-textarea" name="aclaracion" placeholder="mensaje.." style="height: 105px!important;">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            <div class="tit_cotizador">
+                                {!!$contenido->titulo_plazos!!}
+                            </div>
+                            <div class="cont_cotizador">
+                                {!!$contenido->contenido_plazos!!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            <div class="tit_cotizador">
+                                {!!$contenido->titulo_aclaraciones!!}
+                            </div>
+                            <div class="cont_cotizador">
+                                {!!$contenido->contenido_aclaraciones!!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
+            <div class="panel-heading" style="">
+                <span class="presupuesto">
+                    Cláusulas econónmicas
+                </span>
+            </div>
+            <div class="panel-body">
+                <span class="card-title">
+                </span>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                            <label class="" for="aclaracion" style="color: #868B92;">
+                                Forma de pago
+                            </label>
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            {!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
+                        </div>
+                        <div class="col-md-1">
+                            <label class="" for="aclaracion" style="color: #868B92;">
+                                Medios de pago
+                            </label>
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            {!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
+                        </div>
+                        <div class="col-md-1">
+                            <label class="" for="aclaracion" style="color: #868B92;">
+                                Validez de la oferta
+                            </label>
+                        </div>
+                        <div class="input-cliente col-md-11">
+                            {!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a class="left" href="" style="cursor: pointer;">
+        <button class="boton_guardar">
+            <span>
+                Guardar Presupuesto
+            </span>
+        </button>
+    </a>
+    <a class="right" href="" style="cursor: pointer;">
+        <button class="boton_confirmar" type="submit">
+            <span>
+                Confirmar Pedido
+            </span>
+        </button>
+    </a>
+</div>
+{!!Form::close()!!}
+<!--
     <span>Valor #1</span>
 <input type="text" id="txt_campo_1" onchange="sumar(this.value);" />
 <br/ >
@@ -1065,10 +1015,10 @@ Presupuesto basado en medidas indicadas por el cliente, sujeto a ajustes en caso
 <span>El resultado es: </span> <span id="spTotal"></span>
 </div>
 -->
-    @endsection 
+@endsection 
 @section('js')
-    <script type="text/javascript">
-        /* Sumar dos números. */
+<script type="text/javascript">
+    /* Sumar dos números. */
 function sumar (valor) {
     var total = 0;  
     valor = parseInt(valor); // Convertir el valor a un entero (número).
@@ -1378,6 +1328,5 @@ function monto (valor) {
 
         }
         //Fin calculate
-    </script>
-    @endsection
-</div>
+</script>
+@endsection

@@ -71,7 +71,7 @@ a:hover{
 .container-flex{
 	display: flex;
     justify-content: space-between;
-    width: 67%;
+    width: 90%;
     float: center;
     margin: auto;
 }
