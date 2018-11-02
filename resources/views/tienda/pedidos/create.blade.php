@@ -947,7 +947,7 @@
         <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
             <div class="panel-heading" style="">
                 <span class="presupuesto">
-                    Cláusulas econónmicas
+                    Cláusulas económicas
                 </span>
             </div>
             <div class="panel-body">
@@ -978,6 +978,52 @@
                         </div>
                         <div class="input-cliente col-md-11">
                             {!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
+            <div class="panel-heading" style="">
+                <span class="presupuesto">
+                    Planos
+                </span>
+            </div>
+            <div class="panel-body">
+                <span class="card-title">
+                </span>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="col-md-2">
+                            <label class="control-label" for="field1">
+                                Añadir plano
+                            </label>
+                        </div>
+                        <div class="input-cliente col-md-10">
+                            <div class="row">
+                                {!!Form::open()!!}
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="control-group" id="fields">
+                                            <div class="controls">
+                                                <div class="entry input-group col-xs-3">
+                                                    <input class="btn" name="fields[]" type="file">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-success btn-addtwo" type="button">
+                                                                <span class="glyphicon glyphicon-plus">
+                                                                </span>
+                                                            </button>
+                                                        </span>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {!!Form::close()!!}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1018,6 +1064,30 @@
 @endsection 
 @section('js')
 <script type="text/javascript">
+    //javascript para seccion de planos
+$(function()
+{
+    $(document).on('click', '.btn-addtwo', function(e)
+    {
+        e.preventDefault();
+
+        var controlForm = $('.controls:first'),
+            currentEntry = $(this).parents('.entry:first'),
+            newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+        newEntry.find('input').val('');
+        controlForm.find('.entry:not(:last) .btn-addtwo')
+            .removeClass('btn-addtwo').addClass('btn-remove')
+            .removeClass('btn-success').addClass('btn-danger')
+            .html('<span class="glyphicon glyphicon-minus"></span>');
+    }).on('click', '.btn-remove', function(e)
+    {
+      $(this).parents('.entry:first').remove();
+
+        e.preventDefault();
+        return false;
+    });
+});
     /* Sumar dos números. */
 function sumar (valor) {
     var total = 0;  
@@ -1195,8 +1265,6 @@ function monto (valor) {
             });
         })(jQuery);
         //Fin PRODUCTS
-
-
 
         //Colocar precio, costo y stock de los productos en los fields
 
