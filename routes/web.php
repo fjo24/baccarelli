@@ -86,6 +86,9 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*------------TRABAJOS APLICADOS----------------*/
     Route::resource('aplicados', 'Adm\T_aplicadosController')->middleware('admin');
 
+    /*------------ESTADOS----------------*/
+    Route::resource('estados', 'Adm\EstadosController')->middleware('admin');
+
     /*------------SUPERFICIES----------------*/
     Route::resource('superficies', 'Adm\SuperficiesController')->middleware('admin');
 
@@ -140,6 +143,6 @@ Route::prefix('adm_tienda')->middleware('auth')->group(function () {
     Route::resource('sucursales', 'Adm_tienda\SucursalesController');
 
     //DASHBOARD
-    Route::get('/dashboard_tienda', 'Adm_tienda\AdminTiendaController@admin');    
+    Route::get('/dashboard_tienda', 'Adm_tienda\AdminTiendaController@admin');
 
 });

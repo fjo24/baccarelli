@@ -28,6 +28,8 @@ class CreateMaterialesTable extends Migration
             $table->boolean('rp')->nullable()->default('0');
             $table->boolean('diamantado')->nullable()->default('0');
             $table->string('moneda')->nullable();
+            $table->string('unidad')->nullable();
+            $table->text('observacion')->nullable();
             $table->integer('rubro_id')->unsigned()->nullable();
             $table->integer('observacion_id')->unsigned()->nullable();
             $table->integer('stock_id')->unsigned()->nullable();

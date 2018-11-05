@@ -10,4 +10,10 @@ class Estado extends Model
   protected $fillable = [
       'descripcion',
   ];
+
+  public function pedidos()
+  {
+      return $this->hasMany('App\Pedido'); 
+  }
+
 }
