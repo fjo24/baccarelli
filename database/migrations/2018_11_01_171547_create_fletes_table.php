@@ -15,7 +15,9 @@ class CreateFletesTable extends Migration
     {
         Schema::create('fletes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('valor')->nullable();
+            $table->string('flete')->nullable();
+            $table->string('colocacion')->nullable();
+            $table->string('medicion')->nullable();
             $table->timestamps();
         });
     }

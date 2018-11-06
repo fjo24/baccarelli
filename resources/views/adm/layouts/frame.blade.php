@@ -312,13 +312,13 @@
                         <i class="material-icons">
                             account_circle
                         </i>
-                        Valor de flete
+                        Trabajos Globales
                     </a>
                     <div class="collapsible-body">
                         <ul>
                             <li>
                                 <a href="{{route('fletes.create')}}">
-                                    Editar Valor flete
+                                    Editar Valores
                                 </a>
                             </li>
                         </ul>

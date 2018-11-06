@@ -23,7 +23,9 @@ class FletesController extends Controller
     public function update(Request $request, $id)
     {
         $flete        = Flete::find($id);
-        $flete->valor = $request->valor;
+        $flete->flete = $request->flete;
+        $flete->colocacion = $request->colocacion;
+        $flete->medicion = $request->medicion;
         $flete->update();
         return redirect()->route('inicio.adm');
     }
