@@ -9,6 +9,7 @@ use App\Material;
 use App\Observacion;
 use App\Rubro;
 use App\Stock;
+use App\Flete;
 use App\Unidad;
 //use Maatwebsite\Excel\Facades\Excel;
 use Excel;
@@ -115,10 +116,14 @@ class MaterialesController extends Controller
             $cambio = 'fr_' . time();
             $reader->each(function ($row) use ($cambio, $dolar) {
                 //  $cate_ref = Material::Find($row->id);
+                if ($row->codigo=='FOT') {
+                  $trabajos_globales = Flete::all()->first();
+                  $trabajos_globales->flete = $row->precio_dto;
+                  $trabajos_globales->update();
+                }
                 $cate_ref = Material::Where('codigo', $row->codigo)->first();
                 if (!isset($cate_ref)) {
                     if ($row->moneda == '$' || $row->moneda == 'U$S') {
-                        # code...
                         $categoria = new Material;
                         //   $categoria->id = $row->id;
                         $categoria->codigo      = $row->codigo;

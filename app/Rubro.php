@@ -13,7 +13,7 @@ class Rubro extends Model
 
     public function materiales()
     {
-        return $this->hasMany('App\Material'); 
+        return $this->hasMany('App\Material');
     }
 
 }

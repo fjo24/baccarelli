@@ -104,6 +104,9 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*------------CONTENIDO OBSERVACIONES----------------*/
     Route::resource('contenido_observaciones', 'Adm\ContenidoobservacionesController')->middleware('admin');
 
+    /*------------CONTENIDO PARA AYUDA EN TRABAJOS GLOBALES----------------*/
+    Route::resource('contenido_globales', 'Adm\ContenidoObrasGlobalesController')->middleware('admin');
+
     /*------------UNIDADES----------------*/
     Route::resource('unidades', 'Adm\UnidadesController')->middleware('admin');
 

@@ -246,6 +246,40 @@
                         <i class="material-icons">
                             account_circle
                         </i>
+                        Texto en Trabajos Globales
+                    </a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="{{route('contenido_globales.create')}}">
+                                    Editar Contenido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-admin">
+                        <i class="material-icons">
+                            account_circle
+                        </i>
+                        Trabajos Globales
+                    </a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="{{route('fletes.create')}}">
+                                    Editar Valores
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-admin">
+                        <i class="material-icons">
+                            account_circle
+                        </i>
                         Terminaciones de Borde
                     </a>
                     <div class="collapsible-body">
@@ -302,23 +336,6 @@
                             <li>
                                 <a href="{{route('localidades.index')}}">
                                     Editar Localidad
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="bold">
-                    <a class="collapsible-header waves-effect waves-admin">
-                        <i class="material-icons">
-                            account_circle
-                        </i>
-                        Trabajos Globales
-                    </a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="{{route('fletes.create')}}">
-                                    Editar Valores
                                 </a>
                             </li>
                         </ul>
