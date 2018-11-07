@@ -25,6 +25,22 @@
             {!!Form::label('Descripcion:')!!}
             {!!Form::text('descripcion', null , ['class'=>'', ''])!!}
         </div>
+        <div class="input-field col l6 s12">
+            <label>Accion siguiente corresponde a:</label>
+            <br>
+            <p>
+                <label>
+                    <input class="with-gap" name="selector" type="radio" value="1" />
+                    <span>Baccarelli</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="selector" type="radio" value="0" />
+                    <span>Tienda</span>
+                </label>
+            </p>
+        </div>
     </div>
     <button class="boton btn-large right" name="action" type="submit">
         Crear

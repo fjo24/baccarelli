@@ -11,6 +11,13 @@
 |
  */
 
+ //PAGINA DE ACCIONES DE LOS PROCESOS (ESTADOS)
+ //<<<<<<<<<<<<<<<<<<<<------------------------------------------    ESTADOS
+ //PEDIDO NO APROBADO
+ Route::get('/noaprobado/{id}',  'EstadosController@noaprobado')->name('noaprobado');//accion
+ Route::get('/pendiente/{id}',  'EstadosController@pendiente')->name('pendiente');//page
+ Route::get('/aprobado/{id}',  'EstadosController@aprobado')->name('aprobado');//accion
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,8 +30,6 @@ Auth::routes();
 Route::post('logindistribuidor', 'Auth\LoginDistribuidorController@login')->name('logindistribuidor');
 Route::get('/home', 'HomeController@index')->name('home');
 
-//PAGINA DE ACCIONES DE LOS PROCESOS (ESTADOS)
-//estad
 
 //REGISTRO DE DISTRIBUIDORES
 Route::get('registro', ['uses' => 'DistribuidorController@index', 'as' => 'registro']);
@@ -39,15 +44,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*----------------LOGIN ADMIN COTIZADOR----------------*/
-Route::get('/admin', 'Admin\AdminController@login')->name('admin.login');
+/*----------------COTIZADOR LADO ADMIN----------------*/
+Route::get('/admin', 'Baccarelli\AdminController@login')->name('admin.login');
 
 Route::prefix('admin')->middleware('admin')->middleware('auth')->group(function () {
 
-    Route::get('/home', ['uses' => 'Admin\AdminController@home', 'as' => 'admin.home'])->middleware('admin');
+    Route::get('/presupuestos', ['uses' => 'Baccarelli\PedidosController@presupuestos', 'as' => 'baccarelli.presupuestos']);
+
+    Route::get('/home', ['uses' => 'Baccarelli\AdminController@home', 'as' => 'admin.home'])->middleware('admin');
 
     /*------------PEDIDOS----------------*/
-    Route::resource('pedidosadmin', 'Admin\PedidosController')->middleware('admin');
+    Route::resource('pedidosadmin', 'Baccarelli\PedidosController')->middleware('admin');
 
 });
 

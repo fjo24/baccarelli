@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Baccarelli;
 
 use App\Drequerida;
 use App\Entrega_dia;
@@ -16,11 +16,21 @@ use Illuminate\Http\Request;
 
 class PedidosController extends Controller
 {
+
+    public function presupuestos()
+    {
+        $user = User::find(Auth()->user()->id);
+        $activo = 'presupuestos';
+        $pedidos = Pedido::orderBy('id', 'ASC')->Where('estado_id', 1)->get();
+        return view('admin.pedidos.presupuestos', compact('user', 'pedidos', 'superficies', 'activo'));
+    }
+
     public function index()
     {
         $user = User::find(Auth()->user()->id);
-        $pedidos = Pedido::orderBy('id', 'ASC')->get();
-        return view('admin.pedidos.index', compact('user', 'pedidos', 'superficies'));
+        $pedidos = Pedido::orderBy('id', 'ASC')->where('estado_id', '<>', 1)->where('estado_id', '<>', 2)->get();
+        $activo = 'pedidos';
+        return view('admin.pedidos.index', compact('user', 'pedidos', 'superficies', 'activo'));
     }
 
     /**
@@ -101,12 +111,6 @@ class PedidosController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

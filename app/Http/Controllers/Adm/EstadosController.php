@@ -24,6 +24,7 @@ class EstadosController extends Controller
   {
       $estado           = new Estado();
       $estado->descripcion     = $request->descripcion;
+      $estado->selector     = $request->selector;
       $estado->save();
 
       $estados = Estado::orderBy('id', 'ASC')->get();
@@ -39,14 +40,15 @@ class EstadosController extends Controller
   public function edit($id)
   {
       $estado = Estado::find($id);
-      return view('adm.estados.edit')
-          ->with('estado', estado);
+      return view('adm.estados.edit', compact('estado'));
+
   }
 
   public function update(Request $request, $id)
   {
       $estado           = Estado::find($id);
       $estado->descripcion     = $request->descripcion;
+      $estado->selector     = $request->selector;
       $estado->save();
 
       $estados = Estado::orderBy('id', 'ASC')->get();

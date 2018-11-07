@@ -69,7 +69,13 @@
 										Generar nueva versión
 									</button>
 								</td>
-								<td class="td_baccarelli" class="text-right">{!!$pedido->estado->descripcion!!}</td>
+								<td class="td_baccarelli" class="text-right">
+									<a href="#">
+										<button class="boton_datos fondo_verde" style="cursor:pointer!important;">
+											{!!$pedido->estado->descripcion!!}
+										</button>
+									</a>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

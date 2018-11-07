@@ -8,12 +8,12 @@ class Estado extends Model
 {
   protected $table    = "estados";
   protected $fillable = [
-      'descripcion',
+      'descripcion', 'selector',
   ];
 
   public function pedidos()
   {
-      return $this->hasMany('App\Pedido'); 
+      return $this->hasMany('App\Pedido');
   }
 
 }
