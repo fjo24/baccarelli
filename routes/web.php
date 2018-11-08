@@ -17,6 +17,12 @@
  Route::get('/noaprobado/{id}',  'EstadosController@noaprobado')->name('noaprobado');//accion
  Route::get('/pendiente/{id}',  'EstadosController@pendiente')->name('pendiente');//page
  Route::get('/aprobado/{id}',  'EstadosController@aprobado')->name('aprobado');//accion
+ Route::get('/ordencompra/{id}',  'EstadosController@ordencompra')->name('ordencompra');//page
+ Route::put('/guardarorden/{id}',  'EstadosController@guardarorden')->name('guardarorden');//page
+ Route::get('/revisionoc/{id}',  'EstadosController@revisionoc')->name('revisionoc');//page
+ Route::get('/noconcuerdan/{id}',  'EstadosController@noconcuerdan')->name('noconcuerdan');//accion
+ Route::get('/concuerdan/{id}',  'EstadosController@concuerdan')->name('concuerdan');//accion
+ Route::get('/edicionhecha/{id}',  'EstadosController@edicionhecha')->name('edicionhecha');//accion
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,6 +62,9 @@ Route::prefix('admin')->middleware('admin')->middleware('auth')->group(function 
     /*------------PEDIDOS----------------*/
     Route::resource('pedidosadmin', 'Baccarelli\PedidosController')->middleware('admin');
 
+    // DESCARGA DE ORDEN DE COMPRA
+    Route::get('downloadoc/{id}', ['uses' => 'Baccarelli\PedidosController@downloadoc', 'as' => 'downloadoc']);
+
 });
 
 
@@ -65,7 +74,7 @@ Route::get('/tienda', 'Tienda\TiendaController@login')->name('tienda.login');
 Route::prefix('tienda')->middleware('auth')->group(function () {
 
     Route::get('/home', ['uses' => 'Tienda\TiendaController@home', 'as' => 'tienda.home']);
-    Route::get('/presupuestos', ['uses' => 'Tienda\TiendaController@presupuestos', 'as' => 'tienda.presupuestos']);
+    Route::get('/presupuestos', ['uses' => 'Tienda\PedidosController@presupuestos', 'as' => 'tienda.presupuestos']);
     /*------------PEDIDOS----------------*/
     Route::resource('pedidostienda', 'Tienda\PedidosController');
 });

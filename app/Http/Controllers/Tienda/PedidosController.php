@@ -21,14 +21,20 @@ use Illuminate\Http\Request;
 
 class PedidosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function presupuestos()
+    {
+        $user = User::find(Auth()->user()->id);
+        $activo = 'presupuestos';
+        $pedidos = Pedido::orderBy('id', 'ASC')->Where('user_id', $user->id)->Where('estado_id', 1)->get();
+        return view('tienda.pedidos.presupuestos', compact('user', 'pedidos', 'superficies', 'activo'));
+    }
+
     public function index()
     {
-        //
+      $user = User::find(Auth()->user()->id);
+      $pedidos = Pedido::orderBy('id', 'ASC')->Where('user_id', $user->id)->where('estado_id', '<>', 1)->where('estado_id', '<>', 2)->get();
+      $activo = 'pedidos';
+      return view('tienda.pedidos.index', compact('user', 'pedidos', 'superficies', 'activo'));
     }
 
     /**

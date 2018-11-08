@@ -70,13 +70,23 @@
 									</button>
 								</td>
 								<td class="td_baccarelli" class="text-right">
-									<a href="#">
-										<button class="boton_datos fondo_verde" style="cursor:pointer!important;">
+									<a class="modal-trigger" href="#modalesperando{!!$pedido->id!!}">
+										<button class="boton_datos fondo_espera" style="cursor:pointer!important;">
 											{!!$pedido->estado->descripcion!!}
 										</button>
 									</a>
 								</td>
 							</tr>
+							<!-- Modal Structure -->
+							<div id="modalesperando{!!$pedido->id!!}" class="modal">
+								<div class="modal-content">
+									<h3 style="color:#AA0000;">Atención!!</h3>
+									<h5>Baccarelli debe aprobar el presupuesto para continuar</h5>
+								</div>
+								<div class="modal-footer">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+								</div>
+							</div>
 							@endforeach
 						</tbody>
 					</table>
@@ -87,4 +97,18 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/eliminar.js') }}"></script>
 
+@endsection
+@section('js')
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+		var elems = document.querySelectorAll('.modal');
+		var instances = M.Modal.init(elems, options);
+	});
+
+	// Or with jQuery
+
+	$(document).ready(function() {
+		$('.modal').modal();
+	});
+</script>
 @endsection

@@ -33,11 +33,6 @@ class PedidosController extends Controller
         return view('admin.pedidos.index', compact('user', 'pedidos', 'superficies', 'activo'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $activo        = 'presupuestos';
@@ -111,40 +106,34 @@ class PedidosController extends Controller
 
     }
 
+    public function downloadoc($id)
+      {
+          $pedido = Pedido::find($id);
+          $path     = public_path();
+          $url      = $path . '/' . $pedido->ordencompra;
+          return response()->download($url);
+          return redirect()->route('pedidosadmin.index');
+      }
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $activo = 'pedidos';
+        return view('admin.pedidos.edit', compact('activo', 'pedido'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $activo = 'pedidos';
+        return redirect()->route('edicionhecha', $pedido->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

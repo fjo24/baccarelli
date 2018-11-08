@@ -19,14 +19,8 @@ class TiendaController extends Controller
     public function home()
     {
         $activo = 'home';
-        
+
         return redirect()->route('pedidostienda.create', compact('sliders', 'servicios', 'banner', 'contenido', 'activo', 'user'));
     }
 
-    public function presupuestos()
-    {
-        $user = User::find(Auth()->user()->id);
-        $pedidos = Pedido::orderBy('id', 'ASC')->Where('user_id', $user->id)->get();
-        return view('tienda.pedidos.presupuestos', compact('user', 'pedidos', 'superficies'));
-    }
 }
