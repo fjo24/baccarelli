@@ -51,7 +51,7 @@
                         </a>
                         @endif
                     </li>
-                    <li class=" item-flex"><a href="index.php"><img alt="" class="responsive-img" src="{{asset($user->logo)}}" style="width: 120px;height: 40px;" /></a></li>
+                    <li class=" item-flex"><a href="index.php"><img alt="" class="responsive-img" src="{{asset($user->tienda->logo)}}" style="width: 120px;height: 40px;" /></a></li>
                     <li class=" item-flex">
                         @if ($activo=='pedidos')
                         <a href="{{route('pedidostienda.index')}}" style="color: #F04596!important;" href="" class="itm-menu <?php if(isset($_GET['active']) && $_GET['active'] == 'trabajos'){ echo 'active-link';} ?>">
@@ -63,7 +63,6 @@
                         </a>
                         @endif
                     </li>
-
                 </div>
             </ul>
         </div>

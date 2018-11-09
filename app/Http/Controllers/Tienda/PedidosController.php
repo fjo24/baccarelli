@@ -44,6 +44,7 @@ class PedidosController extends Controller
      */
     public function create()
     {
+        $user = User::find(Auth()->user()->id);
         $activo        = 'presupuestos';
         $fecha         = Carbon::now()->format('d/m/Y');
         $lista         = 1.2;
@@ -65,7 +66,7 @@ class PedidosController extends Controller
         $prod          = $aux->toJson();
         $config        = 1;
         $products      = Superficie::orderBy('id', 'DESC')->get();
-        return view('tienda.pedidos.create', compact('activo', 'requeridas', 'restricciones', 'fecha', 'lista', 'num_pre', 'horarios', 'dias', 'user', 'superficies', 'products', 'prod', 'config', 'materiales', 'observaciones', 'bordes', 'aplicados', 'contenido', 'localidades'));
+        return view('tienda.pedidos.create', compact('activo', 'user', 'requeridas', 'restricciones', 'fecha', 'lista', 'num_pre', 'horarios', 'dias', 'user', 'superficies', 'products', 'prod', 'config', 'materiales', 'observaciones', 'bordes', 'aplicados', 'contenido', 'localidades'));
 
     }
 

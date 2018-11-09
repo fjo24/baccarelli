@@ -1,4 +1,4 @@
-@extends('admin.templates.body')
+@extends('tienda.templates.body')
 @section('title', 'Baccarelli')
 @section('css')
 <link href="{{ asset('css/header_adm.css') }}" rel="stylesheet" />

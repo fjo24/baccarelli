@@ -72,7 +72,7 @@
 									</button>
 								</td>
 								<td class="td_baccarelli" class="text-right">
-									<a class="" href="{{route('pendiente', $pedido->id)}}">
+									<a class="" href="{{route('accion_estados', $pedido->id)}}">
 										<button class="boton_datos fondo_activo" style="cursor:pointer!important;">
 											{!!$pedido->estado->descripcion!!}
 										</button>

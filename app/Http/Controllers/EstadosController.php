@@ -4,9 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pedido;
+use App\User;
 
 class EstadosController extends Controller
 {
+
+  public function accion_estados($id)
+  {
+    $activo = 'pedidos';
+    $pedido = Pedido::Find($id);
+    $user = User::find(Auth()->user()->id);
+    if ($pedido->estado_id == 1){
+      //PAGINA DE PEDIDOS PENDIENTES, QUE SE PUEDEN PASAR A NO APROBADO O A APROBADO
+      return view('admin.estados.pendiente', compact('pedido', 'activo'));
+    }elseif ($pedido->estado_id == 4) {
+      //PAGINA DE DESCARGA DE ARCHIVOS PARA REVISION ORDEN DE COMPRA Y PEDIDO
+      return view('admin.estados.revisionoc', compact('pedido', 'activo'));
+    }elseif ($pedido->estado_id == 5) {
+      //PAGINA ENVIA A EDICION DE PEDIDO
+      return view('pedidosadmin.edit', compact('pedido', 'activo'));
+    }elseif ($pedido->estado_id == 3) {
+      //PAGINA DE ORDEN DE COMPRA, PARA ADJUNTAR LA OC AL SISTEMA
+      return view('tienda.estados.ordencompra', compact('pedido', 'activo', 'user'));
+    }elseif ($pedido->estado_id == 6) {
+      //PAGINA DE ORDEN DE COMPRA, PARA ADJUNTAR LA OC AL SISTEMA
+      return view('tienda.estados.revisioncorreccion', compact('pedido', 'activo', 'user'));
+    }
+  }////***************************** FALTA SEGURIDAD ENTRADA DE USUARIOS
+
   //PASAR PEDIDO A NO APROBADO
   public function noaprobado($id)
   {
@@ -14,15 +39,11 @@ class EstadosController extends Controller
     $pedido = Pedido::Find($id);
     $pedido->estado_id = 2;
     $pedido->update();
-    return redirect()->route('baccarelli.presupuestos');
-  }
-
-  //PAGINA DE PEDIDOS PENDIENTES, QUE SE PUEDEN PASAR A NO APROBADO O A APROBADO
-  public function pendiente($id)
-  {
-    $activo = 'presupuestos';
-    $pedido = Pedido::Find($id);
-    return view('admin.estados.pendiente', compact('pedido', 'activo'));
+    if (Auth()->user()->nivel == 'administrador') {
+      return redirect()->route('baccarelli.presupuestos');
+    }else{
+      return redirect()->route('tienda.presupuestos');
+    }
   }
 
   //ACCION DE APROBAR PEDIDO
@@ -33,14 +54,6 @@ class EstadosController extends Controller
     $pedido->estado_id = 3;
     $pedido->update();
     return redirect()->route('baccarelli.presupuestos', 'activo');
-  }
-
-  //PAGINA DE ORDEN DE COMPRA, PARA ADJUNTAR LA OC AL SISTEMA
-  public function ordencompra($id)
-  {
-    $activo = 'presupuestos';
-    $pedido = Pedido::Find($id);
-    return view('tienda.estados.ordencompra', compact('pedido', 'activo'));
   }
 
   //ACCION DE GUARDAR ORDEN
@@ -59,14 +72,6 @@ class EstadosController extends Controller
     $pedido->estado_id=4;
     $pedido->save();
     return redirect()->route('pedidostienda.index');
-  }
-
-  //PAGINA DE DESCARGA DE ARCHIVOS PARA REVISION ORDEN DE COMPRA Y PEDIDO
-  public function revisionoc($id)
-  {
-    $activo = 'pedidos';
-    $pedido = Pedido::Find($id);
-    return view('admin.estados.revisionoc', compact('pedido', 'activo'));
   }
 
   //ACCION DE MARCAR QUE NO CONCUERDAN PLANO Y COTIZADOR
@@ -96,5 +101,13 @@ class EstadosController extends Controller
     $pedido->estado_id = 6;
     $pedido->update();
     return redirect()->route('pedidosadmin.index');
+  }
+
+  public function revisionaprobada($id){
+    $activo = 'pedidos';
+    $pedido = Pedido::Find($id);
+    $pedido->estado_id = 3;
+    $pedido->update();
+    return redirect()->route('accion_estados', $pedido->id);
   }
 }

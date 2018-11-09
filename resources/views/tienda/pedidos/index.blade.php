@@ -1,4 +1,4 @@
-@extends('admin.templates.body')
+@extends('tienda.templates.body')
 @section('title', 'Baccarelli')
 @section('css')
 <link href="{{ asset('css/header_adm.css') }}" rel="stylesheet" />
@@ -73,54 +73,27 @@
 								</td>
 								<td class="td_baccarelli" class="text-right">
 									@if ($pedido->estado->selector == '0')
-									<!-- CONJUNTO DE ESTADOS POSIBLES PARA BACCARELLI-->
-									@if ($pedido->estado->descripcion == 'Esperando orden de compra')
-									<a class="" href="{{route('ordencompra', $pedido->id)}}">
-										<button class="boton_datos fondo_activo" style="cursor:pointer!important;">
-											{!!$pedido->estado->descripcion!!}
-										</button>
-									</a>
-									@elseif ($pedido->estado_id == 6)
-									<a class="modal-trigger" href="">
+									<!-- CONJUNTO DE ESTADOS POSIBLES PARA TIENDA-->
+									<a class="" href="{{route('accion_estados', $pedido->id)}}">
 										<button class="boton_datos fondo_activo" style="cursor:pointer!important;">
 											{!!$pedido->estado->descripcion!!}
 										</button>
 									</a>
 									@else
-									@endif
-									<!-- FIN CONJUNTO DE ESTADOS POSIBLES PARA BACCARELLI-->
-									@else
-									@if ($pedido->estado->id==4)
-									<a class="modal-trigger" href="#modalrevisaroc{!!$pedido->id!!}">
+									<a class="modal-trigger" href="#modalp{!!$pedido->id!!}">
 										<button class="boton_datos fondo_espera" style="cursor:pointer!important;">
 											{!!$pedido->estado->descripcion!!}
 										</button>
 									</a>
-									@else
-									<a class="modal-trigger" href="#modalesperando{!!$pedido->id!!}">
-										<button class="boton_datos fondo_espera" style="cursor:pointer!important;">
-											{!!$pedido->estado->descripcion!!}
-										</button>
-									</a>
-									@endif
+									<!-- FIN CONJUNTO DE ESTADOS POSIBLES PARA TIENDA-->
 									@endif
 								</td>
 							</tr>
 							<!-- Modal Structure -->
-							<div id="modalesperando{!!$pedido->id!!}" class="modal">
+							<div id="modalp{!!$pedido->id!!}" class="modal">
 								<div class="modal-content">
 									<h4>Atención!!</h4>
-									<p>Del lado tienda deben hacer el envio de la orden de compra para continuar</p>
-								</div>
-								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
-								</div>
-							</div>
-							<!-- Modal Structure -->
-							<div id="modalrevisaroc{!!$pedido->id!!}" class="modal">
-								<div class="modal-content">
-									<h4>Atención!!</h4>
-									<p>Baccarelli debe revisar para continuar</p>
+									<p>{!!$pedido->estado->info1!!}</p>
 								</div>
 								<div class="modal-footer">
 									<a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>

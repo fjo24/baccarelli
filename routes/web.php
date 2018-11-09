@@ -23,6 +23,9 @@
  Route::get('/noconcuerdan/{id}',  'EstadosController@noconcuerdan')->name('noconcuerdan');//accion
  Route::get('/concuerdan/{id}',  'EstadosController@concuerdan')->name('concuerdan');//accion
  Route::get('/edicionhecha/{id}',  'EstadosController@edicionhecha')->name('edicionhecha');//accion
+ Route::get('/revisionaprobada/{id}',  'EstadosController@revisionaprobada')->name('revisionaprobada');//accion
+
+ Route::get('/accion_estados/{id}',  'EstadosController@accion_estados')->name('accion_estados');//todas las acciones pasan por aqui
 
 Route::get('/', function () {
     return view('welcome');
