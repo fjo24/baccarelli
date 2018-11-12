@@ -11,6 +11,13 @@
 |
  */
 
+ Route::group(['prefix' => 'ajax'], function(){
+    Route::get('material/{id}', 'Tienda\TiendaController@material');
+    Route::get('borde/{id}', 'Tienda\TiendaController@borde');
+    Route::get('aplicado/{id}', 'Tienda\TiendaController@aplicado');
+    Route::get('especial/{id}', 'Tienda\TiendaController@especial');
+});
+
  //PAGINA DE ACCIONES DE LOS PROCESOS (ESTADOS)
  //<<<<<<<<<<<<<<<<<<<<------------------------------------------    ESTADOS
  //PEDIDO NO APROBADO
