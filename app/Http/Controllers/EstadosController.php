@@ -29,6 +29,22 @@ class EstadosController extends Controller
     }elseif ($pedido->estado_id == 6) {
       //PAGINA DE ORDEN DE COMPRA, PARA ADJUNTAR LA OC AL SISTEMA
       return view('tienda.estados.revisioncorreccion', compact('pedido', 'activo', 'user'));
+    }elseif ($pedido->estado_id == 7) {
+      //PAGINA DE FACTURA, PARA ADJUNTAR LA FACTURA AL SISTEMA
+    //  dd($user->id);
+      return view('admin.estados.factura', compact('pedido', 'activo', 'user'));
+    }elseif ($pedido->estado_id == 8) {
+      //PAGINA DE FACTURA, PARA ADJUNTAR LA FACTURA AL SISTEMA
+    //  dd($user->id);
+      return view('admin.estados.revisionstock', compact('pedido', 'activo', 'user'));
+    }elseif ($pedido->estado_id == 9) {
+      //PAGINA DE FACTURA, PARA ADJUNTAR LA FACTURA AL SISTEMA
+    //  dd($user->id);
+      return view('admin.estados.revisionmedicion', compact('pedido', 'activo', 'user'));
+    }elseif ($pedido->estado_id == 10) {
+      //PAGINA DE FACTURA, PARA ADJUNTAR LA FACTURA AL SISTEMA
+    //  dd($user->id);
+      return view('admin.estados.listoparamedir', compact('pedido', 'activo', 'user'));
     }
   }////***************************** FALTA SEGURIDAD ENTRADA DE USUARIOS
 
@@ -74,6 +90,24 @@ class EstadosController extends Controller
     return redirect()->route('pedidostienda.index');
   }
 
+  //ACCION DE GUARDAR ORDEN
+  public function guardarfactura(Request $request, $id)
+  {
+    $activo = 'pedidos';
+    $pedido = Pedido::Find($id);
+    if ($request->hasFile('factura')) {
+            if ($request->file('factura')->isValid()) {
+                $file = $request->file('factura');
+                $path = public_path('factura/');
+                $request->file('factura')->move($path, $id . '_' . $file->getClientOriginalName());
+                $pedido->factura = 'factura/' . $id . '_' . $file->getClientOriginalName();
+            }
+        }
+        $pedido->estado_id=8;
+    $pedido->save();
+    return redirect()->route('pedidosadmin.index');
+  }
+
   //ACCION DE MARCAR QUE NO CONCUERDAN PLANO Y COTIZADOR
   public function concuerdan($id)
   {
@@ -110,4 +144,29 @@ class EstadosController extends Controller
     $pedido->update();
     return redirect()->route('accion_estados', $pedido->id);
   }
+
+  public function stockdisponible($id){
+    $activo = 'pedidos';
+    $pedido = Pedido::Find($id);
+    $pedido->estado_id = 9;
+    $pedido->update();
+    return redirect()->route('pedidosadmin.index');
+  }
+
+  public function requieremedicion($id){
+    $activo = 'pedidos';
+    $pedido = Pedido::Find($id);
+    $pedido->estado_id = 10;
+    $pedido->update();
+    return redirect()->route('pedidosadmin.index');
+  }
+
+  public function listoparamedir($id){
+    $activo = 'pedidos';
+    $pedido = Pedido::Find($id);
+    $pedido->estado_id = 11;
+    $pedido->update();
+    return redirect()->route('pedidosadmin.index');
+  }
+
 }

@@ -24,6 +24,11 @@
  Route::get('/concuerdan/{id}',  'EstadosController@concuerdan')->name('concuerdan');//accion
  Route::get('/edicionhecha/{id}',  'EstadosController@edicionhecha')->name('edicionhecha');//accion
  Route::get('/revisionaprobada/{id}',  'EstadosController@revisionaprobada')->name('revisionaprobada');//accion
+ Route::get('/factura/{id}',  'EstadosController@factura')->name('factura');//page
+ Route::put('/guardarfactura/{id}',  'EstadosController@guardarfactura')->name('guardarfactura');//page
+ Route::get('/stockdisponible/{id}',  'EstadosController@stockdisponible')->name('stockdisponible');//page
+ Route::get('/requieremedicion/{id}',  'EstadosController@requieremedicion')->name('requieremedicion');//page
+ Route::get('/listaparamedir/{id}',  'EstadosController@listaparamedir')->name('listaparamedir');//page
 
  Route::get('/accion_estados/{id}',  'EstadosController@accion_estados')->name('accion_estados');//todas las acciones pasan por aqui
 
