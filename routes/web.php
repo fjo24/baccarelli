@@ -117,6 +117,9 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*------------TRABAJOS APLICADOS----------------*/
     Route::resource('aplicados', 'Adm\T_aplicadosController')->middleware('admin');
 
+    /*------------TRABAJOS ESPECIALES----------------*/
+    Route::resource('especiales', 'Adm\EspecialesController')->middleware('admin');
+
     /*------------ESTADOS----------------*/
     Route::resource('estados', 'Adm\EstadosController')->middleware('admin');
 
@@ -152,6 +155,9 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
 
     /*------------FLETES----------------*/
     Route::resource('fletes', 'Adm\FletesController')->middleware('admin');
+
+    /*------------TRABAJOS ESPECIALES----------------*/
+    Route::resource('especiales', 'Adm\EspecialesController')->middleware('admin');
 
     //DASHBOARD
     Route::get('/dashboard', 'Adm\AdminController@admin')->name('inicio.adm')->middleware('admin');

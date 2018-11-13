@@ -44,7 +44,7 @@ class T_aplicadosController extends Controller
     {
         $aplicado = T_aplicado::find($id);
         $unidades = Unidad::orderBy('nombre', 'ASC')->get();
-        return view('adm.aplicados.edit', compact('unidades', 'aplicados'));
+        return view('adm.aplicados.edit', compact('unidades', 'aplicado'));
     }
 
     public function update(Request $request, $id)
