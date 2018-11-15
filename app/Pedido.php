@@ -8,7 +8,10 @@ class Pedido extends Model
 {
     protected $table    = "pedidos";
     protected $fillable = [
-        'fecha', 'info1', 'info2', 'numero_presupuesto','numero_proyecto', 'nombre_cliente','apellido_cliente', 'localidad','telefono1', 'telefono2','telefono3', 'encargado','telefono_encargado', 'aclaracion', 'listado_id', 'user_id','pedido_id', 'selector',
+        'fecha', 'info1', 'info2', 'numero_presupuesto','numero_proyecto',
+        'nombre_cliente','apellido_cliente', 'localidad','telefono1',
+        'telefono2','telefono3', 'encargado','telefono_encargado',
+        'aclaracion', 'listado_id', 'user_id','pedido_id', 'selector','estado_id',
     ];
 
     public function EntregaHorarios()
@@ -44,6 +47,11 @@ class Pedido extends Model
     public function Materiales()
     {
         return $this->belongsToMany('App\Material', 'material_pedido', 'pedido_id', 'material_id');
+    }
+
+    public function Bordes()
+    {
+        return $this->belongsToMany('App\Borde', 'borde_pedido', 'pedido_id', 'borde_id');
     }
 
 }

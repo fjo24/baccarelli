@@ -8,7 +8,7 @@ class Material extends Model
 {
     protected $table    = "materiales";
     protected $fillable = [
-        'nombre', 'espesor', 'orden', 'codigo', 'precio', 'precio_descuento', 'leather', 'rp', 'diamantado', 'moneda', 'rubro_id', 'observacion_id', 'stock_id', 'descuento_id', 
+        'nombre', 'espesor', 'orden', 'codigo', 'precio', 'cost', 'leather', 'rp', 'diamantado', 'moneda', 'rubro_id', 'observacion_id', 'stock_id', 'descuento_id', 
     ];
 
     public function rubro()

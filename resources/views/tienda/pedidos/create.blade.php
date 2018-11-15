@@ -4,17 +4,17 @@
 <link href="{{ asset('css/header_adm.css') }}" rel="stylesheet" />
 <link href="{{ asset('css/presupuesto.css') }}" rel="stylesheet" />
 <style type="text/css">
-    input[disabled=true] {
-        background-color: transparent;
-        cursor: default;
-    }
+	input[disabled=true] {
+		background-color: transparent;
+		cursor: default;
+	}
 </style>
 @endsection
 @section('contenido')
 <div class="container" style="width: 89%;">
-    {!!Form::open(['route'=>'pedidostienda.store', 'method'=>'POST', 'files' => true])!!}
-    <div class="row" style="margin-top: 4%;">
-        <!--<div class="row">
+	{!!Form::open(['route'=>'pedidostienda.store', 'method'=>'POST', 'files' => true])!!}
+	<div class="row" style="margin-top: 4%;">
+		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="border-radius: 6px">
 					<div class="panel-heading">
@@ -106,7 +106,12 @@
 										{!!Form::label('*', '*', ['class' => 'rojo'])!!}
 									</div>
 									<div class="input-cliente col-md-10">
-										{!!Form::text('localidad',null,['class'=>'form_login', 'placeholder' => 'Localidad de la obra'])!!}
+										<select name="localidad_id" class="form-control localidad-obra">
+											<option value="">Seleccione localidad</option>
+											@foreach($localidades as $localidad)
+											<option value="{{$localidad->id}}" horas="{{$localidad->horas_flete+$localidad->horas_peaje}}">{{$localidad->nombre}}</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -206,7 +211,7 @@
 										<div class="input-cliente col-md-6">
 											<p>
 												<label>
-													<input class="filled-in" name="horario_id[]" type="checkbox" value="{!!$horario->id!!}"/>
+													<input class="filled-in" name="horario_id[]" type="checkbox" value="{!!$horario->id!!}" />
 													<span>
 														{!!$horario->horario!!}
 													</span>
@@ -226,7 +231,7 @@
 										<div class="input-cliente col-md-6" style="    height: 30px;">
 											<p>
 												<label>
-													<input class="filled-in" name="dia_id[]" type="checkbox" value="{!!$dia->id!!}"/>
+													<input class="filled-in" name="dia_id[]" type="checkbox" value="{!!$dia->id!!}" />
 													<span>
 														{!!$dia->dia!!}
 													</span>
@@ -261,7 +266,7 @@
 									<div class="input-restriccion col-md-10">
 										<p>
 											<label>
-												<input class="filled-in" name="restriccion_id[]" type="checkbox" value="{{$restriccion->id}}"/>
+												<input class="filled-in" name="restriccion_id[]" type="checkbox" value="{{$restriccion->id}}" />
 												<span style="width: 430px;">
 													{!!Form::text('especificacion[]','',['class'=>'form_login', 'placeholder' => $restriccion->nombre])!!}
 												</span>
@@ -277,7 +282,7 @@
 									<div class="input-requerida col-md-10">
 										<p>
 											<label>
-												<input class="filled-in" name="requerida_id[]" type="checkbox" value="{{$requerida->id}}"/>
+												<input class="filled-in" name="requerida_id[]" type="checkbox" value="{{$requerida->id}}" />
 												<span style="width: 430px;">
 													{!!$requerida->nombre!!}
 												</span>
@@ -307,981 +312,1037 @@
 					</div>
 				</div>
 			</div>
-		</div>-->
-        <div class="row">
-            <div class="col-md-12 item-general" style="margin-bottom: 4%;">
-                <div class="panel panel-default" style="border-radius: 6px; margin-bottom: 0px;">
-                    <div class="panel-heading" style="background-color: #8592A6;">
-                        <span class="presupuesto" style="color: white;">Item</span>
-                        <input type="text" class="nombre-item" name="nombre-item[]" style="border: 1px solid #ccc; margin-left: 15px;">
-                    </div>
-                    <div class="panel-heading">
-                        <span class="presupuesto">Material <e class="item-label"></e></span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0; border-bottom: 1px solid #ddd;">
-                        <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                            <div class="box-header">
-                                <h3 class="box-title">Seleccione producto o servicio</h3>
-                            </div>
-                            <!------------------------------------------------------formulario-------------------------------------------------------->
-                            <div class="contacts" style="overflow: hidden;">
-                                <div style="width: 100%;overflow: hidden;">
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-                                        <label>Pieza</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
-                                        <label>Material</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
-                                        <label>Observaciones</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
-                                        <label>Existencia</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                        <label>Largo</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                        <label>Ancho</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                        <label>M2</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        <label>Precio Mat</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        <label>Adicional</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        <label>Precio adic</label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        <label>Monto</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contacts" style="overflow: hidden;">
-                                <div class="material-individual" style="overflow: hidden;">
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-                                        {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control select-product pieza-material', 'required']) !!}
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
-                                        {!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product material-perse', 'placeholder' => '', 'required']) !!}
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
-                                        <input name="observaciones_id[]" class="form-control producto-price observacion-material" disabled>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
-                                        <input name="stock_id[]" class="form-control producto-price existencia-material" disabled>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                        <input type="number" name="largo[]" class="form-control producto-quantity largo-material" min="1">
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                        <input type="number" name="ancho[]" class="form-control producto-quantity ancho-material" min="1">
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                        <input name="cuadrados[]" class="form-control producto-quantity cuadrados-material" disabled>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price precio-material', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        <label class="form-control">
-                                            <input type="checkbox" class="suma-material" name="suma[]" disabled="true">
-                                            <input type="text" class="taza-material" name="adicional[]" style="width: 50px; border-width: 0px;" disabled="true">
-                                        </label>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        <input name="'product_cost[]" class="form-control producto-price adicional-material" disabled>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-                                        <input name="'product_cost[]" class="form-control producto-price monto-material" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden;">
-                                <div class="col-md-1 pull-right">
-                                    <button class="btn btn-success agregar-material" type="button">Agregar</button>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden; padding-right: 15px;">
-                                <div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
-                                    <label>Subtotal Material <e class="item-label"></e> $</label>
-                                    <input type="text" name="subtotal-material[]" class="subtotal-material" style="border-width: 0px; width: 60px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-heading" style="border-radius: 0px">
-                        <span class="presupuesto">Terminaciones de borde <e class="item-label"></span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;border-bottom: 1px solid #ddd;">
-                        <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                            <div class="contacts" style="width: 100%; overflow: hidden;">
-                                <div class="col-md-8">
-                                    <label>Terminacion de Borde</label>
-                                </div>
-                                <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                    <label>Largo</label>
-                                </div>
-                                <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-                                    <label>Precio de Material</label>
-                                </div>
-                                <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-                                    <label>Monto</label>
-                                </div>
-                            </div>
-                            <div class="contacts" style="overflow: hidden;">
-                                <div class="terminacion-individual" style="overflow: hidden; padding-bottom: 10px">
-                                    <div class="col-md-8">
-                                        {!! Form::select('borde_id[]', $bordes, null, ['class' => 'form-control borde-perse', 'placeholder' => '', 'required']) !!}
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                        <input type="number" min="1" name="largo[]" class="form-control largo-terminacion">
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-                                        <input name="product_cost[]" class="form-control precio-terminacion" disabled>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-                                        <input name="product_cost[]" class="form-control monto-terminacion" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden;">
-                                <div class="col-md-1 pull-right" style="padding-top: 5px;">
-                                    <button class="btn btn-success agregar-terminacion" type="button">Agregar</button>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden; padding-right: 15px;">
-                                <div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
-                                    <label>Subtotal Terminación <e class="item-label"></e> $</label>
-                                    <input type="text" name="subtotal-terminacion[]" class="subtotal-terminacion" style="border-width: 0px; width: 60px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-heading" style="border-radius: 0px">
-                        <span class="presupuesto">Trabajos Aplicados <e class="item-label"></span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;border-bottom: 1px solid #ddd;">
-                        <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                            <div class="contacts" style="overflow: hidden;">
-                                <div class="col-md-7">
-                                    <label>Trabajos</label>
-                                </div>
-                                <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                    <label>Unidad</label>
-                                </div>
-                                <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                    <label>Cantidad</label>
-                                </div>
-                                <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                    <label>Precio Unitario</label>
-                                </div>
-                                <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                    <label>Monto $</label>
-                                </div>
-                            </div>
-                            <div class="contacts" style="overflow: hidden;">
-                                <div class="aplicado-individual" style="overflow: hidden; margin-bottom: 10px; width: 100%;">
-                                    <div class="col-md-7">
-                                        {!! Form::select('aplicados_id[]', $aplicados, null, ['class' => 'form-control aplicado-perse', 'placeholder' => '', 'required']) !!}
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                        <input name="product_cost[]" class="form-control unidad-aplicado" disabled>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                        <input type="number" name="largo[]" class="form-control cantidad-aplicado">
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                        <input name="product_cost[]" class="form-control precio-aplicado" disabled>
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-                                        <input name="product_cost[]" class="form-control monto-aplicado" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden;">
-                                <div class="col-md-1 pull-right" style="padding-top: 5px;">
-                                    <button class="btn btn-success agregar-aplicado" type="button">Agregar</button>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden; padding-right: 15px;">
-                                <div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
-                                    <label>Subtotal Trabajos Aplicados <e class="item-label"></e> $</label>
-                                    <input type="text" name="subtotal-aplicado[]" class="subtotal-aplicado" style="border-width: 0px; width: 60px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-heading" style="border-radius: 0px">
-                        <span class="presupuesto">Trabajos Especiales <e class="item-label"></span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;">
-                        <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                            <div class="contacts" style="overflow: hidden;">
-                                <div class="col-md-10">
-                                    <label>Trabajos</label>
-                                </div>
-                                <div class="col-md-2">
-                                    <label>Monto $</label>
-                                </div>
-                            </div>
-                            <div class="contacts" style="overflow: hidden;">
-                                <div class="especial-individual" style="overflow: hidden; width: 100%; margin-bottom: 10px;">
-                                    <div class="col-md-10">
-                                        {!! Form::select('superficie_id[]', $superficies, null, ['class' => 'form-control superficie-perse', 'placeholder' => '', 'required']) !!}
-                                    </div>
-                                    <div class="col-md-2">
-                                        <input name="product_cost[]" class="form-control precio-especial" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden;">
-                                <div class="col-md-1 pull-right" style="padding-top: 5px;">
-                                    <button class="btn btn-success agregar-especial" type="button">Agregar</button>
-                                </div>
-                            </div>
-                            <div style="width: 100%; overflow: hidden; padding-right: 15px;">
-                                <div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
-                                    <label>Subtotal Trabajos Especial <e class="item-label"></e> $</label>
-                                    <input type="text" name="subtotal-especial[]" class="subtotal-especial" style="border-width: 0px; width: 60px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default" style="border-bottom-right-radius: 6px;border-bottom-left-radius: 6px;margin-left: 50%;width: 50%; margin-bottom: 0px; border-top-width: 0px;">
-                    <div class="panel-heading panel_total_item">
-                        <span class="presupuesto" style="color: white;">Presupuesto Item <e class="item-label"></span>
-                    </div>
-                    <div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
-                        <div class="container" style="width: 100%;padding: 0;">
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                <div class="form-group multiple-form-group">
-                                    <div class="col-md-8">
-                                        <label class="total_item">Superficie</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-material">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                <div class="form-group multiple-form-group">
-                                    <div class="col-md-8">
-                                        <label class="total_item">Bordes</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-terminacion">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                <div class="form-group multiple-form-group">
-                                    <div class="col-md-8">
-                                        <label class="total_item">Aplicados</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-aplicado">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                                <div class="form-group multiple-form-group">
-                                    <div class="col-md-8">
-                                        <label class="total_item">Especiales</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-especial">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group multiple-form-group">
-                                    <div class="col-md-8" style="padding-right: 0;padding-left: 0;">
-                                        <label class="total_item">
-                                            <b>SUBTOTAL MATERIAL</b>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input style="background-color: transparent;border-width: 0px;" type="" name="" class="total-item">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12" style="margin-bottom: 4%;">
-                <button class="btn btn-lg btn-success agregar-elemento pull-right" type="button">Agregar Item &plus;</button>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(document).ready(function() {
+		</div>
+		<div class="row">
+			<div class="col-md-12 item-general" style="margin-bottom: 4%;">
+				<div class="panel panel-default" style="border-radius: 6px; margin-bottom: 0px;">
+					<div class="panel-heading" style="background-color: #8592A6;">
+						<span class="presupuesto" style="color: white;">Item</span>
+						<input type="text" class="nombre-item" name="nombre-item[]" style="border: 1px solid #ccc; margin-left: 15px;">
+					</div>
+					<div class="panel-heading">
+						<span class="presupuesto">Material <e class="item-label"></e></span>
+					</div>
+					<div class="panel-body" style="padding-right: 0;padding-left: 0; border-bottom: 1px solid #ddd;">
+						<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+							<div class="box-header">
+								<h3 class="box-title">Seleccione producto o servicio</h3>
+							</div>
+							<!--formulario-------------------------------------------------------->
+							<div class="contacts" style="overflow: hidden;">
+								<div style="width: 100%;overflow: hidden;">
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+										<label>Pieza</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
+										<label>Material</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
+										<label>Observaciones</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
+										<label>Existencia</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<label>Largo</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<label>Ancho</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<label>M2</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Precio Mat</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Adicional</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Precio adic</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Monto</label>
+									</div>
+								</div>
+							</div>
+							<div class="contacts" style="overflow: hidden;">
+								<div class="material-individual" style="overflow: hidden;">
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+										<select name="superficie_id[]" class="form-control select-product pieza-material">
+											@foreach($superficies as $superficie)
+											<option value="{{$superficie->id}}" rp="{{$superficie->rp}}">{{$superficie->descripcion}}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
+										{!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product material-perse', 'placeholder' => '', '']) !!}
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
+										<input name="observaciones_id[]" class="form-control producto-price observacion-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
+										<input name="stock_id[]" class="form-control producto-price existencia-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<input type="number" name="largo[]" class="form-control producto-quantity largo-material" min="1">
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<input type="number" name="ancho[]" class="form-control producto-quantity ancho-material" min="1">
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<input name="cuadrados[]" class="form-control producto-quantity cuadrados-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										{!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price precio-material', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label class="form-control">
+											<input type="checkbox" class="suma-material" name="suma[]">
+											<label class="tipo-adicional"></label>
+											<input type="hidden" class="taza-material" name="adicional[]">
+										</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<input name="'product_cost[]" class="form-control producto-price adicional-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<input name="'product_cost[]" class="form-control producto-price monto-material" disabled>
+									</div>
+								</div>
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function() {
 
-                var materialBase = $('.material-individual').clone();
-                var terminacionBase = $('.terminacion-individual').clone();
-                var aplicadoBase = $('.aplicado-individual').clone();
-                var especialBase = $('.especial-individual').clone();
-                var generalBase = $('.item-general').clone();
-                vincularEventos();
+									var materialBase = $('.material-individual').clone();
+									var terminacionBase = $('.terminacion-individual').clone();
+									var aplicadoBase = $('.aplicado-individual').clone();
+									var especialBase = $('.especial-individual').clone();
+									var generalBase = $('.item-general').clone();
+									var globalBase = $('.global-individual').clone();
+									var totalItemBase = $('.total-subtotal-item').clone();
+									vincularEventos();
 
-                function vincularEventos() {
-                    $('.superficie-perse').off('change').on('change', function(event) {
-                        var i = $(this).closest('.especial-individual').index();
-                        $.ajax({
-                                method: "GET",
-                                url: "../../ajax/especial/" + $(this).val()
-                            })
-                            .done(function(data) {
-                                var superficie = JSON.parse(data);
-                                $('.precio-especial').eq(i).val(parseFloat(superficie.costo.replace('.', '').replace(',', '.')).toFixed(2));
-                                totalEspecial(i);
-                            });
-                    });
+									$('.localidad-obra').off('change').on('change', function(event) {
+										var horas = $(this).val();
+										$('.flete-perse').each(function(index, el) {
+											var flete = $('.flete-perse').eq(index).val();
+											if (horas && horas != '' && flete && flete != '') {
+												$('.monto-flete').eq(index).val((parseFloat(horas) * parseFloat(flete)).toFixed(2));
+											}
+										});
+									});
 
-                    //aplicado-----------------------------------------------------
+									function vincularEventos() {
 
-                    $('.cantidad-aplicado').off('change').on('change', function(event) {
-                        var i = $(this).closest('.aplicado-individual').index();
-                        subtotalAplicado(i);
-                    });
+										$('.flete-perse').off('change').on('change', function(event) {
+											var i = $(this).closest('global-individual').index();
+											var flete = $(this).val();
+											var horas = $('.localidad-obra option').filter(':selected').attr('horas');
+											if (horas && horas != '' && flete && flete != '') {
+												$('.monto-flete').eq(i).val((parseFloat(horas) * parseFloat(flete)).toFixed(2));
+												subtotalFlete();
+											}
+										});
 
-                    $('.aplicado-perse').off('change').on('change', function(event) {
-                        var i = $(this).closest('.aplicado-individual').index();
-                        $.ajax({
-                                method: "GET",
-                                url: "../../ajax/aplicado/" + $(this).val()
-                            })
-                            .done(function(data) {
-                                var trabajo = JSON.parse(data);
-                                $('.precio-aplicado').eq(i).val(parseFloat(trabajo.precio.replace('.', '').replace(',', '.')).toFixed(2));
-                                $('.unidad-aplicado').eq(i).val(trabajo.uni);
-                                subtotalAplicado(i);
-                            });
-                    });
+										//especial-----------------------------------------------------------------
 
-                    //borde--------------------------------------------
+										$('.superficie-perse').off('change').on('change', function(event) {
+											var i = $(this).closest('.especial-individual').index();
+											var j = $(this).closest('.item-general').index();
+											$.ajax({
+													method: "GET",
+													url: "../../ajax/especial/" + $(this).val()
+												})
+												.done(function(data) {
+													var superficie = JSON.parse(data);
+													$('.item-general').eq(j).find('.precio-especial').eq(i).val(parseFloat(superficie.costo.replace('.', '').replace(',', '.')).toFixed(2));
+													totalEspecial(i, j);
+												});
+										});
 
-                    $('.largo-terminacion').off('change').on('change', function(event) {
-                        var i = $(this).closest('.terminacion-individual').index();
-                        subtotalTerminacion(i);
-                    });
-                    $('.borde-perse').off('change').on('change', function(event) {
-                        var i = $(this).closest('.terminacion-individual').index();
-                        $.ajax({
-                                method: "GET",
-                                url: "../../ajax/borde/" + $(this).val()
-                            })
-                            .done(function(data) {
-                                var borde = JSON.parse(data);
-                                $('.precio-terminacion').eq(i).val(parseFloat(borde.precio.replace('.', '').replace(',', '.')).toFixed(2));
-                                subtotalTerminacion(i);
-                            });
-                    });
-                    //material--------------------------------------------
-                    $('.ancho-material').off('change').on('change', function(event) {
-                        var i = $(this).closest('.material-individual').index();
-                        var j = $(this).closest('.item-general').index();
-                        calcularAdicional(i, j);
-                    });
-                    $('.largo-material').off('change').on('change', function(event) {
-                        var i = $(this).closest('.material-individual').index();
-                        var j = $(this).closest('.item-general').index();
-                        calcularAdicional(i, j);
-                    });
-                    $('.suma-material').off('change').on('change', function(event) {
-                        var i = $(this).closest('.material-individual').index();
-                        var j = $(this).closest('.item-general').index();
-                        calcularAdicional(i, j);
-                    });
-                    $('.nombre-item').off('keyup').on('keyup', function(event) {
-                        var label = $(this).val();
-                        var j = $(this).closest('.item-general').index();
-                        if (label != '') {
-                            $('.item-general').eq(j).find('.item-label').html('«' + label + '»');
-                        } else {
-                            $('.item-general').eq(j).find('.item-label').html('');
-                        }
-                    });
-                    $('.material-perse').off('change').on('change', function(event) {
-                        var id = $(this).val();
-                        var i = $(this).closest('.material-individual').index();
-                        var j = $(this).closest('.item-general').index();
-                        $.ajax({
-                                method: "GET",
-                                url: "../../ajax/material/" + id
-                            })
-                            .done(function(data) {
-                                var material = JSON.parse(data);
-                                $('.item-general').eq(j).find('.observacion-material').eq(i).val(material.observacion);
-                                $('.item-general').eq(j).find('.existencia-material').eq(i).val(material.existencia);
-                                $('.item-general').eq(j).find('.precio-material').eq(i).val(parseFloat(material.precio.replace('.', '').replace(',', '.')).toFixed(2));
-                                $('.item-general').eq(j).find('.taza-material').eq(i).val(parseFloat(material.adicional).toFixed(2));
-                                if (material.suma) {
-                                    $('.item-general').eq(j).find('.suma-material').eq(i).removeAttr('disabled');
-                                } else {
-                                    var disabled = $('.suma-material').eq(i).attr('disabled');
-                                    if (disabled == false || disabled == undefined) {
-                                        $('.item-general').eq(j).find('.suma-material').eq(i).attr('disabled', 'true');
-                                        $('.item-general').eq(j).find('.suma-material').eq(i).attr('checked', 'true');
-                                    }
-                                }
-                                calcularAdicional(i, j);
-                            });
-                    });
-                }
-                //item General ---------------------------------------------------------------------
+										//aplicado-----------------------------------------------------
 
-                $('.agregar-elemento').on('click', function(event) {
-                    var j = $('.item-general:last').index();
-                    agregarGeneral(j);
-                });
+										$('.cantidad-aplicado').off('change').on('change', function(event) {
+											var i = $(this).closest('.aplicado-individual').index();
+											var j = $(this).closest('.item-general').index();
+											subtotalAplicado(i, j);
+										});
 
-                function agregarGeneral(j) {
-                    var precio = $('.item-general').eq(j).find('.total-item:last').val();
-                    var nombre = $('.item-general').eq(j).find('.nombre-item:first').val();
-                    if (nombre != '' && precio != '' && parseFloat(precio) > 0) {
-                        generalBase.clone().insertAfter('.item-general:last').show('fast');
-                        vincularEventos();
-                        return true;
-                    }
-                }
+										$('.aplicado-perse').off('change').on('change', function(event) {
+											var i = $(this).closest('.aplicado-individual').index();
+											var j = $(this).closest('.item-general').index();
+											$.ajax({
+													method: "GET",
+													url: "../../ajax/aplicado/" + $(this).val()
+												})
+												.done(function(data) {
+													var trabajo = JSON.parse(data);
+													$('.item-general').eq(j).find('.precio-aplicado').eq(i).val(parseFloat(trabajo.precio.replace('.', '').replace(',', '.')).toFixed(2));
+													$('.item-general').eq(j).find('.unidad-aplicado').eq(i).val(trabajo.uni);
+													subtotalAplicado(i, j);
+												});
+										});
 
-                function totalItem(index) {
-                    var total = 0;
-                    var subtotalMaterial = $('.item-general').eq(index).find('.subtotal-material:first').val();
-                    if (subtotalMaterial != '') {
-                        total = parseFloat(total) + parseFloat(subtotalMaterial);
-                    }
-                    var subtotalTerminacion = $('.item-general').eq(index).find('.subtotal-terminacion:first').val();
-                    if (subtotalTerminacion != '') {
-                        total = parseFloat(total) + parseFloat(subtotalTerminacion);
-                    }
-                    var subtotalAplicado = $('.item-general').eq(index).find('.subtotal-aplicado:first').val();
-                    if (subtotalAplicado != '') {
-                        total = parseFloat(total) + parseFloat(subtotalAplicado);
-                    }
-                    var subtotalEspecial = $('.item-general').eq(index).find('.subtotal-especial:first').val()
-                    if (subtotalEspecial != '') {
-                        total = parseFloat(total) + parseFloat(subtotalEspecial);
-                    }
-                    $('.item-general').eq(index).find('.total-item').val(total.toFixed(2));
-                }
+										//borde--------------------------------------------
 
-                //Especial------------------------------------
+										$('.largo-terminacion').off('change').on('change', function(event) {
+											var i = $(this).closest('.terminacion-individual').index();
+											var j = $(this).closest('.item-general').index();
+											subtotalTerminacion(i, j);
+										});
+										$('.borde-perse').off('change').on('change', function(event) {
+											var i = $(this).closest('.terminacion-individual').index();
+											var j = $(this).closest('.item-general').index();
+											$.ajax({
+													method: "GET",
+													url: "../../ajax/borde/" + $(this).val()
+												})
+												.done(function(data) {
+													var borde = JSON.parse(data);
+													$('.item-general').eq(j).find('.precio-terminacion').eq(i).val(parseFloat(borde.precio.replace('.', '').replace(',', '.')).toFixed(2));
+													subtotalTerminacion(i, j);
+												});
+										});
+										//material--------------------------------------------
+										$('.ancho-material').off('change').on('change', function(event) {
+											var i = $(this).closest('.material-individual').index();
+											var j = $(this).closest('.item-general').index();
+											calcularAdicional(i, j);
+										});
+										$('.largo-material').off('change').on('change', function(event) {
+											var i = $(this).closest('.material-individual').index();
+											var j = $(this).closest('.item-general').index();
+											calcularAdicional(i, j);
+										});
+										$('.suma-material').off('change').on('change', function(event) {
+											var i = $(this).closest('.material-individual').index();
+											var j = $(this).closest('.item-general').index();
+											calcularAdicional(i, j);
+										});
+										$('.nombre-item').off('keyup').on('keyup', function(event) {
+											var label = $(this).val();
+											var j = $(this).closest('.item-general').index();
+											if (label != '') {
+												$('.item-general').eq(j).find('.item-label').html('«' + label + '»');
+												$('.total-subtotal-item').eq(j).find('.total-label-item').html('«' + label + '»');
+											} else {
+												$('.item-general').eq(j).find('.item-label').html('');
+												$('.total-subtotal-item').eq(j).find('.total-label-item').html('');
+											}
+										});
 
-                $('.agregar-especial').on('click', function(event) {
-                    var index = $('.item-general:last').index();
-                    agregarEspecial(index)
-                });
+										$('.material-perse').off('change').on('change', function(event) {
+											var id = $(this).val();
+											var i = $(this).closest('.material-individual').index();
+											var j = $(this).closest('.item-general').index();
+											$.ajax({
+													method: "GET",
+													url: "../../ajax/material/" + id
+												})
+												.done(function(data) {
+													var material = JSON.parse(data);
+													$('.item-general').eq(j).find('.observacion-material').eq(i).val(material.observacion);
+													$('.item-general').eq(j).find('.existencia-material').eq(i).val(material.existencia);
+													$('.item-general').eq(j).find('.precio-material').eq(i).val(parseFloat(material.precio.replace('.', '').replace(',', '.')).toFixed(2));
+													var rp = $('.item-general').eq(j).find('.pieza-material:eq(' + i + ') option:selected').attr('rp');
+													if (parseFloat(material.adicional) > 0) {
+														$('.item-general').eq(j).find('.taza-material').eq(i).val(parseFloat(material.adicional).toFixed(2));
+														if (material.suma) {
+															$('.item-general').eq(j).find('.tipo-adicional').eq(i).html('Leather');
+															$('.item-general').eq(j).find('.suma-material').eq(i).show();
+														} else {
+															var disabled = $('.item-general').eq(j).find('.suma-material').eq(i).attr('disabled');
 
-                function agregarEspecial(i) {
-                    var precio = $('.precio-especial').eq(i).val();
-                    if (precio) {
-                        especialBase.clone().insertAfter('.especial-individual:last').show('fast');
-                        vincularEventos();
-                        return true;
-                    }
-                }
+															if ((disabled == false || disabled == undefined) && rp == 1) {
+																$('.item-general').eq(j).find('.suma-material').eq(i).attr('checked', 'true');
+																$('.item-general').eq(j).find('.tipo-adicional').eq(i).html('RP');
+																$('.item-general').eq(j).find('.suma-material').eq(i).hide();
+															}
+														}
+													} else {
+														$('.item-general').eq(j).find('.taza-material').eq(i).val('0');
+														$('.item-general').eq(j).find('.suma-material').eq(i).removeAttr('checked');
+														$('.item-general').eq(j).find('.suma-material').eq(i).hide();
+														$('.item-general').eq(j).find('.tipo-adicional').eq(i).html('-');
+													}
+													calcularAdicional(i, j);
+												});
+										});
 
-                function totalEspecial(i) {
-                    var total = 0;
-                    $('.precio-especial').each(function(index) {
-                        total += parseFloat($(this).val());
-                    });
-                    $('.subtotal-especial').val(total.toFixed(2));
-                    totalItem(0);
-                }
+										$('.pieza-material').off('change').on('change', function(event) {
+											var i = $(this).closest('.material-individual').index();
+											var j = $(this).closest('.item-general').index();
+											var rp = $('.item-general').eq(j).find('.pieza-material:eq(' + i + ') option:selected').attr('rp');
+											var id = $('.item-general').eq(j).find('.material-perse').eq(i).val();
+											$.ajax({
+													method: "GET",
+													url: "../../ajax/material/" + id
+												})
+												.done(function(data) {
+													var material = JSON.parse(data);
+													if (parseFloat(material.adicional) > 0) {
+														$('.item-general').eq(j).find('.taza-material').eq(i).val(parseFloat(material.adicional).toFixed(2));
+														if (material.suma) {
+															$('.item-general').eq(j).find('.tipo-adicional').eq(i).html('Leather');
+															$('.item-general').eq(j).find('.suma-material').eq(i).show();
+														} else {
+															var disabled = $('.item-general').eq(j).find('.suma-material').eq(i).attr('disabled');
 
-                //Aplicado------------------------------------------------
-                $('.agregar-aplicado').on('click', function(event) {
+															if ((disabled == false || disabled == undefined) && rp == 1) {
+																$('.item-general').eq(j).find('.suma-material').eq(i).attr('checked', 'true');
+																$('.item-general').eq(j).find('.tipo-adicional').eq(i).html('RP');
+																$('.item-general').eq(j).find('.suma-material').eq(i).hide();
+															} else {
+																$('.item-general').eq(j).find('.taza-material').eq(i).val('0');
+																$('.item-general').eq(j).find('.suma-material').eq(i).removeAttr('checked');
+																$('.item-general').eq(j).find('.suma-material').eq(i).hide();
+																$('.item-general').eq(j).find('.tipo-adicional').eq(i).html('-');
+															}
+														}
+													} else {
+														$('.item-general').eq(j).find('.taza-material').eq(i).val('0');
+														$('.item-general').eq(j).find('.suma-material').eq(i).removeAttr('checked');
+														$('.item-general').eq(j).find('.suma-material').eq(i).hide();
+														$('.item-general').eq(j).find('.tipo-adicional').eq(i).html('-');
+													}
+													calcularAdicional(i, j);
+												});
+										});
 
-                    var i = $('.aplicado-individual:last').index();
-                    agregarAplicado(i)
-                });
+										$('.agregar-especial').off('click').on('click', function(event) {
+											var j = $(this).closest('.item-general').index();
+											var i = $('.item-general').eq(j).find('.especial-individual:last').index();
+											agregarEspecial(i, j);
+										});
 
-                function agregarAplicado(i) {
-                    var monto = $('.monto-aplicado').eq(i).val();
-                    if (monto) {
-                        aplicadoBase.clone().insertAfter('.aplicado-individual:last').show('fast');
-                        vincularEventos();
-                        return true;
-                    }
-                }
+										$('.agregar-aplicado').off('click').on('click', function(event) {
 
-                function totalAplicado(i) {
-                    var total = 0;
-                    $('.monto-aplicado').each(function(index) {
-                        total += parseFloat($(this).val());
-                    });
-                    $('.subtotal-aplicado').val(total.toFixed(2));
-                    totalItem(0);
-                }
+											var j = $(this).closest('.item-general').index();
+											var i = $('.item-general').eq(j).find('.aplicado-individual:last').index();
+											agregarAplicado(i, j)
+										});
 
-                function subtotalAplicado(i) {
-                    var precio = $('.precio-aplicado').eq(i).val();
-                    var cantidad = $('.cantidad-aplicado').eq(i).val();
-                    if (precio != '' && cantidad != '') {
-                        var num = parseFloat(precio) * parseInt(cantidad);
-                        $('.monto-aplicado').eq(i).val(num.toFixed(2));
-                        totalAplicado(i);
-                    }
-                }
+										$('.agregar-terminacion').off('click').on('click', function(event) {
 
-                //Borde--------------------------------
+											var j = $(this).closest('.item-general').index();
+											var i = $('.item-general').eq(j).find('.terminacion-individual:last').index();
+											agregarTerminacion(i, j)
+										});
 
-                $('.agregar-terminacion').on('click', function(event) {
+										$('.agregar-material').off('click').on('click', function(event) {
+											var j = $(this).closest('.item-general').index();
+											var i = $('.item-general').eq(j).find('.material-individual:last').index();
+											agregar(i, j);
+										});
+									}
 
-                    var i = $('.terminacion-individual:last').index();
-                    agregarTerminacion(i)
-                });
+									$('.agregar-global').on('click', function(event) {
+										var flete = $('.monto-flete:last').val();
+										if (flete != '' && parseFloat(flete) > 0) {
+											globalBase.clone().insertAfter('.global-individual:last');
+											vincularEventos();
+											subtotalFlete();
+											return true;
+										}
+									});
 
-                function agregarTerminacion(i) {
-                    var monto = $('.monto-terminacion').eq(i).val();
-                    if (monto) {
-                        terminacionBase.clone().insertAfter('.terminacion-individual:last').show('fast');
-                        vincularEventos();
-                        return true;
-                    }
-                }
+									function subtotalFlete() {
+										var total = 0;
+										$('.monto-flete').each(function(index, el) {
+											if ($(this).val() != '') {
+												total += parseFloat($(this).val());
+											}
+										});
+										$('.total-global').val(total.toFixed(2));
+										ValorGeneral();
+									}
 
-                function totalTerminacion(i) {
-                    var total = 0;
-                    $('.monto-terminacion').each(function(index) {
-                        total += parseFloat($(this).val());
-                    });
-                    $('.subtotal-terminacion').val(total.toFixed(2));
-                    totalItem(0);
-                }
+									//item General ---------------------------------------------------------------------
 
-                function subtotalTerminacion(i) {
-                    var precio = $('.precio-terminacion').eq(i).val();
-                    var largo = $('.largo-terminacion').eq(i).val();
-                    if (precio != '' && largo != '') {
-                        var num = parseFloat(precio) * parseFloat(largo);
-                        $('.monto-terminacion').eq(i).val(num.toFixed(2));
-                        totalTerminacion(i);
-                    }
-                }
+									$('.agregar-elemento').on('click', function(event) {
+										var j = $('.item-general:last').index();
+										agregarGeneral(j);
+									});
 
-                //MAterial--------------------------------
+									function agregarGeneral(j) {
+										var precio = $('.item-general').eq(j).find('.total-item:last').val();
+										var nombre = $('.item-general').eq(j).find('.nombre-item:first').val();
+										if (nombre != '' && precio != '' && parseFloat(precio) > 0) {
+											generalBase.clone().insertAfter('.item-general:last');
+											totalItemBase.clone().insertAfter('.total-subtotal-item:last');
+											vincularEventos();
+											return true;
+										}
+									}
 
-                $('.agregar-material').on('click', function(event) {
-                    var i = $('.material-individual:last').index();
-                    var j = $(this).closest('.item-general').index();
-                    agregar(i, j);
-                });
+									function totalItem(index) {
+										var total = 0;
+										var subtotalMaterial = $('.item-general').eq(index).find('.subtotal-material:first').val();
+										if (subtotalMaterial != '') {
+											total = parseFloat(total) + parseFloat(subtotalMaterial);
+										}
+										var subtotalTerminacion = $('.item-general').eq(index).find('.subtotal-terminacion:first').val();
+										if (subtotalTerminacion != '') {
+											total = parseFloat(total) + parseFloat(subtotalTerminacion);
+										}
+										var subtotalAplicado = $('.item-general').eq(index).find('.subtotal-aplicado:first').val();
+										if (subtotalAplicado != '') {
+											total = parseFloat(total) + parseFloat(subtotalAplicado);
+										}
+										var subtotalEspecial = $('.item-general').eq(index).find('.subtotal-especial:first').val()
+										if (subtotalEspecial != '') {
+											total = parseFloat(total) + parseFloat(subtotalEspecial);
+										}
+										$('.item-general').eq(index).find('.total-item').val(total.toFixed(2));
+										$('.total-subtotal-item').eq(index).find('.total-valor-item').val(total.toFixed(2));
+										ValorGeneral();
+									}
 
-                function totalMaterial(i, j) {
-                    var total = 0;
-                    $('.item-general').eq(j).find('.monto-material').each(function(index) {
-                        total += parseFloat($(this).val());
-                    });
-                    $('.item-general').eq(j).find('.subtotal-material').val(total.toFixed(2));
-                    totalItem(j);
-                }
+									function ValorGeneral() {
+										var total = 0;
+										$('.valor-individual').each(function(index, el) {
+											if ($(this).val() != '') {
+												total += parseFloat($(this).val());
+											}
+										});
+										$('.total-general').val(parseFloat(total).toFixed(2));
+									}
 
-                function agregar(i) {
-                    var pieza = $('.pieza-material').eq(i).val();
-                    var material = $('.material-perse').eq(i).val();
-                    var cuadrados = $('.cuadrados-material').eq(i).val();
-                    if (pieza && material && cuadrados) {
-                        materialBase.clone().insertAfter('.material-individual:last').hide();
-                        $('.material-individual:last').show('fast');
-                        vincularEventos();
-                        return true;
-                    }
-                }
+									//Especial------------------------------------
 
-                function calcularAdicional(i, j) {
-                    var taza = '';
-                    var disabled = $('.item-general').eq(j).find('.suma-material').eq(i).attr('disabled');
-                    if (disabled == false || disabled == undefined) {
-                        if ($('.item-general').eq(j).find('.suma-material').eq(i).is(":checked")) {
-                            taza = $('.taza-material').eq(i).val();
-                        } else {
-                            $('.item-general').eq(j).find('.adicional-material').eq(i).val('');
-                        }
-                    } else {
-                        taza = $('.item-general').eq(j).find('.taza-material').eq(i).val();
-                    }
-                    var metros = metrosCuadrados(i, j);
-                    if (metros != '' && taza != '') {
-                        var num = taza * metros;
-                        $('.item-general').eq(j).find('.adicional-material').eq(i).val(num.toFixed(2));
-                    }
-                    subtotal(i, j);
-                }
+									function agregarEspecial(i, j) {
+										var precio = $('.item-general').eq(j).find('.precio-especial').eq(i).val();
+										if (precio) {
+											especialBase.clone().insertAfter('.item-general:eq(' + j + ') .especial-individual:last');
+											vincularEventos();
+											return true;
+										}
+									}
 
-                function subtotal(i, j) {
-                    var precio = $('.item-general').eq(j).find('.precio-material').eq(i).val();
-                    var adicional = $('.item-general').eq(j).find('.adicional-material').eq(i).val();
-                    if (!adicional) {
-                        adicional = 0;
-                    }
-                    if (precio != '') {
-                        var num = parseFloat(precio) + parseFloat(adicional);
-                        $('.item-general').eq(j).find('.monto-material').eq(i).val(num.toFixed(2));
-                        totalMaterial(i, j);
-                    }
-                }
+									function totalEspecial(i, j) {
+										var total = 0;
+										$('.item-general').eq(j).find('.precio-especial').each(function(index) {
+											total += parseFloat($(this).val());
+										});
+										$('.item-general').eq(j).find('.subtotal-especial').val(total.toFixed(2));
+										totalItem(j);
+									}
 
-                function metrosCuadrados(i, j) {
-                    var largo = $('.item-general').eq(j).find('.largo-material').eq(i).val();
-                    var ancho = $('.item-general').eq(j).find('.ancho-material').eq(i).val();
-                    if (largo != '' && ancho != '') {
-                        $('.item-general').eq(j).find('.cuadrados-material').eq(i).val(ancho * largo);
-                    }
-                    return $('.item-general').eq(j).find('.cuadrados-material').eq(i).val();
-                }
-            });
-        </script>
-    </div>
-    <div class="col-md-12" style="padding:0;">
-        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
-            <div class="panel-heading">
-                <span class="presupuesto">
-                    Trabajos de Obras Globales
-                </span>
-            </div>
-            <div class="panel-body" style="padding-right: 0;padding-left: 0;">
-                <span class="card-title">
-                </span>
-                <div class="container" style="width: 100%;padding: 0;">
-                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                            </h3>
-                            <div class="pull-right">
-                            </div>
-                        </div>
-                        <div class="contacts">
-                            <div class="form-group multiple-form-group">
-                                <div class="col-md-10">
-                                    <p>
-                                        <label>
-                                            Trabajos globales
-                                        </label>
-                                        <br>
-                                        <br>
-                                        <label>
-                                            <input class="filled-in" name="globales_id[]" type="checkbox" value="" />
-                                            <span class="total_item">
-                                                Medicion a domicilio sin instalación
-                                            </span>
-                                        </label>
-                                        </br>
-                                        </br>
-                                    </p>
-                                </div>
-                                <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                    <label>
-                                        Monto $
-                                    </label>
-                                    <br>
-                                    <br>
-                                    {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                    <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                    </br>
-                                    </br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contacts">
-                            <div class="form-group multiple-form-group">
-                                <div class="col-md-10">
-                                    <p>
-                                        <label>
-                                            <input class="filled-in" name="globales_id[]" type="checkbox" value="" />
-                                            <span class="total_item">
-                                                Instalación a domicilio
-                                            </span>
-                                        </label>
-                                    </p>
-                                </div>
-                                <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                    {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                    <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contacts">
-                            <div class="form-group multiple-form-group">
-                                <div class="col-md-4">
-                                    <p>
-                                        <label>
-                                            <input class="filled-in" name="globales_id[]" type="checkbox" value="a_domicilio" />
-                                            <span class="total_item">
-                                                Flete a domicilio
-                                            </span>
-                                        </label>
-                                    </p>
-                                </div>
-                                <div class="col-md-6">
-                                    {!! Form::select('localidad_id', $localidades, null, ['class' => 'form-control', 'placeholder' => 'Seleccione localidad', 'required']) !!}
-                                </div>
-                                <div class="col-md-2" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-                                    {!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price', 'placeholder' => 'precio', 'disabled' => 'true', 'id' => 'spTotal']) !!}
-                                    <!--   <span>El resultado es: </span> <span id="spTotal"></span>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-md-offset-6" style="padding:0;">
-        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
-            <div class="panel-heading panel_total_item" style="background-color: #5CB85C!important;">
-                <span class="presupuesto" style="color: white;">
-                    Presupuesto Item
-                </span>
-            </div>
-            <div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
-                <div class="container" style="width: 100%;padding: 0;">
-                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                        <div class="form-group multiple-form-group">
-                            <div class="col-md-8">
-                                <label class="total_item">
-                                    Superficie
-                                </label>
-                            </div>
-                            <div class="col-md-4">
-                                <span class="total_item">
-                                    $ 22.133
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                        <div class="form-group multiple-form-group">
-                            <div class="col-md-8">
-                                <label class="total_item">
-                                    Bordes
-                                </label>
-                            </div>
-                            <div class="col-md-4">
-                                <span class="total_item">
-                                    $ 15.440
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-                        <div class="form-group multiple-form-group">
-                            <div class="col-md-8">
-                                <label class="total_item">
-                                    Adicionales
-                                </label>
-                            </div>
-                            <div class="col-md-4">
-                                <span class="total_item">
-                                    $ 19.436
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group multiple-form-group">
-                            <div class="col-md-8" style="padding-right: 0;padding-left: 0;">
-                                <label class="total_item">
-                                    <b>
-                                        SUBTOTAL MATERIAL
-                                    </b>
-                                </label>
-                            </div>
-                            <div class="col-md-4">
-                                <span class="total_item">
-                                    <b>
-                                        $ 110.550
-                                    </b>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
-            <div class="panel-heading">
-                <span class="presupuesto">
-                    Observaciones
-                </span>
-            </div>
-            <div class="panel-body">
-                <span class="card-title">
-                </span>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            <div class="tit_cotizador">
-                                {!!$contenido->titulo_condiciones!!}
-                            </div>
-                            <div class="cont_cotizador">
-                                {!!$contenido->contenido_condiciones!!}
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <label class="" for="aclaracion" style="color: #868B92;">
-                                Descripción
-                            </label>
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            <textarea class="form_login materialize-textarea" name="aclaracion" placeholder="mensaje.." style="height: 105px!important;">
+									//Aplicado------------------------------------------------
+
+									function agregarAplicado(i, j) {
+										var monto = $('.item-general').eq(j).find('.monto-aplicado').eq(i).val();
+										if (monto) {
+											aplicadoBase.clone().insertAfter('.item-general:eq(' + j + ') .aplicado-individual:last');
+											vincularEventos();
+											return true;
+										}
+									}
+
+									function totalAplicado(i, j) {
+										var total = 0;
+										$('.item-general').eq(j).find('.monto-aplicado').each(function(index) {
+											total += parseFloat($(this).val());
+										});
+										$('.item-general').eq(j).find('.subtotal-aplicado').val(total.toFixed(2));
+										totalItem(j);
+									}
+
+									function subtotalAplicado(i, j) {
+										var precio = $('.item-general').eq(j).find('.precio-aplicado').eq(i).val();
+										var cantidad = $('.item-general').eq(j).find('.cantidad-aplicado').eq(i).val();
+										if (precio != '' && cantidad != '') {
+											var num = parseFloat(precio) * parseInt(cantidad);
+											$('.item-general').eq(j).find('.monto-aplicado').eq(i).val(num.toFixed(2));
+											totalAplicado(i, j);
+										}
+									}
+
+									//Borde--------------------------------
+
+									function agregarTerminacion(i, j) {
+										var monto = $('.item-general').eq(j).find('.monto-terminacion').eq(i).val();
+										if (monto) {
+											terminacionBase.clone().insertAfter('.item-general:eq(' + j + ') .terminacion-individual:last');
+											vincularEventos();
+											return true;
+										}
+									}
+
+									function totalTerminacion(i, j) {
+										var total = 0;
+										$('.item-general').eq(j).find('.monto-terminacion').each(function(index) {
+											total += parseFloat($(this).val());
+										});
+										$('.item-general').eq(j).find('.subtotal-terminacion').val(total.toFixed(2));
+										totalItem(j);
+									}
+
+									function subtotalTerminacion(i, j) {
+										var precio = $('.item-general').eq(j).find('.precio-terminacion').eq(i).val();
+										var largo = $('.item-general').eq(j).find('.largo-terminacion').eq(i).val();
+										if (precio != '' && largo != '') {
+											var num = parseFloat(precio) * parseFloat(largo);
+											$('.item-general').eq(j).find('.monto-terminacion').eq(i).val(num.toFixed(2));
+											totalTerminacion(i, j);
+										}
+									}
+
+									//MAterial--------------------------------
+
+									function agregar(i, j) {
+										var pieza = $('.item-general').eq(j).find('.pieza-material').eq(i).val();
+										var material = $('.item-general').eq(j).find('.material-perse').eq(i).val();
+										var cuadrados = $('.item-general').eq(j).find('.cuadrados-material').eq(i).val();
+										if (pieza && material && cuadrados) {
+											materialBase.clone().insertAfter('.item-general:eq(' + j + ') .material-individual:last');
+											vincularEventos();
+											return true;
+										}
+									}
+
+									function calcularAdicional(i, j) {
+										var taza = '';
+										var disabled = $('.item-general').eq(j).find('.suma-material').eq(i).attr('disabled');
+										if (disabled == false || disabled == undefined) {
+											if ($('.item-general').eq(j).find('.suma-material').eq(i).is(":checked")) {
+												taza = $('.taza-material').eq(i).val();
+											} else {
+												$('.item-general').eq(j).find('.adicional-material').eq(i).val('');
+											}
+										} else {
+											taza = $('.item-general').eq(j).find('.taza-material').eq(i).val();
+										}
+										var metros = metrosCuadrados(i, j);
+										if (metros != '' && taza != '' && parseFloat(taza) > 0) {
+											var num = taza * metros;
+											$('.item-general').eq(j).find('.adicional-material').eq(i).val(num.toFixed(2));
+										} else {
+											$('.item-general').eq(j).find('.adicional-material').eq(i).val('');
+										}
+										subtotal(i, j);
+									}
+
+									function subtotal(i, j) {
+										var precio = $('.item-general').eq(j).find('.precio-material').eq(i).val();
+										var adicional = $('.item-general').eq(j).find('.adicional-material').eq(i).val();
+										var metros = metrosCuadrados(i, j);
+										if (!adicional) {
+											adicional = 0;
+										}
+										if (precio != '' && metros != '') {
+											var num = parseFloat(precio) * parseFloat(metros) + parseFloat(adicional);
+											$('.item-general').eq(j).find('.monto-material').eq(i).val(num.toFixed(2));
+											totalMaterial(i, j);
+										}
+									}
+
+									function totalMaterial(i, j) {
+										var total = 0;
+										$('.item-general').eq(j).find('.monto-material').each(function(index) {
+											total += parseFloat($(this).val());
+										});
+										$('.item-general').eq(j).find('.subtotal-material').val(total.toFixed(2));
+										totalItem(j);
+									}
+
+									function metrosCuadrados(i, j) {
+										var largo = $('.item-general').eq(j).find('.largo-material').eq(i).val();
+										var ancho = $('.item-general').eq(j).find('.ancho-material').eq(i).val();
+										if (largo != '' && ancho != '') {
+											$('.item-general').eq(j).find('.cuadrados-material').eq(i).val(ancho * largo);
+										}
+										return $('.item-general').eq(j).find('.cuadrados-material').eq(i).val();
+									}
+								});
+							</script>
+							<div style="width: 100%; overflow: hidden;">
+								<div class="col-md-1 pull-right">
+									<button class="btn btn-success agregar-material" type="button">Agregar</button>
+								</div>
+							</div>
+							<div style="width: 100%; overflow: hidden; padding-right: 15px;">
+								<div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
+									<label>Subtotal Material <e class="item-label"></e> $</label>
+									<input type="text" name="subtotal-material[]" class="subtotal-material" style="border-width: 0px; width: 60px;">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-heading" style="border-radius: 0px">
+						<span class="presupuesto">Terminaciones de borde <e class="item-label"></span>
+					</div>
+					<div class="panel-body" style="padding-right: 0;padding-left: 0;border-bottom: 1px solid #ddd;">
+						<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+							<div class="contacts" style="width: 100%; overflow: hidden;">
+								<div class="col-md-8">
+									<label>Terminacion de Borde</label>
+								</div>
+								<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+									<label>Largo</label>
+								</div>
+								<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+									<label>Precio de Material</label>
+								</div>
+								<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+									<label>Monto</label>
+								</div>
+							</div>
+							<div class="contacts" style="overflow: hidden;">
+								<div class="terminacion-individual" style="overflow: hidden; padding-bottom: 10px">
+									<div class="col-md-8">
+										{!! Form::select('borde_id[]', $bordes, null, ['class' => 'form-control borde-perse', 'placeholder' => '', '']) !!}
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+										<input type="number" min="1" name="largo_terminacion[]" class="form-control largo-terminacion">
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+										<input name="precio_terminacion[]" class="form-control precio-terminacion" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+										<input name="monto_terminacion[]" class="form-control monto-terminacion" disabled>
+									</div>
+								</div>
+							</div>
+							<div style="width: 100%; overflow: hidden;">
+								<div class="col-md-1 pull-right" style="padding-top: 5px;">
+									<button class="btn btn-success agregar-terminacion" type="button">Agregar</button>
+								</div>
+							</div>
+							<div style="width: 100%; overflow: hidden; padding-right: 15px;">
+								<div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
+									<label>Subtotal Terminación <e class="item-label"></e> $</label>
+									<input type="text" name="subtotal-terminacion[]" class="subtotal-terminacion" style="border-width: 0px; width: 60px;">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-heading" style="border-radius: 0px">
+						<span class="presupuesto">Trabajos Aplicados <e class="item-label"></span>
+					</div>
+					<div class="panel-body" style="padding-right: 0;padding-left: 0;border-bottom: 1px solid #ddd;">
+						<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+							<div class="contacts" style="overflow: hidden;">
+								<div class="col-md-7">
+									<label>Trabajos</label>
+								</div>
+								<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+									<label>Unidad</label>
+								</div>
+								<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+									<label>Cantidad</label>
+								</div>
+								<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+									<label>Precio Unitario</label>
+								</div>
+								<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+									<label>Monto $</label>
+								</div>
+							</div>
+							<div class="contacts" style="overflow: hidden;">
+								<div class="aplicado-individual" style="overflow: hidden; margin-bottom: 10px; width: 100%;">
+									<div class="col-md-7">
+										{!! Form::select('aplicados_id[]', $aplicados, null, ['class' => 'form-control aplicado-perse', 'placeholder' => '', '']) !!}
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+										<input name="product_cost[]" class="form-control unidad-aplicado" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+										<input type="number" name="largo[]" class="form-control cantidad-aplicado">
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+										<input name="product_cost[]" class="form-control precio-aplicado" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
+										<input name="product_cost[]" class="form-control monto-aplicado" disabled>
+									</div>
+								</div>
+							</div>
+							<div style="width: 100%; overflow: hidden;">
+								<div class="col-md-1 pull-right" style="padding-top: 5px;">
+									<button class="btn btn-success agregar-aplicado" type="button">Agregar</button>
+								</div>
+							</div>
+							<div style="width: 100%; overflow: hidden; padding-right: 15px;">
+								<div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
+									<label>Subtotal Trabajos Aplicados <e class="item-label"></e> $</label>
+									<input type="text" name="subtotal-aplicado[]" class="subtotal-aplicado" style="border-width: 0px; width: 60px;">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-heading" style="border-radius: 0px">
+						<span class="presupuesto">Trabajos Especiales <e class="item-label"></span>
+					</div>
+					<div class="panel-body" style="padding-right: 0;padding-left: 0;">
+						<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+							<div class="contacts" style="overflow: hidden;">
+								<div class="col-md-10">
+									<label>Trabajos</label>
+								</div>
+								<div class="col-md-2">
+									<label>Monto $</label>
+								</div>
+							</div>
+							<div class="contacts" style="overflow: hidden;">
+								<div class="especial-individual" style="overflow: hidden; width: 100%; margin-bottom: 10px;">
+									<div class="col-md-10">
+										{!! Form::select('especial_id[]', $especiales, null, ['class' => 'form-control superficie-perse', 'placeholder' => '', '']) !!}
+									</div>
+									<div class="col-md-2">
+										<input name="precio_especial[]" class="form-control precio-especial" disabled>
+									</div>
+								</div>
+							</div>
+							<div style="width: 100%; overflow: hidden;">
+								<div class="col-md-1 pull-right" style="padding-top: 5px;">
+									<button class="btn btn-success agregar-especial" type="button">Agregar</button>
+								</div>
+							</div>
+							<div style="width: 100%; overflow: hidden; padding-right: 15px;">
+								<div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
+									<label>Subtotal Trabajos Especial <e class="item-label"></e> $</label>
+									<input type="text" name="subtotal-especial[]" class="subtotal-especial" style="border-width: 0px; width: 60px;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default" style="border-bottom-right-radius: 6px;border-bottom-left-radius: 6px;margin-left: 50%;width: 50%; margin-bottom: 0px; border-top-width: 0px;">
+					<div class="panel-heading panel_total_item">
+						<span class="presupuesto" style="color: white;">Presupuesto Item <e class="item-label"></span>
+					</div>
+					<div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
+						<div class="container" style="width: 100%;padding: 0;">
+							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+								<div class="form-group multiple-form-group">
+									<div class="col-md-8">
+										<label class="total_item">Superficie</label>
+									</div>
+									<div class="col-md-4">
+										<input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-material">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+								<div class="form-group multiple-form-group">
+									<div class="col-md-8">
+										<label class="total_item">Bordes</label>
+									</div>
+									<div class="col-md-4">
+										<input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-terminacion">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+								<div class="form-group multiple-form-group">
+									<div class="col-md-8">
+										<label class="total_item">Aplicados</label>
+									</div>
+									<div class="col-md-4">
+										<input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-aplicado">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+								<div class="form-group multiple-form-group">
+									<div class="col-md-8">
+										<label class="total_item">Especiales</label>
+									</div>
+									<div class="col-md-4">
+										<input style="background-color: transparent;border-width: 0px;" type="" name="" class="subtotal-especial">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group multiple-form-group">
+									<div class="col-md-8" style="padding-right: 0;padding-left: 0;">
+										<label class="total_item">
+											<b>SUBTOTAL MATERIAL</b>
+										</label>
+									</div>
+									<div class="col-md-4">
+										<input style="background-color: transparent;border-width: 0px;" type="" name="" class="total-item">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" style="margin-bottom: 4%;">
+				<button class="btn btn-lg btn-success agregar-elemento pull-right" type="button">Agregar Item &plus;</button>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12" style="padding:0;">
+		<div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
+			<div class="panel-heading">
+				<span class="presupuesto">
+					Trabajos de Obras Globales
+				</span>
+			</div>
+			<div class="panel-body" style="padding-right: 0;padding-left: 0;">
+				<span class="card-title">
+				</span>
+				<div class="container" style="width: 100%;padding: 0;">
+					<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+						<div class="contacts">
+							<div class="form-group multiple-form-group">
+								<div class="col-md-12">
+									<p>
+										<label>
+											Trabajos globales
+										</label>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="contacts">
+							<div class="global-individual" style="margin-bottom: 10px; overflow: hidden; width: 100%;">
+								<div class="col-md-9">
+									<select name="flete" class="form-control flete-perse">
+										<option value="">Seleccione Item</option>
+										<option value="{{$flete->medicion}}">Medicion a domicilio sin instalación</option>
+										<option value="{{$flete->colocacion}}">Instalación a domicilio</option>
+										<option value="{{$flete->flete}}">Flete a domicilio</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control monto-flete" name="">
+								</div>
+							</div>
+						</div>
+						<div style="width: 100%; overflow: hidden;">
+							<div class="col-md-1 pull-right" style="padding-top: 5px;">
+								<button class="btn btn-success agregar-global" type="button">Agregar</button>
+							</div>
+						</div>
+						<div style="width: 100%; overflow: hidden; padding-right: 15px;">
+							<div class="pull-right" style="border-bottom: 1px solid #333;padding-top: 15px;">
+								<label>Total Trabajos Globales <e class="item-label"></e> $</label>
+								<input type="text" name="subtotal-especial[]" class="total-global" style="border-width: 0px; width: 60px;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-md-offset-6" style="padding:0;">
+		<div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;">
+			<div class="panel-heading panel_total_item" style="background-color: #5CB85C!important;">
+				<span class="presupuesto" style="color: white;">Presupuesto Total</span>
+			</div>
+			<div class="panel-body" style="padding-right: 0;padding-left: 0;background-color: #CDCDCD;">
+				<div class="container" style="width: 100%;padding: 0;">
+					<div class="col-md-12 total-subtotal-item">
+						<div class="col-md-8">
+							<label class="total_item">Total Item <e class="total-label-item"></e></label>
+						</div>
+						<div class="col-md-4">
+							<input style="background-color: transparent;border-width: 0px;" type="" name="" class="total-valor-item valor-individual">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-8">
+							<label class="total_item">Globales</label>
+						</div>
+						<div class="col-md-4">
+							<input style="background-color: transparent;border-width: 0px;" type="" name="" class="total-global valor-individual">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-8">
+							<label class="total_item">
+								<b>TOTAL</b>
+							</label>
+						</div>
+						<div class="col-md-4">
+							<span class="total_item">
+								<b>
+									<input style="background-color: transparent;border-width: 0px;" type="" name="" class="total-general">
+								</b>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
+			<div class="panel-heading">
+				<span class="presupuesto">
+					Observaciones
+				</span>
+			</div>
+			<div class="panel-body">
+				<span class="card-title">
+				</span>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-1">
+						</div>
+						<div class="input-cliente col-md-11">
+							<div class="tit_cotizador">
+								{!!$contenido->titulo_condiciones!!}
+							</div>
+							<div class="cont_cotizador">
+								{!!$contenido->contenido_condiciones!!}
+							</div>
+						</div>
+						<div class="col-md-1">
+							<label class="" for="aclaracion" style="color: #868B92;">
+								Descripción
+							</label>
+						</div>
+						<div class="input-cliente col-md-11">
+							<textarea class="form_login materialize-textarea" name="aclaracion" placeholder="mensaje.." style="height: 105px!important;">
 							</textarea>
-                        </div>
-                        <div class="col-md-1">
-                            <label class="" for="aclaracion" style="color: #868B92;">
-                                Alcances del presupuesto
-                            </label>
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            <textarea class="form_login materialize-textarea" name="aclaracion" placeholder="mensaje.." style="height: 105px!important;">
+						</div>
+						<div class="col-md-1">
+							<label class="" for="aclaracion" style="color: #868B92;">
+								Alcances del presupuesto
+							</label>
+						</div>
+						<div class="input-cliente col-md-11">
+							<textarea class="form_login materialize-textarea" name="aclaracion" placeholder="mensaje.." style="height: 105px!important;">
 							</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            <div class="tit_cotizador">
-                                {!!$contenido->titulo_plazos!!}
-                            </div>
-                            <div class="cont_cotizador">
-                                {!!$contenido->contenido_plazos!!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            <div class="tit_cotizador">
-                                {!!$contenido->titulo_aclaraciones!!}
-                            </div>
-                            <div class="cont_cotizador">
-                                {!!$contenido->contenido_aclaraciones!!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
-            <div class="panel-heading">
-                <span class="presupuesto">
-                    Cláusulas econónmicas
-                </span>
-            </div>
-            <div class="panel-body">
-                <span class="card-title">
-                </span>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-1">
-                            <label class="" for="aclaracion" style="color: #868B92;">
-                                Forma de pago
-                            </label>
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            {!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
-                        </div>
-                        <div class="col-md-1">
-                            <label class="" for="aclaracion" style="color: #868B92;">
-                                Medios de pago
-                            </label>
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            {!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
-                        </div>
-                        <div class="col-md-1">
-                            <label class="" for="aclaracion" style="color: #868B92;">
-                                Validez de la oferta
-                            </label>
-                        </div>
-                        <div class="input-cliente col-md-11">
-                            {!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
-            <div class="panel-heading">
-                <span class="presupuesto">
-                    Planos
-                </span>
-            </div>
-            <div class="panel-body">
-                <span class="card-title">
-                </span>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-2">
-                            <label class="control-label" for="field1">
-                                Añadir plano
-                            </label>
-                        </div>
-                        <div class="input-cliente col-md-10">
-                            <div class="row">
-                                {!!Form::open()!!}
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="control-group" id="fields">
-                                            <div class="controls">
-                                                <div class="entry input-group col-xs-3">
-                                                    <input class="btn" name="fields[]" type="file">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success btn-addtwo" type="button">
-                                                            <span class="glyphicon glyphicon-plus">
-                                                            </span>
-                                                        </button>
-                                                    </span>
-                                                    </input>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {!!Form::close()!!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-1">
+						</div>
+						<div class="input-cliente col-md-11">
+							<div class="tit_cotizador">
+								{!!$contenido->titulo_plazos!!}
+							</div>
+							<div class="cont_cotizador">
+								{!!$contenido->contenido_plazos!!}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-1">
+						</div>
+						<div class="input-cliente col-md-11">
+							<div class="tit_cotizador">
+								{!!$contenido->titulo_aclaraciones!!}
+							</div>
+							<div class="cont_cotizador">
+								{!!$contenido->contenido_aclaraciones!!}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
+			<div class="panel-heading">
+				<span class="presupuesto">
+					Cláusulas econónmicas
+				</span>
+			</div>
+			<div class="panel-body">
+				<span class="card-title">
+				</span>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-1">
+							<label class="" for="aclaracion" style="color: #868B92;">
+								Forma de pago
+							</label>
+						</div>
+						<div class="input-cliente col-md-11">
+							{!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
+						</div>
+						<div class="col-md-1">
+							<label class="" for="aclaracion" style="color: #868B92;">
+								Medios de pago
+							</label>
+						</div>
+						<div class="input-cliente col-md-11">
+							{!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
+						</div>
+						<div class="col-md-1">
+							<label class="" for="aclaracion" style="color: #868B92;">
+								Validez de la oferta
+							</label>
+						</div>
+						<div class="input-cliente col-md-11">
+							{!!Form::text('formadepago',null,['class'=>'form_login', 'placeholder' => ''])!!}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="panel panel-default" style="border-radius: 6px;margin-bottom: 4%;;">
+			<div class="panel-heading">
+				<span class="presupuesto">
+					Planos
+				</span>
+			</div>
+			<div class="panel-body">
+				<span class="card-title">
+				</span>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-2">
+							<label class="control-label" for="field1">
+								Añadir plano
+							</label>
+						</div>
+						<div class="input-cliente col-md-10">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row">
+										<div class="control-group" id="fields">
+											<div class="controls">
+												<div class="entry input-group col-xs-3">
+													<input class="btn" name="fields[]" type="file">
+													<span class="input-group-btn">
+														<button class="btn btn-success btn-addtwo" type="button">
+															<span class="glyphicon glyphicon-plus">
+															</span>
+														</button>
+													</span>
+													</input>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div>
-    <a class="left" href="" style="cursor: pointer;">
-        <button class="boton_guardar">
-            <span>
-                Guardar Presupuesto
-            </span>
-        </button>
-    </a>
-    <a class="right" href="" style="cursor: pointer;">
-        <button class="boton_confirmar" type="submit">
-            <span>
-                Confirmar Pedido
-            </span>
-        </button>
-    </a>
+	<a class="left" href="" style="cursor: pointer;">
+		<button class="boton_guardar">
+			<span>
+				Guardar Presupuesto
+			</span>
+		</button>
+	</a>
+	<a class="right" href="" style="cursor: pointer;">
+		<button class="boton_confirmar" type="submit">
+			<span>
+				Confirmar Pedido
+			</span>
+		</button>
+	</a>
 </div>
 {!!Form::close()!!}
 <!--
@@ -1300,26 +1361,26 @@
 @endsection
 @section('js')
 <script type="text/javascript">
-    //javascript para seccion de planos
-    $(function() {
-        $(document).on('click', '.btn-addtwo', function(e) {
-            e.preventDefault();
+	//javascript para seccion de planos
+	$(function() {
+		$(document).on('click', '.btn-addtwo', function(e) {
+			e.preventDefault();
 
-            var controlForm = $('.controls:first'),
-                currentEntry = $(this).parents('.entry:first'),
-                newEntry = $(currentEntry.clone()).appendTo(controlForm);
+			var controlForm = $('.controls:first'),
+				currentEntry = $(this).parents('.entry:first'),
+				newEntry = $(currentEntry.clone()).appendTo(controlForm);
 
-            newEntry.find('input').val('');
-            controlForm.find('.entry:not(:last) .btn-addtwo')
-                .removeClass('btn-addtwo').addClass('btn-remove')
-                .removeClass('btn-success').addClass('btn-danger')
-                .html('<span class="glyphicon glyphicon-minus"></span>');
-        }).on('click', '.btn-remove', function(e) {
-            $(this).parents('.entry:first').remove();
+			newEntry.find('input').val('');
+			controlForm.find('.entry:not(:last) .btn-addtwo')
+				.removeClass('btn-addtwo').addClass('btn-remove')
+				.removeClass('btn-success').addClass('btn-danger')
+				.html('<span class="glyphicon glyphicon-minus"></span>');
+		}).on('click', '.btn-remove', function(e) {
+			$(this).parents('.entry:first').remove();
 
-            e.preventDefault();
-            return false;
-        });
-    });
+			e.preventDefault();
+			return false;
+		});
+	});
 </script>
 @endsection
