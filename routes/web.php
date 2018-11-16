@@ -182,6 +182,9 @@ Route::prefix('adm_tienda')->middleware('auth')->group(function () {
     /*------------SUCURSALES----------------*/
     Route::resource('sucursales', 'Adm_tienda\SucursalesController');
 
+    /*------------CONTENIDO OBSERVACIONES CADA TIENDA----------------*/
+    Route::resource('contenido_observaciones_t', 'Adm_tienda\ContenidoobservacionesController');
+
     //DASHBOARD
     Route::get('/dashboard_tienda', 'Adm_tienda\AdminTiendaController@admin');
 

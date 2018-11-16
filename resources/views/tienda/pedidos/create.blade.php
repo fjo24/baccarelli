@@ -385,10 +385,10 @@
 										<input name="stock_id[]" class="form-control producto-price existencia-material" disabled>
 									</div>
 									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<input type="number" name="largo[]" class="form-control producto-quantity largo-material" min="1">
+										<input name="largo[]" class="form-control producto-quantity numero largo-material" min="1">
 									</div>
 									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<input type="number" name="ancho[]" class="form-control producto-quantity ancho-material" min="1">
+										<input name="ancho[]" class="form-control producto-quantity numero ancho-material" min="1">
 									</div>
 									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
 										<input name="cuadrados[]" class="form-control producto-quantity cuadrados-material" disabled>
@@ -435,6 +435,30 @@
 
 									function vincularEventos() {
 
+										$(".numero").keydown(function (e) {
+											var i = e.keyCode;
+											console.log(i);
+											if((i>95&&i<106)||(i>47&&i<58)||i==190||i==110||i==37||i==39||i==8)
+											{
+												if(i==190||i==110)
+												{
+													var str = $(this).val();
+													if (str.indexOf(".") <= 0)
+													{
+														return;
+													}
+													else
+													{
+														e.preventDefault();
+													}
+												}
+											}
+											else
+											{
+												e.preventDefault();
+											}
+										});
+
 										$('.flete-perse').off('change').on('change', function(event) {
 											var i = $(this).closest('global-individual').index();
 											var flete = $(this).val();
@@ -447,18 +471,14 @@
 
 										//especial-----------------------------------------------------------------
 
-										$('.superficie-perse').off('change').on('change', function(event) {
+										$('.precio-especial').off('keyup').on('keyup', function(event) {
 											var i = $(this).closest('.especial-individual').index();
 											var j = $(this).closest('.item-general').index();
-											$.ajax({
-													method: "GET",
-													url: "../../ajax/especial/" + $(this).val()
-												})
-												.done(function(data) {
-													var superficie = JSON.parse(data);
-													$('.item-general').eq(j).find('.precio-especial').eq(i).val(parseFloat(superficie.costo.replace('.', '').replace(',', '.')).toFixed(2));
-													totalEspecial(i, j);
-												});
+											var trabajo = $('.item-general').eq(j).find('.superficie-perse').eq(i).val();
+											if(trabajo)
+											{
+												totalEspecial(i, j);
+											}
 										});
 
 										//aplicado-----------------------------------------------------
@@ -895,7 +915,7 @@
 										{!! Form::select('borde_id[]', $bordes, null, ['class' => 'form-control borde-perse', 'placeholder' => '', '']) !!}
 									</div>
 									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-										<input type="number" min="1" name="largo_terminacion[]" class="form-control largo-terminacion">
+										<input name="largo_terminacion[]" class="form-control numero largo-terminacion">
 									</div>
 									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
 										<input name="precio_terminacion[]" class="form-control precio-terminacion" disabled>
@@ -949,7 +969,7 @@
 										<input name="product_cost[]" class="form-control unidad-aplicado" disabled>
 									</div>
 									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
-										<input type="number" name="largo[]" class="form-control cantidad-aplicado">
+										<input name="largo[]" class="form-control numero cantidad-aplicado">
 									</div>
 									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 10%;">
 										<input name="product_cost[]" class="form-control precio-aplicado" disabled>
@@ -991,7 +1011,7 @@
 										{!! Form::select('especial_id[]', $especiales, null, ['class' => 'form-control superficie-perse', 'placeholder' => '', '']) !!}
 									</div>
 									<div class="col-md-2">
-										<input name="precio_especial[]" class="form-control precio-especial" disabled>
+										<input name="precio_especial[]" class="form-control numero precio-especial">
 									</div>
 								</div>
 							</div>

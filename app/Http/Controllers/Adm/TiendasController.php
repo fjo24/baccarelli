@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tienda;
 use App\User;
+use App\Contenido_observacion;
 class TiendasController extends Controller
 {
     public function index()
@@ -46,6 +47,18 @@ class TiendasController extends Controller
         $usuario->tienda_id= $tienda->id;
         $usuario->password = bcrypt($tienda->cuit);
         $usuario->save();
+
+        //crear contenido de pedido para la tienda
+        $contenidodefecto = Contenido_observacion::first();
+        $contenido = new Contenido_observacion();
+        $contenido->titulo_condiciones     = $contenidodefecto->titulo_condiciones;
+        $contenido->tienda_id     = $tienda->id;
+        $contenido->contenido_condiciones  = $contenidodefecto->contenido_condiciones;
+        $contenido->titulo_plazos          = $contenidodefecto->titulo_plazos;
+        $contenido->contenido_plazos       = $contenidodefecto->contenido_plazos;
+        $contenido->titulo_aclaraciones    = $contenidodefecto->titulo_aclaraciones;
+        $contenido->contenido_aclaraciones = $contenidodefecto->contenido_aclaraciones;
+        $contenido->save();
         $tiendas = Tienda::orderBy('id', 'ASC')->get();
         return view('adm.tiendas.index')
             ->with('tiendas', $tiendas);

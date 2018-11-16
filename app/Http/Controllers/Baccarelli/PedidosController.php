@@ -113,29 +113,29 @@ class PedidosController extends Controller
                 }
             }
         }
-if(isset($request->material_id)){
-  //dd($request->material_id);
-        for ($i = 0; $i < count($request->superficie_id)-1; $i++) {
-            $mate = Material::Find($request->material_id[$i]);
+    if(isset($request->material_id)){
+      //dd($request->material_id);
+      for ($i = 0; $i < count($request->superficie_id)-1; $i++) {
+          $mate = Material::Find($request->material_id[$i]);
 
-            $cuadrados = $request->largo[$i]*$request->ancho[$i];
-            $cuad   = str_replace(',', '', $cuadrados);
-            $matecos = str_replace(',', '', $mate->cost);
-            $c = $cuad*$matecos;
-          //  dd('llego');
+          $cuadrados = $request->largo[$i]*$request->ancho[$i];
+          $cuad   = str_replace(',', '', $cuadrados);
+          $matecos = str_replace(',', '', $mate->cost);
+          $c = $cuad*$matecos;
+        //  dd('llego');
 
 
-            $pedido->Materiales()->attach($request->material_id[$i], [
-            'superficie_id' => $request->superficie_id[$i],
-            'largo' => $request->largo[$i],
-            'ancho' => $request->ancho[$i],
-            'metros_cuadrados' => $request->largo[$i]*$request->ancho[$i],
-            'costo' => $c,
-            'costo_adicional' => $request->adicional[$i]
-          ]);
-        }
-}
-        if(isset($request->borde_id)){
+          $pedido->Materiales()->attach($request->material_id[$i], [
+          'superficie_id' => $request->superficie_id[$i],
+          'largo' => $request->largo[$i],
+          'ancho' => $request->ancho[$i],
+          'metros_cuadrados' => $request->largo[$i]*$request->ancho[$i],
+          'costo' => $c,
+          'costo_adicional' => $request->adicional[$i]
+        ]);
+      }
+    }
+      if(isset($request->borde_id)){
         for ($i = 0; $i < count($request->borde_id); $i++) {
           $borde = Borde::Find($request->borde_id[$i]);
           //if (isset($borde)) {
@@ -152,21 +152,20 @@ if(isset($request->material_id)){
       }
 
         if (Auth()->user()->nivel == 'administrador') {
-            return redirect()->route('admin.presupuestos');
+            return redirect()->route('baccarelli.presupuestos');
         } else {
-            return redirect()->route('admin.presupuestos');
+            return redirect()->route('baccarelli.presupuestos');
         }
-
     }
 
     public function downloadoc($id)
-      {
-          $pedido = Pedido::find($id);
-          $path     = public_path();
-          $url      = $path . '/' . $pedido->ordencompra;
-          return response()->download($url);
-          return redirect()->route('pedidosadmin.index');
-      }
+    {
+        $pedido = Pedido::find($id);
+        $path     = public_path();
+        $url      = $path . '/' . $pedido->ordencompra;
+        return response()->download($url);
+        return redirect()->route('pedidosadmin.index');
+    }
 
     public function show($id)
     {
