@@ -78,7 +78,7 @@ class PedidosController extends Controller
 
     public function store(Request $request)
     {
-      dd($request);
+      //dd($request);
         $pedido                     = new Pedido();
         $pedido->fecha              = Carbon::now()->format('Y-m-d');
         $pedido->numero_presupuesto = $request->numero_presupuesto;

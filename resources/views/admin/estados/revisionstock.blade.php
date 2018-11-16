@@ -7,23 +7,7 @@
 @endsection
 @section('contenido')
 <div class="container" style="width: 89%;">
-    <div class="">
-        <h2>Pedido Numero: {{$pedido->numero_proyecto}}</h2>
-        <table style="width:100%">
-            <tr>
-                <th>Name:</th>
-                <td>{{$pedido->nombre_cliente}}</td>
-            </tr>
-            <tr>
-                <th>Apellido:</th>
-                <td>{{$pedido->apellido_cliente}}</td>
-            </tr>
-            <tr>
-                <th>Telefono:</th>
-                <td>{{$pedido->telefono1}}</td>
-            </tr>
-        </table>
-    </div>
+    @include('layouts.pedido.tabla')
 </div>
 <div class="center">
     <a class="" href="{{route('stockdisponible', $pedido->id)}}">

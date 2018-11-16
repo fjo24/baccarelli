@@ -7,24 +7,7 @@
 @endsection
 @section('contenido')
 <div class="container" style="width: 89%;">
-    <div class="">
-        <h2>Pedido Numero: {{$pedido->numero_proyecto}}</h2>
-        <h3>Adjuntar orden de compra</h3>
-        <table style="width:100%">
-            <tr>
-                <th>Name:</th>
-                <td>{{$pedido->nombre_cliente}}</td>
-            </tr>
-            <tr>
-                <th>Apellido:</th>
-                <td>{{$pedido->apellido_cliente}}</td>
-            </tr>
-            <tr>
-                <th>Telefono:</th>
-                <td>{{$pedido->telefono1}}</td>
-            </tr>
-        </table>
-    </div>
+  @include('layouts.pedido.tabla')
     <br><br>
     <div class="center">
         {!!Form::model($pedido, ['route'=>['guardarfactura',$pedido->id], 'method'=>'PUT', 'files' => true])!!}

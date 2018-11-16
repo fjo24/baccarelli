@@ -13,6 +13,7 @@ class EstadosController extends Controller
   {
     $activo = 'pedidos';
     $pedido = Pedido::Find($id);
+    //dd($pedido);
     $user = User::find(Auth()->user()->id);
     if ($pedido->estado_id == 1){
       //PAGINA DE PEDIDOS PENDIENTES, QUE SE PUEDEN PASAR A NO APROBADO O A APROBADO

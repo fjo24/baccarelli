@@ -29,7 +29,7 @@
 					<span class="presupuesto">
 						Presupuestos
 					</span>
-					<a class="nuevo_p right" href="{{route('pedidostienda.create')}}">
+					<a class="nuevo_p right" href="{{route('pedidosadmin.create')}}">
 						Nuevo +
 					</a>
 				</div>

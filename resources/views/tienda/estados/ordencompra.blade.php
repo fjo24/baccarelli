@@ -7,7 +7,7 @@
 @endsection
 @section('contenido')
 <div class="container" style="width: 89%;">
-
+    @include('layouts.pedido.tabla')
     <br><br>
     <div class="center">
         {!!Form::model($pedido, ['route'=>['guardarorden',$pedido->id], 'method'=>'PUT', 'files' => true])!!}

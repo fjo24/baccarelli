@@ -54,4 +54,9 @@ class Pedido extends Model
         return $this->belongsToMany('App\Borde', 'borde_pedido', 'pedido_id', 'borde_id');
     }
 
+    public function Especiales()
+    {
+        return $this->belongsToMany('App\Especial', 'especial_pedido', 'pedido_id', 'especial_id')->withPivot('precio');
+    }
+
 }
