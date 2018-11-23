@@ -153,6 +153,9 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*------------DOLARES----------------*/
     Route::resource('dolares', 'Adm\DolaresController')->middleware('admin');
 
+    /*------------NIVELES----------------*/
+    Route::resource('niveles', 'Adm\NivelesController')->middleware('admin');
+
     /*------------FLETES----------------*/
     Route::resource('fletes', 'Adm\FletesController')->middleware('admin');
 
@@ -165,6 +168,10 @@ Route::prefix('adm')->middleware('admin')->middleware('auth')->group(function ()
     /*-----CARGA DE EXCELS-----------*/
     Route::get('excelcat', ['uses' => 'Adm\MaterialesController@excelcat', 'as' => 'excelcat'])->middleware('admin');
     Route::post('/import-excel', 'Adm\MaterialesController@importCat')->name('importCat')->middleware('admin');
+
+    /*-----CARGA DE EXCEL PARA LOCALIDADES-----------*/
+    Route::get('excel-localidad', ['uses' => 'Adm\LocalidadesController@excel', 'as' => 'excellocalidad'])->middleware('admin');
+    Route::post('/import-excellocalidad', 'Adm\LocalidadesController@import')->name('importlocalidad')->middleware('admin');
 
 });
 

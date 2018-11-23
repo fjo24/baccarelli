@@ -9,6 +9,8 @@ use App\Material;
 use App\Observacion;
 use App\Rubro;
 use App\Stock;
+use App\T_aplicado;
+use App\Borde;
 use App\Flete;
 use App\Unidad;
 //use Maatwebsite\Excel\Facades\Excel;
@@ -106,8 +108,8 @@ class MaterialesController extends Controller
     public function importCat(Request $request)
     {
         ini_set('max_execution_time', 0);
-
         \Excel::load($request->excel, function ($reader) {
+          //dd($reader);
 
             $excel = $reader->get();
 
@@ -120,7 +122,41 @@ class MaterialesController extends Controller
                   $trabajos_globales = Flete::all()->first();
                   $trabajos_globales->flete = $row->precio_dto;
                   $trabajos_globales->update();
-                }
+                }elseif ($row->observaciones=='borde') {
+                  $observacion_ref = Borde::Where('descripcion', $row->nombre)->first();
+                  if (isset($observacion_ref)) {
+                    $observacion_ref->descripcion      = $row->nombre;
+                    $observacion_ref->precio = number_format($row->precio_dto, 2, ',', '');
+                    $observacion_ref->save();
+                  }else{
+                    $observacion_ref = new Borde;
+                    $observacion_ref->descripcion      = $row->nombre;
+                    $observacion_ref->precio = number_format($row->precio_dto, 2, ',', '');
+                    $observacion_ref->save();
+                  }
+                }elseif ($row->observaciones=='aplicado') {
+                  $observacion_ref = T_aplicado::Where('descripcion', $row->nombre)->first();
+                  if (isset($observacion_ref)) {
+                    $observacion_ref->precio = number_format($row->precio_dto, 2, ',', '');
+                    if ($row->unidad=='M2') {
+                      $observacion_ref->unidad_id = 1;
+                    }elseif ($row->unidad=='ML') {
+                      $observacion_ref->unidad_id = 4;
+                    }elseif ($row->unidad=='HS.') {
+                      $observacion_ref->unidad_id = 3;
+                    }elseif ($row->unidad=='U.') {
+                      $observacion_ref->unidad_id = 5;
+                    }else{
+                      $observacion_ref->unidad_id = 2;
+                    }
+                    $observacion_ref->save();
+                  }else{
+                    $observacion_ref = new T_aplicado;
+                    $observacion_ref->descripcion      = $row->nombre;
+                    $observacion_ref->precio = number_format($row->precio_dto, 2, ',', '');
+                    $observacion_ref->save();
+                  }
+                }else {
                 $cate_ref = Material::Where('codigo', $row->codigo)->first();
                 if (!isset($cate_ref)) {
                     if ($row->moneda == '$' || $row->moneda == 'U$S') {
@@ -207,6 +243,7 @@ class MaterialesController extends Controller
                         $cate_ref->update();
                     }
                 }
+              }
             });
 
             $materiales = Material::OrderBy('codigo', 'ASC')->get();

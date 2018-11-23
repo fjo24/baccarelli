@@ -78,7 +78,7 @@ class PedidosController extends Controller
 
     public function store(Request $request)
     {
-      //dd($request);
+      dd($request);
         $pedido                     = new Pedido();
         $pedido->fecha              = Carbon::now()->format('Y-m-d');
         $pedido->numero_presupuesto = $request->numero_presupuesto;
@@ -144,9 +144,12 @@ if(isset($request->material_id)){
         for ($i = 0; $i < count($request->borde_id); $i++) {
           $borde = Borde::Find($request->borde_id[$i]);
           //if (isset($borde)) {
-          $p = str_replace(',', '', $borde->precio);
-          $l = str_replace(',', '', $request->largo_terminacion[$i]);
-          $c = $p*$l;
+          if (isset($borde)){
+
+            $p = str_replace(',', '', $borde->precio);
+            $l = str_replace(',', '', $request->largo_terminacion[$i]);
+            $c = $p*$l;
+          }
         //  dd($request);
             $pedido->Bordes()->attach($request->borde_id[$i],[
             'largo' => $request->largo_terminacion[$i],

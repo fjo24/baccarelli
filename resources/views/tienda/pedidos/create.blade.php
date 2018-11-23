@@ -329,85 +329,96 @@
 								<h3 class="box-title">Seleccione producto o servicio</h3>
 							</div>
 							<!--formulario-------------------------------------------------------->
-							<div class="contacts" style="overflow: hidden;">
-								<div style="width: 100%;overflow: hidden;">
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-										<label>Pieza</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
-										<label>Material</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
-										<label>Observaciones</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
-										<label>Existencia</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<label>Largo</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<label>Ancho</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<label>M2</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										<label>Precio Mat</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										<label>Adicional</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										<label>Precio adic</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										<label>Monto</label>
+							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+								<div class="contacts" style="overflow: hidden;">
+									<div style="width: 100%;overflow: hidden;">
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+											<label>Pieza</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
+											<label>Material</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
+											<label>Observaciones</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
+											<label>Existencia</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+											<label>Largo</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+											<label>Ancho</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+											<label>M2</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+											<label>Precio Mat</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+											<label>Adicional</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+											<label>Precio adic</label>
+										</div>
+										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+											<label>Monto</label>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="contacts" style="overflow: hidden;">
-								<div class="material-individual" style="overflow: hidden;">
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-										<select name="superficie_id[]" class="form-control select-product pieza-material">
-											@foreach($superficies as $superficie)
-											<option value="{{$superficie->id}}" rp="{{$superficie->rp}}">{{$superficie->descripcion}}</option>
-											@endforeach
-										</select>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
-										{!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product material-perse', 'placeholder' => '', '']) !!}
-									</div>
-									<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
-										<input name="observaciones_id[]" class="form-control producto-price observacion-material" disabled>
-									</div>
-									<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
-										<input name="stock_id[]" class="form-control producto-price existencia-material" disabled>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<input name="largo[]" class="form-control producto-quantity numero largo-material" min="1">
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<input name="ancho[]" class="form-control producto-quantity numero ancho-material" min="1">
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-										<input name="cuadrados[]" class="form-control producto-quantity cuadrados-material" disabled>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										{!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price precio-material', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										<label class="form-control">
-											<input type="checkbox" class="suma-material" name="suma[]">
-											<label class="tipo-adicional"></label>
-											<input type="hidden" class="taza-material" name="adicional[]">
-										</label>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										<input name="'product_cost[]" class="form-control producto-price adicional-material" disabled>
-									</div>
-									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-										<input name="'product_cost[]" class="form-control producto-price monto-material" disabled>
+							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
+								<div class="contacts" style="overflow: hidden;">
+									<div class="material-individual" style="overflow: hidden;">
+										<div class="col-md-6" style="padding-right: 0;padding-left: 0;">
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+												<select name="superficie_id[]" class="form-control select-product pieza-material">
+													@foreach($superficies as $superficie)
+													<option value="{{$superficie->id}}" rp="{{$superficie->rp}}">{{$superficie->descripcion}}</option>
+													@endforeach
+												</select>
+											</div>
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
+												{!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product material-perse', 'placeholder' => '', '']) !!}
+											</div>
+											<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
+												<input name="observaciones_id[]" class="form-control producto-price observacion-material" disabled>
+											</div>
+											<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
+												<input name="stock_id[]" class="form-control producto-price existencia-material" disabled>
+											</div>
+										</div>
+										<div class="col-md-6" style="padding-right: 0;padding-left: 0;">
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+												<input name="largo[]" class="form-control producto-quantity numero largo-material" min="1">
+											</div>
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+												<input name="ancho[]" class="form-control producto-quantity numero ancho-material" min="1">
+											</div>
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+												<input name="cuadrados[]" class="form-control producto-quantity cuadrados-material" disabled>
+											</div>
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+												{!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price precio-material', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
+											</div>
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+												<label class="form-control">
+													<input type="checkbox" class="suma-material" name="suma[]">
+													<label class="tipo-adicional"></label>
+													<input type="hidden" class="taza-material" name="adicional[]">
+
+													<input type="hidden" class="item-label" name="item[]">
+
+												</label>
+											</div>
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+												<input name="'product_cost[]" class="form-control producto-price adicional-material" disabled>
+											</div>
+											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+												<input name="'product_cost[]" class="form-control producto-price monto-material" disabled>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -435,26 +446,19 @@
 
 									function vincularEventos() {
 
-										$(".numero").keydown(function (e) {
+										$(".numero").keydown(function(e) {
 											var i = e.keyCode;
 											console.log(i);
-											if((i>95&&i<106)||(i>47&&i<58)||i==190||i==110||i==37||i==39||i==8)
-											{
-												if(i==190||i==110)
-												{
+											if ((i > 95 && i < 106) || (i > 47 && i < 58) || i == 190 || i == 110 || i == 37 || i == 39 || i == 8) {
+												if (i == 190 || i == 110) {
 													var str = $(this).val();
-													if (str.indexOf(".") <= 0)
-													{
+													if (str.indexOf(".") <= 0) {
 														return;
-													}
-													else
-													{
+													} else {
 														e.preventDefault();
 													}
 												}
-											}
-											else
-											{
+											} else {
 												e.preventDefault();
 											}
 										});
@@ -475,8 +479,7 @@
 											var i = $(this).closest('.especial-individual').index();
 											var j = $(this).closest('.item-general').index();
 											var trabajo = $('.item-general').eq(j).find('.superficie-perse').eq(i).val();
-											if(trabajo)
-											{
+											if (trabajo) {
 												totalEspecial(i, j);
 											}
 										});

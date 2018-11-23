@@ -300,6 +300,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{route('niveles.create')}}">
+                                    Niveles
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{route('contenido_globales.create')}}">
                                     Texto
                                 </a>
@@ -368,6 +373,11 @@
                             <li>
                                 <a href="{{route('localidades.index')}}">
                                     Editar Localidad
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('excellocalidad')}}">
+                                    Carga excel
                                 </a>
                             </li>
                         </ul>

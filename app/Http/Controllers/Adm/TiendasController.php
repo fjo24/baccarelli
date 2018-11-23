@@ -26,6 +26,7 @@ class TiendasController extends Controller
         $tienda           = new Tienda();
         $tienda->nombre   = $request->nombre;
         $tienda->cuit = $request->cuit;
+        $tienda->nivel    = $request->nivel;
         $tienda->email    = $request->email;
         $id                     = Tienda::all()->max('id');
         $id++;
@@ -82,6 +83,7 @@ class TiendasController extends Controller
         $tienda->nombre   = $request->nombre;
         $tienda->cuit = $request->cuit;
         $tienda->email    = $request->email;
+        $tienda->nivel    = $request->nivel;
         $id               = $tienda->id;
         if ($request->hasFile('logo')) {
             if ($request->file('logo')->isValid()) {

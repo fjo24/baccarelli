@@ -69,7 +69,6 @@ class TiendaController extends Controller
     public function home()
     {
         $activo = 'home';
-
         return redirect()->route('pedidostienda.create', compact('sliders', 'servicios', 'banner', 'contenido', 'activo', 'user'));
     }
 

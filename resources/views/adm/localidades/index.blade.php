@@ -33,7 +33,7 @@
 					Horas de peaje
 				</td>
 				<td>
-					Total en pesos
+					Total horas
 				</td>
 				<td class="text-right">
 					Acciones

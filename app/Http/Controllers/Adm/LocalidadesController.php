@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Adm;
 
 use App\Http\Controllers\Controller;
 use App\Localidad;
+use Excel;
 use Illuminate\Http\Request;
-
 class LocalidadesController extends Controller
 {
     public function index()
@@ -64,4 +64,50 @@ class LocalidadesController extends Controller
         $localidad->delete();
         return redirect()->route('localidades.index');
     }
+
+    public function excel()
+    {
+        return view('adm.localidades.carga');
+    }
+
+    public function import(Request $request)
+    {
+      //dd($request->excel);
+        ini_set('max_execution_time', 0);
+
+        \Excel::load($request->excel, function ($reader) {
+            $excel = $reader->get();
+//dd($reader);
+            // iteracción
+            $cambio = 'fr_' . time();
+            $reader->each(function ($row) use ($cambio) {
+              //dd($row);
+                  $localidad = Localidad::Where('nombre', $row->horas_flete)->first();
+                  if (isset($localidad)) {
+                    $localidad->nombre = $row->localidad;
+                    $localidad->horas_flete = $row->horas_flete;
+                    $localidad->horas_peaje = $row->horas_peaje;
+                    if (starts_with($row->localidad, 'CF') == true) {
+                        $localidad->zona = 'capital federal';
+                    }else{
+                      $localidad->zona = 'gran buenos aires';
+                    }
+                    $localidad->save();
+                }else{
+                  $localidad = new Localidad;
+                  $localidad->nombre = $row->localidad;
+                  $localidad->horas_flete = $row->horas_flete;
+                  $localidad->horas_peaje = $row->horas_peaje;
+                  if (starts_with($row->localidad, 'CF') == true) {
+                      $localidad->zona = 'capital federal';
+                  }else{
+                    $localidad->zona = 'gran buenos aires';
+                  }
+                  $localidad->save();
+                }
+              });
+
+    });
+    return redirect()->route('localidades.index');
+  }
 }
