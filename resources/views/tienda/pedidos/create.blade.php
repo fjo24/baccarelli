@@ -329,96 +329,85 @@
 								<h3 class="box-title">Seleccione producto o servicio</h3>
 							</div>
 							<!--formulario-------------------------------------------------------->
-							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-								<div class="contacts" style="overflow: hidden;">
-									<div style="width: 100%;overflow: hidden;">
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-											<label>Pieza</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
-											<label>Material</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
-											<label>Observaciones</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
-											<label>Existencia</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-											<label>Largo</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-											<label>Ancho</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-											<label>M2</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-											<label>Precio Mat</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-											<label>Adicional</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-											<label>Precio adic</label>
-										</div>
-										<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-											<label>Monto</label>
-										</div>
+							<div class="contacts" style="overflow: hidden;">
+								<div style="width: 100%;overflow: hidden;">
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+										<label>Pieza</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
+										<label>Material</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
+										<label>Observaciones</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
+										<label>Existencia</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<label>Largo</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<label>Ancho</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<label>M2</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Precio Mat</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Adicional</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Precio adic</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label>Monto</label>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-12" style="padding-right: 0;padding-left: 0;">
-								<div class="contacts" style="overflow: hidden;">
-									<div class="material-individual" style="overflow: hidden;">
-										<div class="col-md-6" style="padding-right: 0;padding-left: 0;">
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
-												<select name="superficie_id[]" class="form-control select-product pieza-material">
-													@foreach($superficies as $superficie)
-													<option value="{{$superficie->id}}" rp="{{$superficie->rp}}">{{$superficie->descripcion}}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
-												{!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product material-perse', 'placeholder' => '', '']) !!}
-											</div>
-											<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
-												<input name="observaciones_id[]" class="form-control producto-price observacion-material" disabled>
-											</div>
-											<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
-												<input name="stock_id[]" class="form-control producto-price existencia-material" disabled>
-											</div>
-										</div>
-										<div class="col-md-6" style="padding-right: 0;padding-left: 0;">
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-												<input name="largo[]" class="form-control producto-quantity numero largo-material" min="1">
-											</div>
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-												<input name="ancho[]" class="form-control producto-quantity numero ancho-material" min="1">
-											</div>
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
-												<input name="cuadrados[]" class="form-control producto-quantity cuadrados-material" disabled>
-											</div>
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-												{!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price precio-material', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
-											</div>
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-												<label class="form-control">
-													<input type="checkbox" class="suma-material" name="suma[]">
-													<label class="tipo-adicional"></label>
-													<input type="hidden" class="taza-material" name="adicional[]">
-
-													<input type="hidden" class="item-label" name="item[]">
-
-												</label>
-											</div>
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-												<input name="'product_cost[]" class="form-control producto-price adicional-material" disabled>
-											</div>
-											<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
-												<input name="'product_cost[]" class="form-control producto-price monto-material" disabled>
-											</div>
-										</div>
+							<div class="contacts" style="overflow: hidden;">
+								<div class="material-individual" style="overflow: hidden;">
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 11%;">
+										<select name="superficie_id[]" class="form-control select-product pieza-material">
+											@foreach($superficies as $superficie)
+											<option value="{{$superficie->id}}" rp="{{$superficie->rp}}">{{$superficie->descripcion}}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 1%;width: 12%;">
+										{!! Form::select('material_id[]', $materiales, null, ['class' => 'form-control select-product material-perse', 'placeholder' => '', '']) !!}
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 1%;width: 11%;">
+										<input name="observaciones_id[]" class="form-control producto-price observacion-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 0%;padding-right: 0%;width: 8%;">
+										<input name="stock_id[]" class="form-control producto-price existencia-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<input name="largo[]" class="form-control producto-quantity numero largo-material" min="1">
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<input name="ancho[]" class="form-control producto-quantity numero ancho-material" min="1">
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 7%;">
+										<input name="cuadrados[]" class="form-control producto-quantity cuadrados-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										{!! Form::text('product_cost[]', null, ['class' => 'form-control producto-price precio-material', 'placeholder' => 'precio', 'disabled' => 'true']) !!}
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<label class="form-control">
+											<input type="checkbox" class="suma-material" name="suma[]">
+											<label class="tipo-adicional"></label>
+											<input type="hidden" class="taza-material" name="adicional[]">
+										</label>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<input name="'product_cost[]" class="form-control producto-price adicional-material" disabled>
+									</div>
+									<div class="col-md-1" style="padding-left: 1%;padding-right: 0%;width: 9%;">
+										<input name="'product_cost[]" class="form-control producto-price monto-material" disabled>
 									</div>
 								</div>
 							</div>
@@ -1352,12 +1341,10 @@
 	</div>
 </div>
 <div>
-	<a class="left" href="" style="cursor: pointer;">
-		<button class="boton_guardar">
-			<span>
-				Guardar Presupuesto
-			</span>
-		</button>
+	<a class="left btn boton_guardar" href="{{route("tienda.createpresupuesto")}}" style="cursor: pointer;">
+		<span>
+			Guardar Presupuesto
+		</span>
 	</a>
 	<a class="right" href="" style="cursor: pointer;">
 		<button class="boton_confirmar" type="submit">

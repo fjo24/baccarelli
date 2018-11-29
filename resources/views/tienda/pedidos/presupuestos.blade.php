@@ -43,7 +43,6 @@
 							<td class=""><img src="{{asset('img/signo_amarillo.png')}}" /></td>
 							<td class=""><img src="{{asset('img/signo_rojo.png')}}" /></td>
 							<td class=""><img src="{{asset('img/signo_verde.png')}}" /></td>
-							<td class="td_baccarelli">Estado</td>
 						</thead>
 						<tbody>
 							@foreach($pedidos as $pedido)
@@ -68,13 +67,6 @@
 									<button class="boton_datos fondo_verde">
 										Generar nueva versión
 									</button>
-								</td>
-								<td class="td_baccarelli" class="text-right">
-									<a class="modal-trigger" href="#modalesperando{!!$pedido->id!!}">
-										<button class="boton_datos fondo_espera" style="cursor:pointer!important;">
-											{!!$pedido->estado->descripcion!!}
-										</button>
-									</a>
 								</td>
 							</tr>
 							<!-- Modal Structure -->

@@ -22,7 +22,10 @@
  //<<<<<<<<<<<<<<<<<<<<------------------------------------------    ESTADOS
  //PEDIDO NO APROBADO
  Route::get('/noaprobado/{id}',  'EstadosController@noaprobado')->name('noaprobado');//accion
- Route::get('/pendiente/{id}',  'EstadosController@pendiente')->name('pendiente');//page
+ Route::get('/pendiente/{id}',  'EstadosController@pendiente')->name('pendiente');//accion
+ Route::get('/doc_insuficiente/{id}',  'EstadosController@doc_insuficiente')->name('doc_insuficiente');//accion
+
+
  Route::get('/aprobado/{id}',  'EstadosController@aprobado')->name('aprobado');//accion
  Route::get('/ordencompra/{id}',  'EstadosController@ordencompra')->name('ordencompra');//page
  Route::put('/guardarorden/{id}',  'EstadosController@guardarorden')->name('guardarorden');//page
@@ -77,6 +80,9 @@ Route::prefix('admin')->middleware('admin')->middleware('auth')->group(function 
     /*------------PEDIDOS----------------*/
     Route::resource('pedidosadmin', 'Baccarelli\PedidosController')->middleware('admin');
 
+    /*------------CREAR PRESUPUESTOS----------------*/
+    Route::get('/createpresupuestob', ['uses' => 'Baccarelli\AdminController@createpresupuesto', 'as' => 'admin.createpresupuesto']);
+
     // DESCARGA DE ORDEN DE COMPRA
     Route::get('downloadoc/{id}', ['uses' => 'Baccarelli\PedidosController@downloadoc', 'as' => 'downloadoc']);
 
@@ -92,6 +98,9 @@ Route::prefix('tienda')->middleware('auth')->group(function () {
     Route::get('/presupuestos', ['uses' => 'Tienda\PedidosController@presupuestos', 'as' => 'tienda.presupuestos']);
     /*------------PEDIDOS----------------*/
     Route::resource('pedidostienda', 'Tienda\PedidosController');
+
+    /*------------CREAR PRESUPUESTOS----------------*/
+    Route::get('/createpresupuestot', ['uses' => 'Tienda\PedidosController@createpresupuesto', 'as' => 'tienda.createpresupuesto']);
 });
 
 /*******************ADMIN************************/

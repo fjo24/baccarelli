@@ -27,7 +27,7 @@
 			<div class="card #e0e0e0 grey lighten-2" style="margin-bottom: 7%;border-radius: 6px;margin-top: 7%;">
 				<div class="card-action" style="">
 					<span class="presupuesto">
-						Presupuestos
+						Pedidos
 					</span>
 					<a class="nuevo_p right" href="{{route('pedidostienda.create')}}">
 						Nuevo +
@@ -82,7 +82,7 @@
 									@else
 									<a class="modal-trigger" href="#modalp{!!$pedido->id!!}">
 										<button class="boton_datos fondo_espera" style="cursor:pointer!important;">
-											{!!$pedido->estado->descripcion!!}
+											{!!$pedido->estado->descripcion2!!}
 										</button>
 									</a>
 									<!-- FIN CONJUNTO DE ESTADOS POSIBLES PARA TIENDA-->

@@ -27,7 +27,7 @@
 			<div class="card #e0e0e0 grey lighten-2" style="margin-bottom: 7%;border-radius: 6px;margin-top: 7%;">
 				<div class="card-action" style="">
 					<span class="presupuesto">
-						Presupuestos
+						Pedidos
 					</span>
 					<a class="nuevo_p right" href="{{route('pedidosadmin.create')}}">
 						Nuevo +
